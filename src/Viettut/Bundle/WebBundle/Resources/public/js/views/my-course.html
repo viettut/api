@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col-md-9">
+        <div class="blog-posts">
+            <article class="post post-medium" ng-repeat="course in myCourses">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="post-image">
+                            <div class="img-thumbnail">
+                                <img class="img-responsive" ng-src="<{ course.imagePath }>" alt="post image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="post-content">
+                            <h2><a href="#"><{ course.title }></a></h2>
+                            <p><{ getFirstParagraph(course.introduce) }></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="post-meta">
+                            <span><i class="fa fa-calendar"></i><{ course.createdAt | date : "m/d/Y" }></span>
+                            <span><i class="fa fa-user"></i> By <a href="#"><{ course.author.username }></a> </span>
+                                        <span><i class="fa fa-tag"></i>
+                                                <a href="#" ng-repeat="t in course.courseTags">
+                                                    <{ t.tag.text }>
+                                                </a>
+                                        </span>
+                            <span><i class="fa fa-book"></i> <a href="#"><{ course.chapters.length }> Chapters</a></span>
+                            <div class="btn-group pull-right" role="group" aria-label="Basic example">
+                                <a href="<{ buildViewLink(course) }>" class="btn btn-primary padding-left-5 padding-right-5" target="_blank">View</a>
+                                <a href="#/<{course.id}>/edit" class="btn btn-primary padding-left-5 padding-right-5">Edit</a>
+                                <a href="#/<{course.id}>/delete" class="btn btn-primary padding-left-5 padding-right-5">Detete</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <aside class="sidebar">
+            <h4>Categories</h4>
+            <ul class="nav nav-list primary push-bottom">
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Photos</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Lifestyle</a></li>
+                <li><a href="#">Technology</a></li>
+            </ul>
+
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a></li>
+                    <li><a href="#recentPosts" data-toggle="tab">Recent</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="popularPosts">
+                        <ul class="simple-post-list">
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-1.jpg') }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-2.jpg') }} " alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-3.jpg') }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Odiosters Nullam Vitae</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="recentPosts">
+                        <ul class="simple-post-list">
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-2.jpg') }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-3.jpg') }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Odiosters Nullam Vitae</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <a href="blog-post.html">
+                                            <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-1.jpg') }}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="post-info">
+                                    <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                    <div class="post-meta">
+                                        Jan 10, 2013
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</div>

@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Viettut\Bundle\UserBundle\ViettutUserBundle(),
+            new Viettut\Bundle\WebBundle\ViettutWebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

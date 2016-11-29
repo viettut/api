@@ -1,0 +1,26 @@
+[28-Aug-2016 14:23:07 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to use ApcClassLoader as APC is not enabled.' in /home/hwzrbcta/app/bootstrap.php.cache:2793
+Stack trace:
+#0 /home/hwzrbcta/public_html/app.php(13): Symfony\Component\ClassLoader\ApcClassLoader->__construct('569dc575037d157...', Object(Composer\Autoload\ClassLoader))
+#1 {main}
+  thrown in /home/hwzrbcta/app/bootstrap.php.cache on line 2793
+[28-Aug-2016 14:25:13 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to use ApcClassLoader as APC is not enabled.' in /home/hwzrbcta/app/bootstrap.php.cache:2793
+Stack trace:
+#0 /home/hwzrbcta/public_html/app.php(13): Symfony\Component\ClassLoader\ApcClassLoader->__construct('569dc575037d157...', Object(Composer\Autoload\ClassLoader))
+#1 {main}
+  thrown in /home/hwzrbcta/app/bootstrap.php.cache on line 2793
+[28-Aug-2016 14:37:19 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to use ApcClassLoader as APC is not enabled.' in /home/hwzrbcta/app/bootstrap.php.cache:2793
+Stack trace:
+#0 /home/hwzrbcta/public_html/app.php(13): Symfony\Component\ClassLoader\ApcClassLoader->__construct('569dc575037d157...', Object(Composer\Autoload\ClassLoader))
+#1 {main}
+  thrown in /home/hwzrbcta/app/bootstrap.php.cache on line 2793
+[28-Aug-2016 14:37:23 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to use ApcClassLoader as APC is not enabled.' in /home/hwzrbcta/app/bootstrap.php.cache:2793
+Stack trace:
+#0 /home/hwzrbcta/public_html/app.php(13): Symfony\Component\ClassLoader\ApcClassLoader->__construct('569dc575037d157...', Object(Composer\Autoload\ClassLoader))
+#1 {main}
+  thrown in /home/hwzrbcta/app/bootstrap.php.cache on line 2793
+[28-Aug-2016 14:38:07 Asia/Ho_Chi_Minh] PHP Fatal error:  Uncaught exception 'RuntimeException' with message 'Unable to use ApcClassLoader as APC is not enabled.' in /home/hwzrbcta/app/bootstrap.php.cache:2793
+Stack trace:
+#0 /home/hwzrbcta/public_html/app.php(13): Symfony\Component\ClassLoader\ApcClassLoader->__construct('569dc575037d157...', Object(Composer\Autoload\ClassLoader))
+#1 {main}
+  thrown in /home/hwzrbcta/app/bootstrap.php.cache on line 2793
+[28-Aug-2016 14:39:46 Asia/Ho_Chi_Minh] PHP Fatal error:  Class 'Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle' not found in /home/hwzrbcta/app/AppKernel.php on line 44

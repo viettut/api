@@ -1,13 +1,253 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <title>Viettut - Learn programming from the best</title>
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Viettut - Learn programming from the best">
+    <meta name="author" content="viettut.com">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Web Fonts  -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CShadows+Into+Light" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+
+    <!--[if IE]>
+    <script src="{{ asset('bundles/viettutweb/css/ie.css') }}"></script>
+    <![endif]-->
+</head>
+<body ng-app="viettut">
+<div class="body">
+    <header id="header" ng-controller="NavBarController">
+        <div class="container">
+            <div class="logo">
+                <a href="">
+                    <img alt="Porto" width="111" height="54" data-sticky-width="82" data-sticky-height="40" src="{{ asset('bundles/viettutweb/img/viettut.png') }}">
+                </a>
+            </div>
+            <div class="search">
+                <form id="searchForm" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+								</span>
+                    </div>
+                </form>
+            </div>
+            <nav>
+                <ul class="nav nav-pills nav-top">
+                    <li>
+                        <a href="#"><i class="fa fa-angle-right"></i>Liên Hệ</a>
+                    </li>
+                    <li class="phone">
+                        <span><i class="fa fa-phone"></i>0961.61.4387</span>
+                    </li>
+                </ul>
+            </nav>
+            <button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <div class="navbar-collapse nav-main-collapse collapse">
+            <div class="container">
+                <ul class="social-icons">
+                    <li class="facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook">Facebook</a></li>
+                    <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
+                    <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
+                </ul>
+                <nav class="nav-main mega-menu">
+                    <ul class="nav nav-pills nav-main" id="mainMenu">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Khóa học
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Tất cả</a></li>
+                                <li><a href="">Soạn khóa học<span class="tip">hot</span></a></li>
+                                <li><a href="#">Tìm kiếm</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Hướng dẫn
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Tất cả</a></li>
+                                <li><a href="">Viết bài</a></li>
+                                <li><a href="#">Tìm kiếm</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Hỏi & Đáp
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="">
+                                Bài test
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="">Tất cả</a></li>
+                                <li><a href="">Tìm kiếm</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" href="#">
+                                Liên Hệ
+                            </a>
+                        </li>
+                        {% if app.user %}
+                            <li class="dropdown mega-menu-item mega-menu-signin signin logged">
+                                <a class="dropdown-toggle">
+                                    <i class="fa fa-user"></i> {{ app.user.username }}
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <div class="mega-menu-content">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="user-avatar">
+                                                        <div class="img-thumbnail">
+                                                            <img alt="avatar" ng-src="<{ avatar }>">
+                                                        </div>
+                                                        <p>
+                                                            <strong>{{ app.user.username }}</strong>
+                                                            <span><{ professional }></span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <ul class="list-account-options">
+                                                        <li>
+                                                            <a href="">Tài khoản</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="">Khóa học của tôi</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="/logout" >Log Out</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <a class="dropdown-toggle" href="/login">
+                                <i class="fa fa-user"></i> Log In
+                            </a>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <div role="main" class="main" {% block controller %}{% endblock %}>
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    <footer id="footer" ng-controller="FooterController">
+        <div class="container">
+            <div class="row">
+                <div class="footer-ribbon">
+                    <span>Get in Touch</span>
+                </div>
+                <div class="col-md-3">
+                    <div class="newsletter">
+                        <h4>Cập nhật</h4>
+                        <p>Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn.</p>
+
+                        <div class="alert alert-success" ng-show="subscribeSuccess">
+                            <strong>Email</strong> của bạn đã được thêm vào danh sách thành công.
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="subscribeFail">
+                            Email của bạn hiện chưa được thêm vào danh sách
+                        </div>
+
+                        <div class="alert alert-danger" ng-show="invalidEmail">
+                            Email không hợp lệ !
+                        </div>
+
+                        <form name="subscribeForm">
+                            <div class="input-group">
+                                <input class="form-control" placeholder="Email Address" ng-model="email" type="email" name="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+                                <span class="input-group-btn">
+                                    <button id="subscribeButton" class="btn btn-default" ng-click="subscribe()" data-loading-text="<i class='fa fa-spinner fa-spin'></i>" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h4>Mọi người nói gì</h4>
+                    <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": "", "count": 2}'>
+                        <p>Please wait...</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="contact-details">
+                        <h4>Liên Hệ</h4>
+                        <ul class="contact">
+                            {#<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</p></li>#}
+                            <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong>0961.61.4387</p></li>
+                            <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:support@viettut.com">support@viettut.com</a></p></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <ul class="social-icons">
+                            <li class="facebook"><a href="http://www.facebook.com/" target="_blank" data-placement="bottom" data-tooltip title="Facebook">Facebook</a></li>
+                            <li class="twitter"><a href="http://www.twitter.com/" target="_blank" data-placement="bottom" data-tooltip title="Twitter">Twitter</a></li>
+                            <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" data-placement="bottom" data-tooltip title="Linkedin">Linkedin</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1">
+                        <a href="" class="logo">
+                            <img alt="ViettuT academy" class="img-responsive" src="{{ asset('bundles/viettutweb/img/viettut-dark.png') }}">
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <p>© Copyright 2015. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <nav id="sub-menu">
+                            <ul>
+                                <li><a href="#">Câu hỏi thường gặp</a></li>
+                                <li><a href="#">Site Map</a></li>
+                                <li><a href="#">Liên Hệ</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="{{ asset('js/app.min.js') }}"></script>
+{% block custom %}{% endblock %}
+</body>
 </html>

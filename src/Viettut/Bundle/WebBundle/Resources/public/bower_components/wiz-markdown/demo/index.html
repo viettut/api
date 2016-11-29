@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+	<title>Markdown example</title>
+	<style>
+		textarea {
+			width: 300px;
+			height: 60px;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
+</head>
+
+<body ng-controller="HomeCtrl">
+
+	<h1>Displaying Markdown as HTML</h1>
+	<wiz-markdown content="mdDirective"></wiz-markdown>
+	<textarea ng-model="mdDirective"></textarea>
+
+	<div ng-bind-html="mdFilter | wizMarkdownFltr"></div>
+	<textarea ng-model="mdFilter"></textarea>
+
+	<div ng-bind-html="mdService"></div>
+	<small>2-way binding doesn't magically happen without some work</small>
+
+	<hr />
+
+	<h1>Editor</h1>
+	<wiz-markdown-editor content="mdEditor">
+		<wiz-toolbar-button command="bold">Bold</wiz-toolbar-button>
+		<wiz-toolbar-button command="italic">Italic</wiz-toolbar-button>
+		<wiz-toolbar-button command="undo">UNDO</wiz-toolbar-button>
+		<wiz-toolbar-button command="redo">REDO</wiz-toolbar-button>
+		<wiz-toolbar-button command="heading">HEADING</wiz-toolbar-button>
+		<wiz-toolbar-button command="code">CODE</wiz-toolbar-button>
+		<wiz-toolbar-button command="ullist">ULLIST</wiz-toolbar-button>
+		<wiz-toolbar-button command="ollist">OLLIST</wiz-toolbar-button>
+		<wiz-toolbar-button command="indent">INDENT</wiz-toolbar-button>
+		<wiz-toolbar-button command="outdent">OUTDENT</wiz-toolbar-button>
+		<wiz-toolbar-button command="link">LINK</wiz-toolbar-button>
+		<wiz-toolbar-button command="img">IMG</wiz-toolbar-button>
+		<wiz-toolbar-button command="hr">HR</wiz-toolbar-button>
+		<wiz-toolbar-button command="h0">H0</wiz-toolbar-button>
+		<wiz-toolbar-button command="h1">H1</wiz-toolbar-button>
+		<wiz-toolbar-button command="h2">H2</wiz-toolbar-button>
+		<wiz-toolbar-button command="h3">H3</wiz-toolbar-button>
+		<wiz-toolbar-button command="h4">H4</wiz-toolbar-button>
+		<wiz-toolbar-button command="h5">H5</wiz-toolbar-button>
+		<wiz-toolbar-button command="h6">H6</wiz-toolbar-button>
+	</wiz-markdown-editor>
+	<wiz-markdown content="mdEditor"></wiz-markdown>
+
+	<h1>Textbox only</h1>
+	<wiz-markdown-input content="mdTextarea"></wiz-markdown-input>
+	<wiz-markdown content="mdTextarea"></wiz-markdown>
+
+	<script src="app/libs/angular-1.2.15/angular.js"></script>
+	<script src="app/libs/angular-1.2.15/angular-sanitize.js"></script>
+	<script src="app/libs/wizMarkdown/wizMarkdown.min.js"></script>
+
+	<script src="app/features/home/home.mod.js"></script>
+	<script src="app/features/home/home.ctrl.js"></script>
+
+	<script src="app/app.js"></script>
+</body>
+</html>

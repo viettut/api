@@ -1,0 +1,178 @@
+body {
+  padding-top: 50px;
+  opacity: 1;
+  -webkit-transition: opacity 1s ease;
+  -moz-transition: opacity 1s ease;
+  transition: opacity 1s;
+}
+
+.comment {
+  padding: .25em;
+  margin: .25em;
+}
+
+.comment > .comments {
+  margin-top: 1em;
+  margin-left: 2em;  
+}
+
+.comment-header {
+  vertical-align: middle;
+  line-height: 2em;
+}
+
+.comment-header > h4 {
+  display: inline;
+}
+
+.comment > .page-header {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.jumbotron {
+  font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    padding: 40px 0;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+    background: #020031;
+    background: -moz-linear-gradient(45deg, #020031 0%, #6d3353 100%);
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#020031), color-stop(100%,#6d3353));
+    background: -webkit-linear-gradient(45deg, #020031 0%,#6d3353 100%);
+    background: -o-linear-gradient(45deg, #020031 0%,#6d3353 100%);
+    background: -ms-linear-gradient(45deg, #020031 0%,#6d3353 100%);
+    background: linear-gradient(45deg, #020031 0%,#6d3353 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#020031', endColorstr='#6d3353',GradientType=1 );
+    -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+    -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+    box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -o-border-radius: 0;
+}
+.jumbotron .btn, .pagination-centered .btn {
+    /*float: none;*/
+    font-weight: normal;
+}
+.jumbotron p {
+    margin: 1em 0;
+}
+.bs-docs-social {
+    margin-top: 1em;
+    padding: 15px 0;
+    text-align: center;
+    background-color: rgba(245,245,245,0.3);
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(221,221,221,0.3);
+}
+
+.comment {
+  border-top: 1px solid #eee;
+}
+
+.comment:first-child {
+  border: none;
+}
+
+
+.clear-square {
+  vertical-align: sub;
+  border: none;
+  background: none;
+  outline: none;
+  min-width: 36px;
+  min-height: 34px;
+}
+
+.subreddit {
+  display: table;
+  width: 100%;
+  border-top: 1px solid #eee;
+  margin-top: .5em;
+  padding-top: .5em;
+  min-width: 720px;
+  overflow: scroll;
+}
+
+.subreddit > * {
+  height: 92px;
+}
+
+.subreddits: {
+  display: table;
+}
+.subreddits:hover {
+  text-decoration: none;
+}
+.subreddits:focus {
+  text-decoration: none;
+}
+.subreddits > * {
+  height: 50px;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+  word-wrap:break-word;
+  width: 100px;
+  margin: 0;
+  padding: 0;
+  margin-right: 1em;
+}
+
+.subreddits > .title {
+  width: 160px!important;
+}
+
+.subreddits > h4 {
+  width: auto;
+  margin-right: 0;
+}
+
+.subreddit:first-child {
+  border: none;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.subreddit > .score, .subreddit > .author {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.subreddit > .author {
+  margin: 0;
+  padding: 0;
+}
+
+.subreddit .score {
+  width: 64px;
+}
+.subreddit .author {
+  width: 160px;
+}
+
+.subreddit .thumbnail {
+  width: 92px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.subreddit .title {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: left;
+  word-wrap:break-word;
+}
+
+.subreddit .title h3, .subreddit .title p {
+  margin-left: .5em;
+}
+
+.subreddit .img {
+  width: 92px;
+}

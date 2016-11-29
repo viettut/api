@@ -1,0 +1,176 @@
+<div class="col-md-9">
+    <div class="row">
+        <div class="blog-posts single-post">
+            <article class="post post-large blog-single-post">
+                <div class="post-image">
+                    <div class="img-thumbnail">
+                        <img class="img-responsive" ng-src="<{ course.imagePath }>" alt="image path">
+                    </div>
+                </div>
+                <div class="post-date">
+                    <span class="day"><{ course.createdAt | date:'d' }></span>
+                    <span class="month"><{ course.createdAt | date:'M' }></span>
+                </div>
+                <div class="post-content">
+                    <h2 class="text-center"><a href="blog-post.html"><{ course.title }></a></h2>
+                    <wiz-markdown content="course.introduce"></wiz-markdown>
+                </div>
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal" role="form" name="addChapter">
+                <div class="form-group">
+                    <label for="chapter">Chapter name *</label>
+                    <input type="text" value="" class="form-control" id="chapter" ng-model="header" required>
+                </div>
+                <div class="form-group">
+                    <label>Content *</label>
+                    <fieldset ng-if="showPreview">
+                        <legend>Preview</legend>
+                        <wiz-markdown content="content"></wiz-markdown>
+                    </fieldset>
+                    <hr>
+                    <wiz-markdown-editor content="content" maxlength="5000" rows="10" class="form-control" style="height: 300px;width: 100%;">
+                        <wiz-toolbar-button command="bold"><i class="fa fa-bold" data-toggle="tooltip" data-placement="top" title="Bold"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="italic"><i class="fa fa-italic" data-toggle="tooltip" data-placement="top" title="Italic"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="heading"><i class="fa fa-header" data-toggle="tooltip" data-placement="top" title="Header"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="link"><i class="fa fa-link" data-toggle="tooltip" data-placement="top" title="Add Link"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="img"><i class="fa fa-picture-o" data-toggle="tooltip" data-placement="top" title="Add Picture"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="hr"><i class="fa fa-arrow-down" data-toggle="tooltip" data-placement="top" title="New Line"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="ullist"><i class="fa fa-list-ul" data-toggle="tooltip" data-placement="top" title="Ul List"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="ollist"><i class="fa fa-list-ol" data-toggle="tooltip" data-placement="top" title="Ol List"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="code"><i class="fa fa-code" data-toggle="tooltip" data-placement="top" title="Code"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="undo"><i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Undo"></i></wiz-toolbar-button>
+                        <wiz-toolbar-button command="redo"><i class="fa fa-repeat" data-toggle="tooltip" data-placement="top" title="Redo"></i></wiz-toolbar-button>
+                    </wiz-markdown-editor>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="add()" class="ladda-button btn-primary" style="border-radius: 5px;">Add Chapter</button>
+                        <button ng-click="preview()" class="ladda-button btn-primary" style="border-radius: 5px;"><{ previewText }></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-3">
+    <aside class="sidebar">
+        <div class="tabs">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> Popular</a></li>
+                <li><a href="#recentPosts" data-toggle="tab">Recent</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="popularPosts">
+                    <ul class="simple-post-list">
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-1.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-2.jpg') }} " alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-3.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Odiosters Nullam Vitae</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="recentPosts">
+                    <ul class="simple-post-list">
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-2.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-3.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Odiosters Nullam Vitae</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <a href="blog-post.html">
+                                        <img src="{{ asset('bundles/viettutweb/img/blog/blog-thumb-1.jpg') }}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="post-info">
+                                <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                <div class="post-meta">
+                                    Jan 10, 2013
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="sticky">
+            <h4>Chapters</h4>
+            <div class="list-group">
+                <a href="#" class="list-group-item active"> Introduce </a>
+                <a href="#" class="list-group-item" ng-repeat="chapter in course.chapters">Chapter <{ chapter.position }> : <{ chapter.header }></a>
+            </div>
+        </div>
+    </aside>
+</div>

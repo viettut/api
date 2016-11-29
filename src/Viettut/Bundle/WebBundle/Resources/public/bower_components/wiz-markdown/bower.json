@@ -1,0 +1,21 @@
+{
+  "name": "wiz-markdown",
+  "description": "",
+  "main": "wizMarkdown/wizMarkdown.min.js",
+  "authors": [
+    "gregorypratt"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "markdown"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

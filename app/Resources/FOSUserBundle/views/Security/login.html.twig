@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block controller %}ng-controller="LoginController"{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title">Sign In</div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+                </div>
+
+                <div style="padding-top:30px" class="panel-body" >
+
+                    {% if error %}
+                        <div ng-show="showError" class="alert alert-danger col-sm-12">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    <form class="form-horizontal" role="form" action="{{ path("fos_user_security_check") }}" method="post">
+                        {% if csrf_token %}
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                        {% endif %}
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}">
+                        </div>
+
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input class="form-control" type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required"/>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="login-remember" type="checkbox" name="remember" value="1"> {{ 'security.login.remember_me'|trans }}
+                                </label>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-4">&nbsp;</div>
+                            <div class="col-sm-4 controls">
+                                {#<button ladda-button="laddaLoading" data-style="slide-right" ng-click="login()" class="ladda-button btn-primary" style="border-radius: 5px;">Login </button>#}
+                                <input class="ladda-button btn-primary" style="border-radius: 5px;" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                            </div>
+                            <div class="col-sm-4">&nbsp;</div>
+                        </div>
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-4">&nbsp;</div>
+                            <div class="col-sm-4 controls" style="border-top: 1px solid#888; padding-top:15px;">
+                                <button ng-click="socialLogin('facebook')" class="fa fa-facebook fa-2x" title="Login with Facebook" style="margin-right:8px;"></button>
+                                <button ng-click="socialLogin('google')" class="fa fa-google-plus-square fa-2x" title="Login with Google" style="margin-right:8px;"></button>
+                                <button ng-click="socialLogin('github')" class="fa fa-github-alt fa-2x" title="Login with Github"></button>
+                            </div>
+                            <div class="col-sm-4">&nbsp;</div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                    Don't have an account!
+                                    <a ng-click="register()" href="javascript:;">
+                                        Sign Up Here
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

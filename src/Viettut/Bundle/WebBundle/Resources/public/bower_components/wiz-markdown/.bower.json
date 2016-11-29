@@ -1,0 +1,31 @@
+{
+  "name": "wiz-markdown",
+  "description": "",
+  "main": "wizMarkdown/wizMarkdown.min.js",
+  "authors": [
+    "gregorypratt"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "markdown"
+  ],
+  "moduleType": [],
+  "homepage": "https://github.com/GrumpyWizards/wizMarkdown",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "1.3.0",
+  "_release": "1.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.0",
+    "commit": "6b8acec998976074661b1b83f76f17e8e80f7f73"
+  },
+  "_source": "https://github.com/GrumpyWizards/wizMarkdown.git",
+  "_target": "*",
+  "_originalSource": "wiz-markdown"
+}

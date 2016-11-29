@@ -1,0 +1,14 @@
+{
+  "name": "ui-comments",
+  "homepage": "https://github.com/caitp/ui-comments",
+  "version": "0.1.2",
+  "_release": "0.1.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.2",
+    "commit": "729791f7ecd4d9ddc57832f7ce78b734c755f7e3"
+  },
+  "_source": "https://github.com/caitp/ui-comments.git",
+  "_target": "~0.1.2",
+  "_originalSource": "ui-comments"
+}

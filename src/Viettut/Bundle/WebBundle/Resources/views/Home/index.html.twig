@@ -1,0 +1,196 @@
+{% extends 'base.html.twig' %}
+{% block main %}
+    <style>
+        .text-auto-wrap {
+            word-wrap: break-word;      /* IE 5.5-7 */
+            white-space: -moz-pre-wrap !important; /* Firefox 1.0-2.0 */
+            white-space: pre-wrap !important;
+        }
+    </style>
+    <section class="page-top custom-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h1><strong>ViettuT</strong> academy.</h1>
+                    <p class="lead">
+                        Học lập trình từ cơ bản đến nâng cao thông qua các ví dụ thực tế kèm theo <bold>mã nguồn</bold> và các bài <em>test</em>.
+                        <br>
+                        <span>Các khóa học bao gồm nhưng <em>ngôn ngữ</em> và <em>framework</em> thông dụng nhất.</span>
+                    </p>
+                    <a href="" class="btn btn-default btn-lg push-bottom">Đăng Ký</a> <span class="arrow hlt" style="top: 10px;"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row push-top">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-group"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Hỗ trợ từ cộng đồng</h4>
+                        <p class="tall">
+                            Nhận được sự trợ giúp từ cộng đồng các lập trình viên ở hầu hết các nền tảng và ngôn ngữ thông dụng nhất hiện nay.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-file"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Các khóa học miễn phí</h4>
+                        <p class="tall">
+                            Tham gia các khóa học miễn phí được biên soạn, sưu tập bởi các lập trình viên giàu kinh nghiệm
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-google-plus"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Nhật ký lập trình</h4>
+                        <p class="tall">
+                            Trang cá nhân là nơi lập trình viên lưu giữ vấn đề và cách giải quyết, những thủ thuật tâm đắc và chia sẻ với cộng đồng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Lưu giữ code</h4>
+                        <p class="tall">
+                            Lập trình viên có thể lưu giữ các đoạn code đẹp, hay dùng cho riêng mình hoặc có thể chia sẻ với cộng đồng.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Soạn thảo bằng MarkDown</h4>
+                        <p class="tall">
+                            Các bài hướng dẫn hoặc các khóa học đều được soạn thảo dưới định dạng MarkDown giúp người đọc dễ theo dõi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-desktop"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Công cụ test online</h4>
+                        <p class="tall">
+                            Bạn có thể sử dụng công cụ test online trong quá trình tham gia khóa học theo phương pháp "learn by doing".
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row text-center">
+            <h2>Thử xem qua <strong>các khóa học</strong> của chúng tôi</h2>
+        </div>
+        <div class="row">
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>Khóa học</a>
+                    </li>
+                    {% if popularTutorial | length > 0 %}
+                        <li>
+                            <a href="#tutorials" data-toggle="tab">Bài hướng dẫn</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div class="tab-content">
+                    <div id="courses" class="tab-pane active">
+                        <div class="container">
+                            <div class="row">
+                                <h3>Khóa học tiêu biểu</h3>
+                                <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                    {% for c in popularCourses %}
+                                        <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                            <div class="portfolio-item img-thumbnail">
+                                                <a href="" class="thumb-info">
+                                                    <img alt="" class="img-responsive" src="{{ c.imagePath }}">
+                                                    <span class="thumb-info-title">
+                                                        <span class="thumb-info-inner text-auto-wrap">{{ c.title }}</span>
+                                                        <span class="thumb-info-type">{{ c.author.username }}</span>
+                                                    </span>
+                                                    <span class="thumb-info-action">
+                                                        <span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <div class="span12 pagination-centered">
+                                    <a class="btn btn-primary btn-lg pull-right" href="">Xem thêm ...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if popularTutorial | length > 0 %}
+                        <div id="tutorials" class="tab-pane">
+                            <div class="container">
+                                <div class="row">
+                                    <h3>Bài hướng dẫn được quan tâm</h3>
+                                    <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                        {% for tut in popularTutorial %}
+                                            <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                                <div class="portfolio-item img-thumbnail">
+                                                    <a href="" class="thumb-info">
+                                                        <img alt="" class="img-responsive" src="{{ asset('bundles/viettutweb/img/projects/project.png') }}">
+                                                        <span class="thumb-info-title">
+                                                            <span class="thumb-info-inner text-auto-wrap">{{ tut.title }}</span>
+                                                            <span class="thumb-info-type">{{ tut.author.username }}</span>
+                                                        </span>
+                                                        <span class="thumb-info-action">
+                                                            <span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="span12 pagination-centered">
+                                        <a class="btn btn-primary btn-lg pull-right" href="">Xem thêm ...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,19 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: null
+    database_name: hwzrbcta_viettut
+    database_user: hwzrbcta_viettut
+    database_password: Fuqcjd6j3U@@
+    mailer_transport: smtp
+    mailer_host: null
+    mailer_user: tut4vietcoder@gmail.com
+    mailer_password: Fuqcjd6j3U@@
+    mailer_port: null
+    mailer_sender: tut4vietcoder@gmail.com
+    mailer_sender_name: 'ViettuT Academy'
+    secret: ThisTokenIsNotSoSecretChangeIt
+    password_resetting_link: 'http://localhost:9010/#/reset/changePassword'
+    uploadRootDirectory: /home/hwzrbcta/public_html/uploads/images
+    uploadDirectory: /uploads/images
+    popularSize: 10
