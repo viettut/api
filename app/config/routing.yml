@@ -1,0 +1,7 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+viettut_user:
+    resource: "@ViettutUserBundle/Resources/config/routing.yml"
+    prefix:   /
+

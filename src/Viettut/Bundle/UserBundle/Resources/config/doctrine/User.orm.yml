@@ -1,0 +1,53 @@
+Viettut\Bundle\UserBundle\Entity\User:
+    type: entity
+    table: viettut_core_user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+#    attributeOverride:
+#        email:
+#            nullable: true
+#        emailCanonical:
+#            nullable: true
+#            unique: false
+    fields:
+        joinDate:
+            type: date
+            gedmo:
+                timestampable:
+                    on: create
+    facebookId:
+        type: string
+        nullable: true
+    googleId:
+        type: string
+        nullable: true
+    name:
+        type: string
+        nullable: true
+    company:
+        type: string
+        nullable: true
+    gender:
+        type: smallint
+        nullable: true
+    phone:
+        type: string
+        nullable: true
+    city:
+        type: string
+        nullable: true
+    address:
+        type: string
+        nullable: true
+    country:
+        type: string
+        nullable: true
+    avatar:
+        type: string
+        nullable: true
+    settings:
+        type: json_array
+        nullable: true
