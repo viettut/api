@@ -15,7 +15,7 @@
         <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-info" >
                 <div class="panel-heading">
-                    <div class="panel-title">{{ 'layout.register' | trans}}</div>
+                    <div class="panel-title">{{ 'layout.login' | trans}}</div>
                     <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
                 </div>
 
@@ -45,7 +45,7 @@
                         <div class="input-group">
                             <div class="checkbox">
                                 <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1"> {{ 'security.login.remember_me'|trans }}
+                                    <input type="checkbox" name="remember" checked="checked"> {{ 'security.login.remember_me'|trans }}
                                 </label>
                             </div>
                         </div>
@@ -53,8 +53,7 @@
                         <div style="margin-top:10px" class="form-group">
                             <div class="col-sm-4">&nbsp;</div>
                             <div class="col-sm-4 controls">
-                                {#<button ladda-button="laddaLoading" data-style="slide-right" ng-click="login()" class="ladda-button btn-primary" style="border-radius: 5px;">Login </button>#}
-                                <input class="ladda-button btn-primary" style="border-radius: 5px;" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                                <input class="btn btn-lg btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                             </div>
                             <div class="col-sm-4">&nbsp;</div>
                         </div>
