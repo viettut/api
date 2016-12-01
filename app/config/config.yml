@@ -100,3 +100,6 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Viettut\Bundle\UserBundle\Entity\User
+    registration:
+        form:
+            type: viettut_user_registration

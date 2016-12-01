@@ -82,7 +82,7 @@ class User extends BaseUser implements UserEntityInterface
     protected $avatar;
 
     /**
-     * @var json_array
+     * @var array
      */
     protected $settings;
 

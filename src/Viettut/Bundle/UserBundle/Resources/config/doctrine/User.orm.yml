@@ -18,36 +18,39 @@ Viettut\Bundle\UserBundle\Entity\User:
             gedmo:
                 timestampable:
                     on: create
-    facebookId:
-        type: string
-        nullable: true
-    googleId:
-        type: string
-        nullable: true
-    name:
-        type: string
-        nullable: true
-    company:
-        type: string
-        nullable: true
-    gender:
-        type: smallint
-        nullable: true
-    phone:
-        type: string
-        nullable: true
-    city:
-        type: string
-        nullable: true
-    address:
-        type: string
-        nullable: true
-    country:
-        type: string
-        nullable: true
-    avatar:
-        type: string
-        nullable: true
-    settings:
-        type: json_array
-        nullable: true
+        facebookId:
+            type: string
+            nullable: true
+        googleId:
+            type: string
+            nullable: true
+        name:
+            type: string
+            nullable: true
+        professional:
+            type: string
+            nullable: true
+        company:
+            type: string
+            nullable: true
+        gender:
+            type: smallint
+            nullable: true
+        phone:
+            type: string
+            nullable: true
+        city:
+            type: string
+            nullable: true
+        address:
+            type: string
+            nullable: true
+        country:
+            type: string
+            nullable: true
+        avatar:
+            type: string
+            nullable: true
+        settings:
+            type: json_array
+            nullable: true
