@@ -1,0 +1,63 @@
+parameters:
+    viettut.entity.core.comment.class: Viettut\Entity\Core\Comment
+    viettut.form.type.comment.class: Viettut\Form\Type\CommentFormType
+services:
+    # comment ######################################################
+
+    viettut_api.handler.comment:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.comment
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for comment handler #######
+
+    viettut.repository.comment:
+        class: Viettut\Repository\Core\CommentRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.comment.class%
+
+    viettut.domain_manager.comment:
+        class: Viettut\DomainManager\CommentManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.comment
+
+    viettut.form.type.comment:
+        class: %viettut.form.type.comment.class%
+        arguments:
+            - @viettut.repository.comment
+        tags:
+            - { name: form.type, alias: tagcade_form_comment }
+
+    viettut.handler.handlers.comment.abstract:
+        class: Viettut\Handler\Handlers\Core\CommentHandlerAbstract
+        parent: viettut.handler.role_handler_abstract
+        abstract: true
+        public: false
+        arguments:
+            - @viettut.form.type.comment
+            - @viettut.domain_manager.comment
+
+    viettut.handler.handlers.comment.admin:
+        class: Viettut\Handler\Handlers\Core\Admin\CommentHandler
+        parent: viettut.handler.handlers.comment.abstract
+        public: false
+
+    viettut.handler.handlers.comment.lecturer:
+        class: Viettut\Handler\Handlers\Core\Lecturer\CommentHandler
+        parent: viettut.handler.handlers.comment.abstract
+        public: false
+
+    viettut.handler.handler_manager.comment:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.comment.class%
+            -
+                - @viettut.handler.handlers.comment.admin
+                - @viettut.handler.handlers.comment.lecturer
+
+    # end comment #####################################################

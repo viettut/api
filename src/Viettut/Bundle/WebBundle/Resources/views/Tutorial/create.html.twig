@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+{% block controller %}ng-controller="TutorialController"{% endblock %}
+{% block main %}
+    <style>
+        textarea {
+            width: 100%;
+            height: 90%;
+        }
+    </style>
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active"><a href="{{ path('tutorial_index') }}">Tutorials</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Write tutorial</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-horizontal" role="form" name="createGuide">
+                    <div class="form-group">
+                        <label for="title">Title <span ng-show="titleValid">*</span></label>
+                        <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
+                    </div>
+                    <div class="form-group">
+                        <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)">
+                            <auto-complete
+                                    source="loadTags()"
+                                    min-length="1"
+                                    select-first-match="false">
+                            </auto-complete>
+                        </tags-input>
+                    </div>
+                    <div class="form-group">
+                        <label>Content *</label>
+                        <fieldset ng-if="showPreview">
+                            <legend>Preview</legend>
+                            <wiz-markdown content="content"></wiz-markdown>
+                        </fieldset>
+                        <wiz-markdown-editor content="content" maxlength="5000" rows="10" class="form-control" style="height: 300px;width: 100%;">
+                            <wiz-toolbar-button command="bold"><i class="fa fa-bold" data-toggle="tooltip" data-placement="top" title="Bold"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="italic"><i class="fa fa-italic" data-toggle="tooltip" data-placement="top" title="Italic"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="heading"><i class="fa fa-header" data-toggle="tooltip" data-placement="top" title="Header"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="link"><i class="fa fa-link" data-toggle="tooltip" data-placement="top" title="Add Link"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="img"><i class="fa fa-picture-o" data-toggle="tooltip" data-placement="top" title="Add Picture"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="hr"><i class="fa fa-arrow-down" data-toggle="tooltip" data-placement="top" title="New Line"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="ullist"><i class="fa fa-list-ul" data-toggle="tooltip" data-placement="top" title="Ul List"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="ollist"><i class="fa fa-list-ol" data-toggle="tooltip" data-placement="top" title="Ol List"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="code"><i class="fa fa-code" data-toggle="tooltip" data-placement="top" title="Code"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="undo"><i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Undo"></i></wiz-toolbar-button>
+                            <wiz-toolbar-button command="redo"><i class="fa fa-repeat" data-toggle="tooltip" data-placement="top" title="Redo"></i></wiz-toolbar-button>
+                        </wiz-markdown-editor>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="create()" class="ladda-button btn-primary" style="border-radius: 5px;">Create</button>
+                            <button ng-click="preview()" class="ladda-button btn-primary" style="border-radius: 5px;"><{ previewText }></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/controller/tutorial.js') }}"></script>
+{% endblock %}

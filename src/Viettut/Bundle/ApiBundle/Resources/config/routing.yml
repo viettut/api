@@ -1,0 +1,44 @@
+api_get_token:
+    path:      /getToken
+    defaults:  { _controller: ViettutApiBundle:Token:getToken }
+    methods:  [POST]
+
+api_check_token:
+    path:      /checkToken
+    defaults:  { _controller: ViettutApiBundle:Token:checkToken }
+    methods:  [POST]
+
+api_reset_password_send_email:
+    path: /resetting/sendEmail
+    defaults: { _controller: ViettutApiBundle:ResetPassword:sendEmail }
+    methods: [POST]
+
+api_reset_password_reset:
+    path: /resetting/reset/{token}
+    defaults: { _controller: ViettutApiBundle:ResetPassword:reset }
+    methods: [POST]
+
+api_course:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\CourseController
+    name_prefix:  api_1_
+
+api_chapter:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\ChapterController
+    name_prefix:  api_1_
+
+api_tutorial:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\TutorialController
+    name_prefix:  api_1_
+
+api_tag:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\TagController
+    name_prefix:  api_1_
+
+api_comment:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\CommentController
+    name_prefix:  api_1_

@@ -1,0 +1,59 @@
+imports:
+    - { resource: services/course.services.yml }
+    - { resource: services/chapter.services.yml }
+    - { resource: services/tutorial.services.yml }
+    - { resource: services/tag.services.yml }
+    - { resource: services/comment.services.yml }
+    - { resource: services/subscriber.services.yml }
+
+parameters:
+    # jwt
+    viettut_api.service.jwt_response_transformer.class: Viettut\Bundle\ApiBundle\Service\JWTResponseTransformer
+    viettut.event.authentication_success_listener.class: Viettut\Bundles\ApiBundle\EventListener\AuthenticationSuccessListener
+    viettut.event.jwt_created_listener.class: Viettut\Bundles\ApiBundle\EventListener\JWTCreatedListener
+
+services:
+
+    # handlers
+
+    viettut.handler.role_handler_abstract:
+        class: Viettut\Handler\RoleHandlerAbstract
+        abstract: true
+        public: false
+        parent : viettut.handler.handler_abstract
+        arguments:
+            - @form.factory
+
+    # authentication
+    viettut_api.service.jwt_response_transformer:
+        class: %viettut_api.service.jwt_response_transformer.class%
+
+    viettut.event.authentication_success_listener:
+        class: %viettut.event.authentication_success_listener.class%
+        arguments: [@viettut_api.service.jwt_response_transformer, @fos_user.user_manager]
+        tags:
+            -
+               name: kernel.event_listener
+               event: 'lexik_jwt_authentication.on_authentication_success'
+               method: 'onAuthenticationSuccess'
+               priority: 10
+
+    viettut.event.jwt_created_listener:
+        class: %viettut.event.jwt_created_listener.class%
+        tags:
+            -
+                name: kernel.event_listener
+                event: 'lexik_jwt_authentication.on_jwt_created'
+                method: 'onJWTCreated'
+
+#    viettut_api.mailer.mailer:
+#        class: Viettut\Bundle\ApiBundle\Mailer\Mailer
+#        arguments:
+#            - '@mailer'
+#            - '@router'
+#            - '@templating'
+#            -
+#                resetting.template: ViettutApiBundle:Resetting:email.txt.twig
+#                from_email:
+#                    resetting: %viettut_user_system_lecturer.resetting.email.from_email%
+#                password_resetting_link: %password_resetting_link%

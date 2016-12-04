@@ -1,0 +1,61 @@
+Viettut\Entity\Core\Tutorial:
+    type: entity
+    table: viettut_tutorial
+    repositoryClass: Viettut\Repository\Core\TutorialRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            nullable: false
+        content:
+            type: text
+            nullable: false
+        active:
+            type: boolean
+        hashTag:
+            type: string
+            nullable: false
+        view:
+            type: integer
+            options:
+                default: 0
+        likes:
+            type: integer
+            options:
+                default: 0
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: date
+            nullable: true
+    oneToMany:
+        comments:
+            targetEntity: Viettut\Entity\Core\Comment
+            mappedBy: tutorial
+            cascade: ['persist', 'remove', 'detach']
+            orphanRemoval: true
+        tutorialTags:
+            targetEntity: Viettut\Entity\Core\TutorialTag
+            mappedBy: tutorial
+            cascade: ['remove', 'persist']
+    manyToOne:
+        author:
+            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+    lifecycleCallbacks: {  }

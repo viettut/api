@@ -1,0 +1,63 @@
+parameters:
+    viettut.entity.core.course.class: Viettut\Entity\Core\Course
+    viettut.form.type.course.class: Viettut\Form\Type\CourseFormType
+services:
+    # course ######################################################
+
+    viettut_api.handler.course:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.course
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for course handler #######
+
+    viettut.repository.course:
+        class: Viettut\Repository\Core\CourseRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.course.class%
+
+    viettut.domain_manager.course:
+        class: Viettut\DomainManager\CourseManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.course
+
+    viettut.form.type.course:
+        class: %viettut.form.type.course.class%
+        arguments:
+            - @viettut.repository.course
+        tags:
+            - { name: form.type, alias: tagcade_form_course }
+
+    viettut.handler.handlers.course.abstract:
+        class: Viettut\Handler\Handlers\Core\CourseHandlerAbstract
+        parent: viettut.handler.role_handler_abstract
+        abstract: true
+        public: false
+        arguments:
+            - @viettut.form.type.course
+            - @viettut.domain_manager.course
+
+    viettut.handler.handlers.course.admin:
+        class: Viettut\Handler\Handlers\Core\Admin\CourseHandler
+        parent: viettut.handler.handlers.course.abstract
+        public: false
+
+    viettut.handler.handlers.course.lecturer:
+        class: Viettut\Handler\Handlers\Core\Lecturer\CourseHandler
+        parent: viettut.handler.handlers.course.abstract
+        public: false
+
+    viettut.handler.handler_manager.course:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.course.class%
+            -
+                - @viettut.handler.handlers.course.admin
+                - @viettut.handler.handlers.course.lecturer
+
+    # end course #####################################################

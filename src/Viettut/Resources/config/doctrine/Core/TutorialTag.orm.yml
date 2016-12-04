@@ -1,0 +1,36 @@
+Viettut\Entity\Core\TutorialTag:
+    type: entity
+    table: viettut_tutorial_tag
+    repositoryClass: Viettut\Repository\Core\TutorialTagRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        tutorial_tag_compound_primary_key:
+            columns:
+                - tag_id
+                - tutorial_id
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: date
+            nullable: true
+    manyToOne:
+        tag:
+            targetEntity: Viettut\Entity\Core\Tag
+            inversedBy: tutorialTags
+            cascade: ["persist"]
+        tutorial:
+            targetEntity: Viettut\Entity\Core\Tutorial
+            inversedBy: tutorialTags
+    lifecycleCallbacks: {  }

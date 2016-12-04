@@ -1,0 +1,61 @@
+Viettut\Entity\Core\Chapter:
+    type: entity
+    table: viettut_chapter
+    repositoryClass: Viettut\Repository\Core\ChapterRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        header:
+            type: string
+            length: 255
+            nullable: false
+        hashTag:
+            type: string
+            length: 255
+        content:
+            type: text
+        position:
+            type: integer
+            options:
+                default: 0
+        active:
+            type: boolean
+            options:
+                default: true
+        token:
+            type: string
+            nullable: false
+
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        deletedAt:
+            type: date
+            nullable: true
+    manyToOne:
+        course:
+            targetEntity: Viettut\Entity\Core\Course
+            inversedBy: chapters
+        author:
+            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+    oneToMany:
+        comments:
+            targetEntity: Viettut\Entity\Core\Comment
+            mappedBy: chapter
+            cascade: ['remove']
+            orphanRemoval: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,36 @@
+Viettut\Entity\Core\CourseTag:
+    type: entity
+    table: viettut_course_tag
+    repositoryClass: Viettut\Repository\Core\CourseTagRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        course_tag_compound_primary_key:
+            columns:
+                - tag_id
+                - course_id
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: date
+            nullable: true
+    manyToOne:
+        tag:
+            targetEntity: Viettut\Entity\Core\Tag
+            inversedBy: courseTags
+            cascade: ["persist"]
+        course:
+            targetEntity: Viettut\Entity\Core\Course
+            inversedBy: courseTags
+    lifecycleCallbacks: {  }

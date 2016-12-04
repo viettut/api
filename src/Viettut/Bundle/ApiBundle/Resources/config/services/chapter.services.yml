@@ -1,0 +1,63 @@
+parameters:
+    viettut.entity.core.chapter.class: Viettut\Entity\Core\Chapter
+    viettut.form.type.chapter.class: Viettut\Form\Type\ChapterFormType
+services:
+    # chapter ######################################################
+
+    viettut_api.handler.chapter:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.chapter
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for chapter handler #######
+
+    viettut.repository.chapter:
+        class: Viettut\Repository\Core\ChapterRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.chapter.class%
+
+    viettut.domain_manager.chapter:
+        class: Viettut\DomainManager\ChapterManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.chapter
+
+    viettut.form.type.chapter:
+        class: %viettut.form.type.chapter.class%
+        arguments:
+            - @viettut.repository.chapter
+        tags:
+            - { name: form.type, alias: tagcade_form_chapter }
+
+    viettut.handler.handlers.chapter.abstract:
+        class: Viettut\Handler\Handlers\Core\ChapterHandlerAbstract
+        parent: viettut.handler.role_handler_abstract
+        abstract: true
+        public: false
+        arguments:
+            - @viettut.form.type.chapter
+            - @viettut.domain_manager.chapter
+
+    viettut.handler.handlers.chapter.admin:
+        class: Viettut\Handler\Handlers\Core\Admin\ChapterHandler
+        parent: viettut.handler.handlers.chapter.abstract
+        public: false
+
+    viettut.handler.handlers.chapter.lecturer:
+        class: Viettut\Handler\Handlers\Core\Lecturer\ChapterHandler
+        parent: viettut.handler.handlers.chapter.abstract
+        public: false
+
+    viettut.handler.handler_manager.chapter:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.chapter.class%
+            -
+                - @viettut.handler.handlers.chapter.admin
+                - @viettut.handler.handlers.chapter.lecturer
+
+    # end course #####################################################

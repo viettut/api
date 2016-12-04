@@ -1,0 +1,63 @@
+parameters:
+    viettut.entity.core.tutorial.class: Viettut\Entity\Core\Tutorial
+    viettut.form.type.tutorial.class: Viettut\Form\Type\TutorialFormType
+services:
+    # tutorial ######################################################
+
+    viettut_api.handler.tutorial:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.tutorial
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for tutorial handler #######
+
+    viettut.repository.tutorial:
+        class: Viettut\Repository\Core\TutorialRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.tutorial.class%
+
+    viettut.domain_manager.tutorial:
+        class: Viettut\DomainManager\TutorialManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.tutorial
+
+    viettut.form.type.tutorial:
+        class: %viettut.form.type.tutorial.class%
+        arguments:
+            - @viettut.repository.tutorial
+        tags:
+            - { name: form.type, alias: tagcade_form_tutorial }
+
+    viettut.handler.handlers.tutorial.abstract:
+        class: Viettut\Handler\Handlers\Core\TutorialHandlerAbstract
+        parent: viettut.handler.role_handler_abstract
+        abstract: true
+        public: false
+        arguments:
+            - @viettut.form.type.tutorial
+            - @viettut.domain_manager.tutorial
+
+    viettut.handler.handlers.tutorial.admin:
+        class: Viettut\Handler\Handlers\Core\Admin\TutorialHandler
+        parent: viettut.handler.handlers.tutorial.abstract
+        public: false
+
+    viettut.handler.handlers.tutorial.lecturer:
+        class: Viettut\Handler\Handlers\Core\Lecturer\TutorialHandler
+        parent: viettut.handler.handlers.tutorial.abstract
+        public: false
+
+    viettut.handler.handler_manager.tutorial:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.tutorial.class%
+            -
+                - @viettut.handler.handlers.tutorial.admin
+                - @viettut.handler.handlers.tutorial.lecturer
+
+    # end tutorial #####################################################

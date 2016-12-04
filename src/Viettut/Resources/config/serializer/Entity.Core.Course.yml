@@ -1,0 +1,45 @@
+Viettut\Entity\Core\Course:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [course.detail, course.summary]
+        author:
+            expose: true
+            groups: [course.detail, course.summary]
+        title:
+            expose: true
+            groups: [course.detail, course.summary]
+        introduce:
+            expose: true
+            groups: [course.detail, course.summary]
+        chapters:
+            expose: true
+            groups: [course.detail, course.summary]
+        courseTags:
+            expose: true
+            groups: [course.detail]
+        comments:
+            expose: true
+            groups: [course.detail, course.summary]
+        imagePath:
+            expose: true
+            groups: [course.detail, course.summary]
+        hashTag:
+            expose: true
+            groups: [course.detail, course.summary]
+        token:
+            expose: true
+            groups: [course.detail, course.summary]
+        active:
+            expose: true
+            groups: [course.detail]
+        view:
+            expose: true
+            groups: [course.detail]
+        enroll:
+            expose: true
+            groups: [course.detail]
+        createdAt:
+            expose: true
+            groups: [course.detail, course.summary]

@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% block controller %}TutorialController{% endblock %}
+{% block main %}
+    <style>
+        textarea {
+            width: 100%;
+            height: 90%;
+        }
+    </style>
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active">Hướng dẫn</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="blog-posts">
+                    {% for tut in pagination %}
+                        <article class="post post-medium">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="post-content">
+                                        <h2><a href="{{ path('tutorial_detail', {'hash' : tut.hashTag, 'username' : tut.author.username}) }}">{{ tut.title }}</a></h2>
+                                        <p>{{ tut.content | first_para }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="post-meta">
+                                        <span><i class="fa fa-calendar"></i>{{ tut.createdAt | date("m/d/Y") }}</span>
+                                        <span><i class="fa fa-user"></i> By <a href="{{ path('lecturer_index', {'username' : tut.author.username}) }}">{{ tut.author.username }}</a> </span>
+                                        <span><i class="fa fa-tag"></i>
+                                            {% for t in tut.tutorialTags %}
+                                                <a href="{{ path('tag_index', {'tag' : t.tag.text}) }}">{{ t.tag.text }}</a>
+                                            {% endfor %}
+                                        </span>
+                                        <span><i class="fa fa-comments"></i> <a href="#">{{ tut.comments | length }} comments</a></span>
+                                        <a href="{{ path('tutorial_detail', {'hash' : tut.hashTag, 'username' : tut.author.username}) }}" class="btn btn-xs btn-primary pull-right">Đọc tiếp...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                    <ul class="pagination pagination-lg pull-right">
+                        {{ knp_pagination_render(pagination) }}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <aside class="sidebar">
+                    <h4>Links tham khảo</h4>
+                    <ul class="nav nav-list primary push-bottom">
+                        <li><a href="http://knpuniversity.com" target="_blank">Knp University</a></li>
+                        <li><a href="http://scotch.io" target="_blank">Scotch.io</a></li>
+                        <li><a href="http://codeschool.com" target="_blank">Code School</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}

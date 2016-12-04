@@ -1,0 +1,47 @@
+Viettut\Entity\Core\Tag:
+    type: entity
+    table: viettut_tag
+    repositoryClass: Viettut\Repository\Core\TagRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        tag_name_unique:
+            columns:
+                - text
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        text:
+            type: string
+            length: 255
+            nullable: false
+        icon:
+            type: string
+            nullable: true
+        count:
+            type: integer
+            options:
+                default: 0
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: date
+            nullable: true
+    oneToMany:
+        courseTags:
+            targetEntity: Viettut\Entity\Core\CourseTag
+            mappedBy: tag
+            cascade: ['remove']
+        tutorialTags:
+            targetEntity: Viettut\Entity\Core\TutorialTag
+            mappedBy: tag
+            cascade: ['remove']
+    lifecycleCallbacks: {  }

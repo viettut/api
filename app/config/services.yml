@@ -2,8 +2,59 @@
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
+    # event dispatched on user action such as add, remove, delete
+    viettut.events.handler_event: 'viettut.events.handler_event'
+    jms_serializer.cache_naming_strategy.class: JMS\Serializer\Naming\IdenticalPropertyNamingStrategy
 
+    # voter
+    viettut.security.auth.voter.course.class: Viettut\Security\Authorization\Voter\CourseVoter
+    viettut.security.auth.voter.tutorial.class: Viettut\Security\Authorization\Voter\TutorialVoter
+    viettut.security.auth.voter.chapter.class: Viettut\Security\Authorization\Voter\ChapterVoter
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    viettut.handler.handler_abstract:
+        class: Viettut\Handler\HandlerAbstract
+        abstract: true
+        public: false
+        calls:
+            - [setEventDispatcher, ["@event_dispatcher"]]
+            - [setEvent, [%viettut.events.handler_event%]]
+
+    # jms serializer cache
+    cache.apc.jms_serializer:
+        class: Doctrine\Common\Cache\ApcCache
+        calls:
+            - [setNamespace, ["jms_serializer"]]
+
+    jms_serializer.metadata_cache.apc:
+        class: Metadata\Cache\DoctrineCacheAdapter
+        arguments:
+            - ""
+            - @cache.apc.jms_serializer
+
+    viettut.paragraph_extension:
+        class: Viettut\Bundle\WebBundle\Twig\ParagraphExtension
+        public: false
+        tags:
+            - { name: twig.extension }
+
+    # voter
+    viettut.security.auth.voter.course:
+        class:  %viettut.security.auth.voter.course.class%
+        public: false
+        tags:
+            - { name: security.voter }
+
+    viettut.security.auth.voter.tutorial:
+        class:  %viettut.security.auth.voter.tutorial.class%
+        public: false
+        tags:
+            - { name: security.voter }
+
+    viettut.security.auth.voter.chapter:
+        class:  %viettut.security.auth.voter.chapter.class%
+        public: false
+        tags:
+            - { name: security.voter }

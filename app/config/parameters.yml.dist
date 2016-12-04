@@ -2,18 +2,21 @@
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
-    # You should uncomment this if you want use pdo_sqlite
-    # database_path: "%kernel.root_dir%/data.db3"
-
-    mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
-
-    # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: test
+    database_user: test
+    database_password: 12345678
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    secret: ea31b59727f6a11e1d8160027e80707f6d0b0ce9
+    mailer_user: tut4vietcoder@gmail.com
+    mailer_password: Fuqcjd6j3U@@
+    mailer_port: null
+    mailer_sender: tut4vietcoder@gmail.com
+    mailer_sender_name: 'ViettuT Academy'
+    password_resetting_link: 'http://localhost:9010/#/reset/changePassword'
+    upload_root_directory: /var/www/api.server.dev/web/uploads/images
+    upload_directory: /uploads/images
+    popular_size: 10
+    page_size: 5

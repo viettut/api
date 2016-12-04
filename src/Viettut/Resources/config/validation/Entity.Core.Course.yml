@@ -1,0 +1,16 @@
+Viettut\Entity\Core\Course:
+    properties:
+        title:
+            - NotBlank:
+                message: "Title should not be blank"
+            - Length:
+                min: 5
+                minMessage: "Title must be at least {{ limit }} characters in length"
+        introduce:
+            - NotBlank:
+                message: "Introduce should not be blank"
+            - Length:
+                min: 15
+                minMessage: "Introduce must be at least {{ limit }} characters in length"
+        author:
+            - Valid: ~

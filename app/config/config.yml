@@ -4,11 +4,13 @@ imports:
     - { resource: services.yml }
     - { resource: "@ViettutUserBundle/Resources/config/services.yml" }
     - { resource: "@ViettutWebBundle/Resources/config/services.yml" }
+    - { resource: "@ViettutApiBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    jms_serializer.json_serialization_visitor.class: Viettut\Behaviors\JsonSerializationVisitor
 
 framework:
     #esi:             ~
@@ -73,11 +75,14 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport:  "%mailer_transport%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    port :      "%mailer_port%"
+    encryption: ssl
+    auth_mode:  login
+    spool:      { type: memory }
 
 jms_serializer:
     metadata:
@@ -103,3 +108,49 @@ fos_user:
     registration:
         form:
             type: viettut_user_registration
+
+fos_rest:
+    serializer:
+        serialize_null: true
+
+    routing_loader:
+        default_format: json
+        include_format: false
+
+    body_listener:              true
+    param_fetcher_listener:     true
+
+    format_listener:
+        rules:
+            - { path: '^/api/', fallback_format: json, prefer_extension: false, priorities: ['json', 'xml'] }
+            - { path: '^/', priorities: [ 'html', '*/*'], fallback_format: json, prefer_extension: false }
+
+    access_denied_listener:
+        json:   true
+        xml:    true
+        html:   true
+
+    view:
+        view_response_listener: force
+        formats:
+            json:   true
+            xml:    true
+        templating_formats:
+            html:   true
+
+    exception:
+        codes:
+            'Viettut\Exception\InvalidUserRoleException': 400
+            'Viettut\Exception\InvalidArgumentException': 400
+            'Viettut\Exception\LogicException': 400
+
+nelmio_cors:
+    defaults:
+        allow_origin:   ['*']
+        allow_headers:  ['authorization', 'content-type']
+        max_age:        3600
+    paths:
+        '^/api/':
+            allow_methods: ['POST', 'PUT', 'PATCH', 'GET', 'DELETE']
+        '/facebook/login':
+            allow_methods: ['GET']

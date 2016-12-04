@@ -1,0 +1,192 @@
+{% extends 'base.html.twig' %}
+{% block controller %}ng-controller="CourseController"{% endblock %}
+{% block main %}
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">Khóa học</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="blog-posts single-post">
+                        <article class="post post-large blog-single-post">
+                            <div class="post-image">
+                                <div class="img-thumbnail">
+                                    <img class="img-responsive" src="{{ course.imagePath }}" alt="cover image">
+                                </div>
+                            </div>
+                            {#<div class="post-date">#}
+                                {#<span class="day">{{ course.createdAt | date('d') }}</span>#}
+                                {#<span class="month">{{ course.createdAt | date('F') | slice(0, 3) }}</span>#}
+                            {#</div>#}
+                            <div class="post-content">
+                                <h2 class="text-center"><a href="#">{{ course.title }}</a></h2>
+                                <div class="post-meta">
+                                    <span class="pull-right"><i class="fa fa-user"></i> By <a href="{{ path('lecturer_index', {'username' : course.author.username}) }}">{{ course.author.username }}</a> </span>
+                                    {% if course.courseTags | length > 0 %}
+                                    <span class="pull-right"><i class="fa fa-tag"></i>
+                                        {% for t in course.courseTags %}
+                                            <a href="{{ path('tag_index', {'tag' : t.tag.text}) }}">{{ t.tag.text }}</a>
+                                        {% endfor %}
+                                    </span>
+                                    {% endif %}
+                                    <span class="pull-right"><i class="fa fa-comments"></i> <a href="#">{{ course.comments | length }} Bình luận</a></span>
+                                </div>
+                                <hr class="tall"/>
+                                <textarea class="hidden" id="introduce">{{ course.introduce | raw }}</textarea>
+                                <wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>
+                                {% if lastChapter %}
+                                    <div class="row">
+                                        <div class="pull-left">
+                                            <a class="btn btn-primary btn-lg" href="{{ path('chapter_detail', {'username': course.author.username, 'hash': course.hashTag, 'cHash': nextChapter.hashTag}) }}">Next Chapter <i class="fa fa-play"></i></a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="row col-md-12" ng-controller="CommentController">
+                                    <div ng-init="currentCourse={{ course.id }}"></div>
+                                    <div class="post-block post-comments clearfix row col-md-12">
+                                        <h3 ng-hide="commentToggle"><i class="fa fa-comments"></i> Bình luận ({{ course.comments | length }})</h3>
+                                        <h3 ng-if="commentToggle"><i class="fa fa-comments"></i> Bình luận (<{ numberComments }>)</h3>
+                                        <ul class="comments" ng-hide="commentToggle">
+                                            {% for comment in course.comments %}
+                                                <li>
+                                                    <div class="comment">
+                                                        <div class="img-thumbnail">
+                                                            <img class="avatar" alt="avatar" src="{{ comment.author.avatar }}">
+                                                        </div>
+                                                        <div class="comment-block markdown-body">
+                                                            <div class="comment-arrow"></div>
+                                                                <span class="comment-by">
+                                                                    <strong>{{ comment.author.username }}</strong>
+                                                                    <span class="pull-right">
+                                                                        <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
+                                                                    </span>
+                                                                </span>
+                                                            <p>{{ comment.content | markdown }}</p>
+                                                            <span class="date pull-right">{{ comment.createdAt | date('h:i d/m/Y') }}</span>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="comments reply">
+                                                        <li>
+                                                            {% for reply in comment.replies %}
+                                                                <div class="comment">
+                                                                    <div class="img-thumbnail">
+                                                                        <img class="avatar" alt="avatar" src="{{ reply.author.avatar }}">
+                                                                    </div>
+                                                                    <div class="comment-block">
+                                                                        <div class="comment-arrow"></div>
+                                                                            <span class="comment-by">
+                                                                                <strong>{{ reply.author.username }}</strong>
+                                                                            </span>
+                                                                        <p>{{ reply.content | markdown }}</p>
+                                                                        <span class="date pull-right">{{ reply.createdAt | date('h:M d/m/Y') }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            {% endfor %}
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                        <ul class="comments" ng-if="commentToggle">
+                                            <li ng-repeat="comment in comments">
+                                                <div class="comment">
+                                                    <div class="img-thumbnail">
+                                                        <img class="avatar" alt="avatar" ng-src="<{ comment.author.avatar }>">
+                                                    </div>
+                                                    <div class="comment-block">
+                                                        <div class="comment-arrow"></div>
+                                                                <span class="comment-by">
+                                                                    <strong><{ comment.author.username }></strong>
+                                                                    <span class="pull-right">
+                                                                        <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
+                                                                    </span>
+                                                                </span>
+                                                        <p><wiz-markdown content="comment.content" class="markdown-body"></wiz-markdown></p>
+                                                        <span class="date pull-right"><{ comment.createdAt | date:'yyyy-MM-dd HH:mm:ss' }></span>
+                                                    </div>
+                                                </div>
+                                                <ul class="comments reply">
+                                                    <li ng-repeat="reply in comment.replies">
+                                                        <div class="comment">
+                                                            <div class="img-thumbnail">
+                                                                <img class="avatar" alt="avatar" ng-src="<{ reply.author.avatar }>">
+                                                            </div>
+                                                            <div class="comment-block">
+                                                                <div class="comment-arrow"></div>
+                                                                        <span class="comment-by">
+                                                                            <strong><{ reply.author.username }></strong>
+                                                                        </span>
+                                                                <p><wiz-markdown content="reply.content" class="markdown-body"></wiz-markdown></p>
+                                                                <span class="date pull-right"><{ reply.createdAt | date:'yyyy-MM-dd HH:mm:ss' }></span>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="post-leave-comment">
+                                        <h3>Ý kiến</h3>
+                                        <form id="comment-form">
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <wiz-markdown-editor content="content" maxlength="5000" rows="10" class="form-control">
+                                                        </wiz-markdown-editor>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <button
+                                                            ladda-button="laddaLoading"
+                                                            data-style="slide-right"
+                                                            ng-disabled="!isAuthenticated"
+                                                            ng-click="addComment()"
+                                                            class="ladda-button btn-primary border-radius5"
+                                                            >Đăng</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                {% include 'sidebar.html' %}
+                <aside class="sidebar">
+                    <div class="sticky">
+                        <h4>Danh sách các chương</h4>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">Giới thiệu khóa học</a>
+                            {% for chapter in course.chapters %}
+                                <a href="{{ path('chapter_detail', {'username': username, 'hash': course.hashTag, 'cHash': chapter.hashTag}) }}" class="list-group-item">Chapter {{ chapter.position }} : {{ chapter.header }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/sticky_sidebar.js') }}"></script>
+    <script src="{{ asset('bundles/viettutweb/js/controller/course/comment.js') }}"></script>
+    <script src="{{ asset('bundles/viettutweb/js/controller/course/detail/course.js') }}"></script>
+{% endblock %}

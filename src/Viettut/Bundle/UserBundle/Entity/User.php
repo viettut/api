@@ -392,7 +392,7 @@ class User extends BaseUser implements UserEntityInterface
     }
 
     /**
-     * @return json_array
+     * @return array
      */
     public function getSettings()
     {
@@ -400,7 +400,7 @@ class User extends BaseUser implements UserEntityInterface
     }
 
     /**
-     * @param json_array $settings
+     * @param array $settings
      * @return $this
      */
     public function setSettings($settings)

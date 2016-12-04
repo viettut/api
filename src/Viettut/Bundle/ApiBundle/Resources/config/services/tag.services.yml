@@ -1,0 +1,63 @@
+parameters:
+    viettut.entity.core.tag.class: Viettut\Entity\Core\Tag
+    viettut.form.type.tag.class: Viettut\Form\Type\TagFormType
+services:
+    # tutorial ######################################################
+
+    viettut_api.handler.tag:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.tag
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for tag handler #######
+
+    viettut.repository.tag:
+        class: Viettut\Repository\Core\TagRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.tag.class%
+
+    viettut.domain_manager.tag:
+        class: Viettut\DomainManager\TagManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.tag
+
+    viettut.form.type.tag:
+        class: %viettut.form.type.tag.class%
+        arguments:
+            - @viettut.repository.tag
+        tags:
+            - { name: form.type, alias: tagcade_form_tag }
+
+    viettut.handler.handlers.tag.abstract:
+        class: Viettut\Handler\Handlers\Core\TagHandlerAbstract
+        parent: viettut.handler.role_handler_abstract
+        abstract: true
+        public: false
+        arguments:
+            - @viettut.form.type.tag
+            - @viettut.domain_manager.tag
+
+    viettut.handler.handlers.tag.admin:
+        class: Viettut\Handler\Handlers\Core\Admin\TagHandler
+        parent: viettut.handler.handlers.tag.abstract
+        public: false
+
+    viettut.handler.handlers.tag.lecturer:
+        class: Viettut\Handler\Handlers\Core\Lecturer\TagHandler
+        parent: viettut.handler.handlers.tag.abstract
+        public: false
+
+    viettut.handler.handler_manager.tag:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.tag.class%
+            -
+                - @viettut.handler.handlers.tag.admin
+                - @viettut.handler.handlers.tag.lecturer
+
+    # end tag #####################################################

@@ -1,0 +1,30 @@
+Viettut\Entity\Core\Comment:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        content:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        author:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        course:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        chapter:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        tutorial:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        children:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        replyFor:
+            expose: true
+            groups: [comment.detail, comment.summary]
+        createdAt:
+            expose: true
+            groups: [comment.detail, comment.summary]

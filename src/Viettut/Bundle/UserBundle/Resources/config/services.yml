@@ -3,3 +3,14 @@ services:
         class: Viettut\Bundle\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: viettut_user_registration }
+
+    # returns our role model class for the current authenticated user entity
+    viettut.token:
+        class: Symfony\Component\Security\Core\Authentication\Token\TokenInterface
+        factory_service: security.context
+        factory_method: getToken
+
+    viettut.user_role:
+        class: Viettut\Model\User\Role\UserRoleInterface
+        factory_service: viettut.token
+        factory_method: getUser

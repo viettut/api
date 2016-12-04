@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+{% block controller %}ng-controller="CourseController"{% endblock %}
+{% block main %}
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">Khóa học</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Cập nhật khóa học</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div ng-init="courseId={{ course.id }}"></div>
+        <input type="hidden" value="{{ course.token }}" id="course-token"/>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="progress" ng-show="loading">
+                    <div class="progress-bar progress-bar-striped active width90pc" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">45% Complete</span>
+                    </div>
+                </div>
+                <form class="form-horizontal" role="form" name="createGuide" ng-hide="loading">
+                    <div class="form-group">
+                        <label for="title">Tên khóa học <span ng-show="titleValid">*</span></label>
+                        <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
+                    </div>
+                    <div class="form-group">
+                        <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
+                            <auto-complete
+                                    source="loadTags()"
+                                    min-length="2"
+                                    select-first-match="false">
+                            </auto-complete>
+                        </tags-input>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Ảnh</label><br>
+                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">Thay ảnh</button>
+                        <div class="alert alert-danger" ng-if="uploadError">
+                            <strong>Error !</strong> <{ uploadErrorMsg }>
+                        </div>
+                        <input type="hidden" name="image" id="image" ng-model="image">
+                        <div>
+                            <img class="img-thumbnail" ng-src="<{ image }>" width="304" alt="preview">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>Chỉnh sửa</a>
+                                </li>
+                                <li>
+                                    <a aria-expanded="true" href="#preview" data-toggle="tab">Xem trước</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="edit" class="tab-pane active">
+                                    <label>Giới thiệu khóa học</label>
+                                    <wiz-markdown-editor content="introduce" maxlength="5000" rows="10" class="form-control height300 width100pc">
+                                        <wiz-toolbar-button command="bold"><i class="fa fa-bold" data-toggle="tooltip" data-placement="top" title="Bold"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="italic"><i class="fa fa-italic" data-toggle="tooltip" data-placement="top" title="Italic"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="heading"><i class="fa fa-header" data-toggle="tooltip" data-placement="top" title="Header"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="link"><i class="fa fa-link" data-toggle="tooltip" data-placement="top" title="Add Link"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="img"><i class="fa fa-picture-o" data-toggle="tooltip" data-placement="top" title="Add Picture"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="hr"><i class="fa fa-arrow-down" data-toggle="tooltip" data-placement="top" title="New Line"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="ullist"><i class="fa fa-list-ul" data-toggle="tooltip" data-placement="top" title="Ul List"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="ollist"><i class="fa fa-list-ol" data-toggle="tooltip" data-placement="top" title="Ol List"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="code"><i class="fa fa-code" data-toggle="tooltip" data-placement="top" title="Code"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="undo"><i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Undo"></i></wiz-toolbar-button>
+                                        <wiz-toolbar-button command="redo"><i class="fa fa-repeat" data-toggle="tooltip" data-placement="top" title="Redo"></i></wiz-toolbar-button>
+                                    </wiz-markdown-editor>
+                                </div>
+                                <div id="preview" class="tab-pane">
+                                    <wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="create()" class="ladda-button btn-primary border-radius5">Cập nhật</button>
+                            <button class="ladda-button btn-primary border-radius5" ng-disabled="!isAuthenticated" ng-click="addChapter()">Thêm Chương</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <aside class="sidebar">
+                    <div class="sticky">
+                        <h4>Danh sách các chương</h4>
+                        <div class="list-group">
+                            <a href="#" class="list-group-item active">Giới thiệu khóa học</a>
+                            {% for chapter in course.chapters %}
+                                <a href="{{ path('chapter_edit', {'token': chapter.token}) }}" class="list-group-item">Chapter {{ chapter.position }} : {{ chapter.header }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/controller/course/edit/course.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+{% block main %}
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active"><a href="#">Lecturers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ lecturer.username }}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <img alt="author" height="300" class="img-responsive" src="{{ lecturer.avatar }}">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+
+                <h2 class="shorter"><strong>{{ lecturer.username }}</strong></h2>
+                <h4>{{ lecturer.professional }}</h4>
+
+							<span class="thumb-info-social-icons">
+								<a data-tooltip="" data-placement="bottom" target="_blank" href="http://www.facebook.com" data-original-title="Facebook"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+								<a data-tooltip="" data-placement="bottom" href="http://www.twitter.com" data-original-title="Twitter"><i class="fa fa-twitter"></i><span>Twitter</span></a>
+								<a data-tooltip="" data-placement="bottom" href="http://www.linkedin.com" data-original-title="Linkedin"><i class="fa fa-linkedin"></i><span>Linkedin</span></a>
+							</span>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque neque eget diam posuere porta. Quisque ut nulla at nunc <a href="#">vehicula</a> lacinia. Proin adipiscing porta tellus, ut feugiat nibh adipiscing sit amet. In eu justo a felis faucibus ornare vel id metus. Vestibulum ante ipsum primis in faucibus.</p>
+
+                <ul class="list icons list-unstyled">
+                    <li><i class="fa fa-check"></i> Fusce sit amet orci quis arcu vestibulum vestibulum sed ut felis.</li>
+                    <li><i class="fa fa-check"></i> Phasellus in risus quis lectus iaculis vulputate id quis nisl.</li>
+                    <li><i class="fa fa-check"></i> Iaculis vulputate id quis nisl.</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="tabs">
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>Khóa học</a>
+                    </li>
+                    {% if tutorials | length > 0 %}
+                        <li>
+                            <a href="#tutorials" data-toggle="tab">Bài hướng dẫn</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                <div class="tab-content">
+                    <div id="courses" class="tab-pane active">
+                        <div class="container">
+                            <div class="row">
+                                <h3>Khóa học</h3>
+                                <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                    {% for c in courses %}
+                                        <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                            <div class="portfolio-item img-thumbnail">
+                                                <a href="{{ path('course_detail', {'hash' : c.hashTag, 'username' : c.author.username}) }}" class="thumb-info">
+                                                    <img alt="" class="img-responsive" src="{{ c.imagePath }}">
+                                                    <span class="thumb-info-title">
+                                                        <span class="thumb-info-inner text-auto-wrap">{{ c.title }}</span>
+                                                        <span class="thumb-info-type">{{ c.author.username }}</span>
+                                                    </span>
+                                                    <span class="thumb-info-action">
+                                                        <span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="row">
+                                <div class="span12 pagination-centered">
+                                    <a class="btn btn-primary btn-lg pull-right" href="{{ path("course_index") }}">Read more ...</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% if tutorials | length > 0 %}
+                        <div id="tutorials" class="tab-pane">
+                            <div class="container">
+                                <div class="row">
+                                    <h3>Bài hướng dẫn </h3>
+                                    <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
+                                        {% for tut in tutorials %}
+                                            <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
+                                                <div class="portfolio-item img-thumbnail">
+                                                    <a href="{{ path('tutorial_detail', {'hash' : tut.hashTag, 'username' : tut.author.username}) }}" class="thumb-info">
+                                                        <img alt="" class="img-responsive" src="{{ asset('bundles/viettutweb/img/projects/project.jpg') }}">
+                                                        <span class="thumb-info-title">
+                                                            <span class="thumb-info-inner text-auto-wrap">{{ tut.title }}</span>
+                                                            <span class="thumb-info-type">{{ tut.author.username }}</span>
+                                                        </span>
+                                                        <span class="thumb-info-action">
+                                                            <span title="Universal" class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="row">
+                                    <div class="span12 pagination-centered">
+                                        <a class="btn btn-primary btn-lg pull-right" href="{{ path('tutorial_index') }}">Read more ...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

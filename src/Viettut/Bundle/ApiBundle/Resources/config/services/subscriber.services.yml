@@ -1,0 +1,9 @@
+parameters:
+    viettut.entity.core.subscriber.class: Viettut\Entity\Core\Subscriber
+services:
+    viettut.repository.subscriber:
+        class: Viettut\Repository\Core\SubscriberRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.subscriber.class%

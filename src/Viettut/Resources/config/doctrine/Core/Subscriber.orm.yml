@@ -1,0 +1,31 @@
+Viettut\Entity\Core\Subscriber:
+    type: entity
+    table: viettut_subscriber
+    repositoryClass: Viettut\Repository\Core\SubscriberRepository
+    gedmo:
+        soft_deleteable:
+            field_name: deletedAt
+            time_aware: false
+    uniqueConstraints:
+        email_unique:
+            columns:
+                - email
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        email:
+            type: string
+            length: 255
+            nullable: false
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        deletedAt:
+            type: date
+            nullable: true
+    lifecycleCallbacks: {  }

@@ -1,0 +1,27 @@
+Viettut\Entity\Core\Chapter:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        author:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        header:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        content:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        hashTag:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        position:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        active:
+            expose: true
+            groups: [chapter.detail, chapter.summary]
+        createdAt:
+            expose: true
+            groups: [chapter.detail, chapter.summary]

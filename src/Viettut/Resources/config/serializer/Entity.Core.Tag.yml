@@ -1,0 +1,15 @@
+Viettut\Entity\Core\Tag:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [tag.detail, tag.summary]
+        text:
+            expose: true
+            groups: [tag.detail, tag.summary]
+        icon:
+            expose: true
+            groups: [tag.detail, tag.summary]
+        deletedAt:
+            expose: true
+            groups: [tag.detail]
