@@ -28,7 +28,7 @@ Viettut\Entity\Core\Comment:
             nullable: true
     manyToOne:
         author:
-            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
         course:
             targetEntity: Viettut\Entity\Core\Course
             inversedBy: comments

@@ -57,5 +57,5 @@ Viettut\Entity\Core\Tutorial:
             cascade: ['remove', 'persist']
     manyToOne:
         author:
-            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
     lifecycleCallbacks: {  }

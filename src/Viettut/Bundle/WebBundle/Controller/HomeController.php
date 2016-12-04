@@ -22,12 +22,12 @@ class HomeController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $user = $this->getUser();
-        $loggedIn = false;
-
+        $popularSize = $this->container->getParameter('popular_size');
+        $popularCourses = $this->get('viettut.repository.course')->getPopularCourse(intval($popularSize));
+        $popularTutorials = $this->get('viettut.repository.tutorial')->getPopularTutorial(intval($popularSize));
         return $this->render('ViettutWebBundle:Home:index.html.twig', array(
-            "popularCourses" => [],
-            "popularTutorial" => []
+            "popularCourses" => $popularCourses,
+            "popularTutorial" => $popularTutorials
         ));
     }
 

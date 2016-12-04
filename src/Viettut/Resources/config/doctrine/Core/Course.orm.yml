@@ -59,7 +59,7 @@ Viettut\Entity\Core\Course:
             nullable: true
     manyToOne:
         author:
-            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
     oneToMany:
         chapters:
             targetEntity: Viettut\Entity\Core\Chapter

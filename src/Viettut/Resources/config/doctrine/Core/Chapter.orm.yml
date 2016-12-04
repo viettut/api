@@ -51,7 +51,7 @@ Viettut\Entity\Core\Chapter:
             targetEntity: Viettut\Entity\Core\Course
             inversedBy: chapters
         author:
-            targetEntity: Viettut\Bundles\UserBundle\Entity\User
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
     oneToMany:
         comments:
             targetEntity: Viettut\Entity\Core\Comment

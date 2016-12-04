@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="search">
-                <form id="searchForm" method="get">
+                <form id="searchForm" method="get" action="{{ path('public_search') }}">
                     <div class="input-group">
                         <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
 								<span class="input-group-btn">
@@ -69,8 +69,8 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Tất cả</a></li>
-                                <li><a href="">Soạn khóa học<span class="tip">hot</span></a></li>
+                                <li><a href="{{ path('course_index') }}">Tất cả</a></li>
+                                <li><a href="{{ path('create_course') }}">Soạn khóa học<span class="tip">hot</span></a></li>
                                 <li><a href="#">Tìm kiếm</a></li>
                             </ul>
                         </li>
@@ -80,8 +80,8 @@
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Tất cả</a></li>
-                                <li><a href="">Viết bài</a></li>
+                                <li><a href="{{ path('tutorial_index') }}">Tất cả</a></li>
+                                <li><a href="{{ path('create_tutorial') }}">Viết bài</a></li>
                                 <li><a href="#">Tìm kiếm</a></li>
                             </ul>
                         </li>
@@ -91,13 +91,13 @@
                             </a>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="">
+                            <a class="dropdown-toggle" href="#">
                                 Bài test
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Tất cả</a></li>
-                                <li><a href="">Tìm kiếm</a></li>
+                                <li><a href="{{ path('coming_soon') }}">Tất cả</a></li>
+                                <li><a href="{{ path('coming_soon') }}">Tìm kiếm</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -118,24 +118,24 @@
                                                 <div class="col-md-6">
                                                     <div class="user-avatar">
                                                         <div class="img-thumbnail">
-                                                            <img alt="avatar" ng-src="<{ avatar }>">
+                                                            <img alt="avatar" src="{{ app.user.avatar }}">
                                                         </div>
                                                         <p>
                                                             <strong>{{ app.user.username }}</strong>
-                                                            <span><{ professional }></span>
+                                                            <span>{{ app.user.professional }}</span>
                                                         </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <ul class="list-account-options">
                                                         <li>
-                                                            <a href="">Tài khoản</a>
+                                                            <a href="{{ path('fos_user_profile_show') }}">Tài khoản</a>
                                                         </li>
                                                         <li>
-                                                            <a href="">Khóa học của tôi</a>
+                                                            <a href="#">Khóa học của tôi</a>
                                                         </li>
                                                         <li>
-                                                            <a href="/logout" >Log Out</a>
+                                                            <a href="{{ path('fos_user_security_logout') }}" >Log Out</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -145,9 +145,11 @@
                                 </ul>
                             </li>
                         {% else %}
-                            <a class="dropdown-toggle" href="/login">
-                                <i class="fa fa-user"></i> Log In
-                            </a>
+                            <li>
+                                <a class="dropdown-toggle" href="{{ path('fos_user_security_login') }}">
+                                    <i class="fa fa-user"></i> Log In
+                                </a>
+                            </li>
                         {% endif %}
 
                     </ul>

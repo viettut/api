@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Nelmio\CorsBundle\NelmioCorsBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            
             new Viettut\Bundle\UserBundle\ViettutUserBundle(),
             new Viettut\Bundle\WebBundle\ViettutWebBundle(),
             new Viettut\Bundle\ApiBundle\ViettutApiBundle(),
