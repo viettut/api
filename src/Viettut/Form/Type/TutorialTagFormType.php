@@ -48,7 +48,7 @@ class TutorialTagFormType extends AbstractRoleSpecificFormType
         $resolver
             ->setDefaults([
                 'data_class' => TutorialTag::class,
-                'cascade_validation' => true,
+                'csrf_protection'   => false
             ]);
     }
 

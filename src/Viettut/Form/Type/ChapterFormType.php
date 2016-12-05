@@ -65,7 +65,8 @@ class ChapterFormType extends AbstractRoleSpecificFormType
     {
         $resolver
             ->setDefaults([
-                'data_class' => Chapter::class
+                'data_class' => Chapter::class,
+                'csrf_protection'   => false
             ]);
     }
     /**

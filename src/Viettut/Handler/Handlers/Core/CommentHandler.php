@@ -6,25 +6,24 @@
  * Time: 10:48 PM
  */
 
-namespace Viettut\Handler\Handlers\Core\Lecturer;
+namespace Viettut\Handler\Handlers\Core;
 
 
-use Viettut\Handler\Handlers\Core\CommentHandlerAbstract;
+use Viettut\Handler\RoleHandlerAbstract;
 use Viettut\Model\Core\CommentInterface;
 use Viettut\Model\ModelInterface;
-use Viettut\Model\User\Role\BrokerInterface;
-use Viettut\Model\User\Role\LecturerInterface;
-use Viettut\Model\User\Role\UserRoleInterface;
+use Viettut\Model\User\UserEntityInterface;
 
-class CommentHandler extends CommentHandlerAbstract{
+class CommentHandler extends RoleHandlerAbstract
+{
 
     /**
-     * @param UserRoleInterface $role
+     * @param UserEntityInterface $role
      * @return bool
      */
-    public function supportsRole(UserRoleInterface $role)
+    public function supportsRole(UserEntityInterface $role)
     {
-        return $role instanceof LecturerInterface;
+        return true;
     }
 
     protected function processForm(ModelInterface $entity, array $parameters, $method = 'PUT')

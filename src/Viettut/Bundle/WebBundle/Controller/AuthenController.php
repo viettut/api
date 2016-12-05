@@ -23,38 +23,6 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 class AuthenController extends Controller
 {
     /**
-     * @Route("/login", name="login_page")
-     * @Template()
-     */
-    public function loginAction()
-    {
-        if (!session_id()) {
-            session_start();
-        }
-
-        $fb = new \Facebook\Facebook([
-            'app_id' => '529276757135612',
-            'app_secret' => '0fe34b757c10440e7259665a53dda55a',
-            'default_graph_version' => 'v2.5',
-        ]);
-        $helper = $fb->getRedirectLoginHelper();
-
-        $permissions = ['email']; // Optional permissions
-        $loginUrl = $helper->getLoginUrl('http://api.viettut.com/app_dev.php/facebook/login', $permissions);
-        $button = '<a href="' . $loginUrl . '" class="ladda-button btn-primary" style="border-radius: 5px;">Log in with Facebook!</a>';
-        return $this->render('ViettutWebBundle:Authen:login.html.twig', array('facebook_login_url' => $loginUrl));
-    }
-
-    /**
-     * @Route("/register", name="register_page")
-     * @Template()
-     */
-    public function registerAction()
-    {
-        return $this->render('ViettutWebBundle:Authen:register.html.twig');
-    }
-
-    /**
      * @Method({"POST"})
      * @Route("/facebook/login", name="facebook_login")
      */

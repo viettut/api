@@ -7,6 +7,7 @@ use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\User\Role\UserRoleInterface;
 use Viettut\Model\ModelInterface;
 use ReflectionClass;
+use Viettut\Model\User\UserEntityInterface;
 
 /**
  * Returns a resource handler for the current user role
@@ -47,11 +48,11 @@ class HandlerManager
     }
 
     /**
-     * @param UserRoleInterface $role
+     * @param UserEntityInterface $role
      * @return RoleHandlerInterface
      * @throws NoHandlerForRoleException
      */
-    public function getHandler(UserRoleInterface $role)
+    public function getHandler(UserEntityInterface $role)
     {
         foreach($this->handlers as $handler) {
             if ($handler->supportsRole($role)) {

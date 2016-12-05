@@ -1,13 +1,15 @@
-viettut_api:
-    resource: "@ViettutApiBundle/Resources/config/routing.yml"
-    type:   rest
-    prefix: /api/v1
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 viettut_web:
     resource: "@ViettutWebBundle/Controller/"
     type:     annotation
     prefix:   /
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+viettut_api:
+    resource: "@ViettutApiBundle/Resources/config/routing.yml"
+    type:   rest
+    prefix: /api/v1
+
+
 

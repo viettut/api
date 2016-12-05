@@ -6,24 +6,26 @@
  * Time: 10:48 PM
  */
 
-namespace Viettut\Handler\Handlers\Core\Lecturer;
+namespace Viettut\Handler\Handlers\Core;
 
 
-use Viettut\Handler\Handlers\Core\CourseHandlerAbstract;
+use Viettut\DomainManager\CourseManagerInterface;
+use Viettut\Handler\RoleHandlerAbstract;
 use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\ModelInterface;
 use Viettut\Model\User\Role\LecturerInterface;
-use Viettut\Model\User\Role\UserRoleInterface;
+use Viettut\Model\User\UserEntityInterface;
 
-class CourseHandler extends CourseHandlerAbstract{
+class CourseHandler extends RoleHandlerAbstract
+{
 
     /**
-     * @param UserRoleInterface $role
+     * @param UserEntityInterface $role
      * @return bool
      */
-    public function supportsRole(UserRoleInterface $role)
+    public function supportsRole(UserEntityInterface $role)
     {
-        return $role instanceof LecturerInterface;
+        return true;
     }
 
     /**
@@ -31,8 +33,11 @@ class CourseHandler extends CourseHandlerAbstract{
      */
     public function all($limit = null, $offset = null)
     {
-        /** @var LecturerInterface $lecturer */
+        /**
+         * @var LecturerInterface $lecturer
+         */
         $lecturer = $this->getUserRole();
+
         return $this->getDomainManager()->getCourseByLecturer($lecturer, $limit, $offset);
     }
 
@@ -46,5 +51,17 @@ class CourseHandler extends CourseHandlerAbstract{
         }
 
         return parent::processForm($entity, $parameters, $method);
+    }
+
+    /**
+     * @inheritdoc
+     *
+     * Auto complete helper method
+     *
+     * @return CourseManagerInterface
+     */
+    protected function getDomainManager()
+    {
+        return parent::getDomainManager();
     }
 }

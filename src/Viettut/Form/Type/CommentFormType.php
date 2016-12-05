@@ -66,7 +66,8 @@ class CommentFormType extends AbstractRoleSpecificFormType
     {
         $resolver
             ->setDefaults([
-                'data_class' => Comment::class
+                'data_class' => Comment::class,
+                'csrf_protection'   => false
             ]);
     }
     /**

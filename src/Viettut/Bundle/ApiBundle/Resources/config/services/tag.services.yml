@@ -33,31 +33,19 @@ services:
         tags:
             - { name: form.type, alias: tagcade_form_tag }
 
-    viettut.handler.handlers.tag.abstract:
-        class: Viettut\Handler\Handlers\Core\TagHandlerAbstract
+    viettut.handler.handlers.tag:
+        class: Viettut\Handler\Handlers\Core\TagHandler
         parent: viettut.handler.role_handler_abstract
-        abstract: true
         public: false
         arguments:
             - @viettut.form.type.tag
             - @viettut.domain_manager.tag
-
-    viettut.handler.handlers.tag.admin:
-        class: Viettut\Handler\Handlers\Core\Admin\TagHandler
-        parent: viettut.handler.handlers.tag.abstract
-        public: false
-
-    viettut.handler.handlers.tag.lecturer:
-        class: Viettut\Handler\Handlers\Core\Lecturer\TagHandler
-        parent: viettut.handler.handlers.tag.abstract
-        public: false
 
     viettut.handler.handler_manager.tag:
         class: Viettut\Handler\HandlerManager
         arguments:
             - %viettut.entity.core.tag.class%
             -
-                - @viettut.handler.handlers.tag.admin
-                - @viettut.handler.handlers.tag.lecturer
+                - @viettut.handler.handlers.tag
 
     # end tag #####################################################

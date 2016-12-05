@@ -27,7 +27,7 @@ class LecturerController extends FOSRestController
      */
     public function indexAction($username)
     {
-        $author = $this->get('viettut_user_system_lecturer.user_manager')->findUserByUsername($username);
+        $author = $this->get('fos_user.user_manager')->findUserByUsername($username);
         if (!$author instanceof UserInterface) {
             throw new NotFoundHttpException('page not found');
         }

@@ -3,10 +3,10 @@
 namespace Viettut\Handler;
 
 use Symfony\Component\Form\FormFactoryInterface;
-use Viettut\Form\Type\RoleSpecificFormTypeInterface;
-use Viettut\Model\User\Role\UserRoleInterface;
-use Viettut\Exception\LogicException;
 use Viettut\Exception\InvalidUserRoleException;
+use Viettut\Exception\LogicException;
+use Viettut\Form\Type\RoleSpecificFormTypeInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 /**
  * A role handler is used to have a different handler for different user roles.
@@ -22,11 +22,11 @@ abstract class RoleHandlerAbstract extends HandlerAbstract implements RoleHandle
     protected $formType;
 
     /**
-     * @var UserRoleInterface|null
+     * @var UserEntityInterface|null
      */
     protected $userRole;
 
-    public function __construct(FormFactoryInterface $formFactory, RoleSpecificFormTypeInterface $formType, $domainManager, UserRoleInterface $userRole = null)
+    public function __construct(FormFactoryInterface $formFactory, RoleSpecificFormTypeInterface $formType, $domainManager, UserEntityInterface $userRole = null)
     {
         parent::__construct($formFactory, $formType, $domainManager);
 
@@ -35,7 +35,7 @@ abstract class RoleHandlerAbstract extends HandlerAbstract implements RoleHandle
         }
     }
 
-    public function setUserRole(UserRoleInterface $userRole)
+    public function setUserRole(UserEntityInterface $userRole)
     {
         if (!$this->supportsRole($userRole)) {
             throw new InvalidUserRoleException();
@@ -46,7 +46,7 @@ abstract class RoleHandlerAbstract extends HandlerAbstract implements RoleHandle
 
     public function getUserRole()
     {
-        if (!$this->userRole instanceof UserRoleInterface) {
+        if (!$this->userRole instanceof UserEntityInterface) {
             throw new LogicException('userRole is not set');
         }
 

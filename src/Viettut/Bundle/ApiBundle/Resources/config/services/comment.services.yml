@@ -33,31 +33,19 @@ services:
         tags:
             - { name: form.type, alias: tagcade_form_comment }
 
-    viettut.handler.handlers.comment.abstract:
-        class: Viettut\Handler\Handlers\Core\CommentHandlerAbstract
+    viettut.handler.handlers.comment:
+        class: Viettut\Handler\Handlers\Core\CommentHandler
         parent: viettut.handler.role_handler_abstract
-        abstract: true
         public: false
         arguments:
             - @viettut.form.type.comment
             - @viettut.domain_manager.comment
-
-    viettut.handler.handlers.comment.admin:
-        class: Viettut\Handler\Handlers\Core\Admin\CommentHandler
-        parent: viettut.handler.handlers.comment.abstract
-        public: false
-
-    viettut.handler.handlers.comment.lecturer:
-        class: Viettut\Handler\Handlers\Core\Lecturer\CommentHandler
-        parent: viettut.handler.handlers.comment.abstract
-        public: false
 
     viettut.handler.handler_manager.comment:
         class: Viettut\Handler\HandlerManager
         arguments:
             - %viettut.entity.core.comment.class%
             -
-                - @viettut.handler.handlers.comment.admin
-                - @viettut.handler.handlers.comment.lecturer
+                - @viettut.handler.handlers.comment
 
     # end comment #####################################################

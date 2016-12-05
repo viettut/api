@@ -2,21 +2,21 @@
 
 namespace Viettut\Handler;
 
-use Viettut\Model\User\Role\UserRoleInterface;
 use Viettut\Exception\LogicException;
+use Viettut\Model\User\UserEntityInterface;
 
 interface RoleHandlerInterface extends HandlerInterface
 {
     /**
-     * @param UserRoleInterface $role
+     * @param UserEntityInterface $role
      * @return bool
      */
-    public function supportsRole(UserRoleInterface $role);
+    public function supportsRole(UserEntityInterface $role);
 
-    public function setUserRole(UserRoleInterface $userRole);
+    public function setUserRole(UserEntityInterface $userRole);
 
     /**
-     * @return UserRoleInterface
+     * @return UserEntityInterface
      * @throws LogicException
      */
     public function getUserRole();

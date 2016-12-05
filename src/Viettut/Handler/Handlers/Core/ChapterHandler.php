@@ -6,24 +6,26 @@
  * Time: 10:48 PM
  */
 
-namespace Viettut\Handler\Handlers\Core\Lecturer;
+namespace Viettut\Handler\Handlers\Core;
 
 
-use Viettut\Handler\Handlers\Core\ChapterHandlerAbstract;
+use Viettut\DomainManager\ChapterManagerInterface;
+use Viettut\Handler\RoleHandlerAbstract;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\ModelInterface;
 use Viettut\Model\User\Role\LecturerInterface;
-use Viettut\Model\User\Role\UserRoleInterface;
+use Viettut\Model\User\UserEntityInterface;
 
-class ChapterHandler extends ChapterHandlerAbstract{
+class ChapterHandler extends RoleHandlerAbstract
+{
 
     /**
-     * @param UserRoleInterface $role
+     * @param UserEntityInterface $role
      * @return bool
      */
-    public function supportsRole(UserRoleInterface $role)
+    public function supportsRole(UserEntityInterface $role)
     {
-        return $role instanceof LecturerInterface;
+        return true;
     }
 
     /**
@@ -48,5 +50,15 @@ class ChapterHandler extends ChapterHandlerAbstract{
         return parent::processForm($entity, $parameters, $method);
     }
 
-
+    /**
+     * @inheritdoc
+     *
+     * Auto complete helper method
+     *
+     * @return ChapterManagerInterface
+     */
+    protected function getDomainManager()
+    {
+        return parent::getDomainManager();
+    }
 }

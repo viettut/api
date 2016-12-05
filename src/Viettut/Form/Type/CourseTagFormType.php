@@ -48,7 +48,7 @@ class CourseTagFormType extends AbstractRoleSpecificFormType
         $resolver
             ->setDefaults([
                 'data_class' => CourseTag::class,
-                'cascade_validation' => true,
+                'csrf_protection'   => false
             ]);
     }
 

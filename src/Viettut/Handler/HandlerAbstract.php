@@ -188,10 +188,10 @@ abstract class HandlerAbstract implements HandlerInterface
             $this->domainManager->save($entity);
 
             // now dispatch a HandlerEventLog for handling event, for example ActionLog handler...
-            if ($this->eventDispatcher !== null && $this->handlerEvent != null) {
-                $event = new HandlerEventLog($method, $oldEntity, $entity);
-                $this->dispatchEvent($event);
-            }
+//            if ($this->eventDispatcher !== null && $this->handlerEvent != null) {
+//                $event = new HandlerEventLog($method, $oldEntity, $entity);
+//                $this->dispatchEvent($event);
+//            }
 
             return $entity;
         }

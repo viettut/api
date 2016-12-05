@@ -45,7 +45,8 @@ class TagFormType extends AbstractRoleSpecificFormType
     {
         $resolver
             ->setDefaults([
-                'data_class' => Tag::class
+                'data_class' => Tag::class,
+                'csrf_protection'   => false
             ]);
     }
     /**

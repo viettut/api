@@ -33,31 +33,19 @@ services:
         tags:
             - { name: form.type, alias: tagcade_form_tutorial }
 
-    viettut.handler.handlers.tutorial.abstract:
-        class: Viettut\Handler\Handlers\Core\TutorialHandlerAbstract
+    viettut.handler.handlers.tutorial:
+        class: Viettut\Handler\Handlers\Core\TutorialHandler
         parent: viettut.handler.role_handler_abstract
-        abstract: true
         public: false
         arguments:
             - @viettut.form.type.tutorial
             - @viettut.domain_manager.tutorial
-
-    viettut.handler.handlers.tutorial.admin:
-        class: Viettut\Handler\Handlers\Core\Admin\TutorialHandler
-        parent: viettut.handler.handlers.tutorial.abstract
-        public: false
-
-    viettut.handler.handlers.tutorial.lecturer:
-        class: Viettut\Handler\Handlers\Core\Lecturer\TutorialHandler
-        parent: viettut.handler.handlers.tutorial.abstract
-        public: false
 
     viettut.handler.handler_manager.tutorial:
         class: Viettut\Handler\HandlerManager
         arguments:
             - %viettut.entity.core.tutorial.class%
             -
-                - @viettut.handler.handlers.tutorial.admin
-                - @viettut.handler.handlers.tutorial.lecturer
+                - @viettut.handler.handlers.tutorial
 
     # end tutorial #####################################################

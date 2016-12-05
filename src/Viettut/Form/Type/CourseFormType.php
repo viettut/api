@@ -66,7 +66,9 @@ class CourseFormType extends AbstractRoleSpecificFormType
     {
         $resolver
             ->setDefaults([
-                'data_class' => Course::class
+                'data_class' => Course::class,
+                'csrf_protection'   => false,
+                'cascade_validation' => true,
             ]);
     }
 

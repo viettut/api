@@ -73,6 +73,7 @@ class TutorialFormType extends AbstractRoleSpecificFormType
             ->setDefaults([
                 'data_class' => Tutorial::class,
                 'cascade_validation' => true,
+                'csrf_protection'   => false
             ]);
     }
     /**
