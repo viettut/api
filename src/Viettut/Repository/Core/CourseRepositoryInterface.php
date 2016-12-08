@@ -9,17 +9,17 @@
 namespace Viettut\Repository\Core;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 interface CourseRepositoryInterface extends ObjectRepository
 {
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getCourseByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null);
+    public function getCourseByUser(UserEntityInterface $user, $limit = null, $offset = null);
 
     /**
      * @param $hashTag
@@ -54,11 +54,11 @@ interface CourseRepositoryInterface extends ObjectRepository
     public function getRecentCourse($maxResult);
 
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param $hash
      * @return CourseInterface | null
      */
-    public function getByLecturerAndHash(LecturerInterface $lecturer, $hash);
+    public function getByUserAndHash(UserEntityInterface $user, $hash);
 
     /**
      * @return mixed

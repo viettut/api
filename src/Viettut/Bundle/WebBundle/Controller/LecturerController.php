@@ -32,7 +32,7 @@ class LecturerController extends FOSRestController
             throw new NotFoundHttpException('page not found');
         }
 
-        $courses = $this->get('viettut.repository.course')->getCourseByLecturer($author);
+        $courses = $this->get('viettut.repository.course')->getCourseByUser($author);
         $tutorials = $this->get('viettut.repository.tutorial')->getTutorialByLecturer($author);
 
         return $this->render('ViettutWebBundle:Lecturer:index.html.twig', array(

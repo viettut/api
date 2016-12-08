@@ -8,24 +8,24 @@
 
 namespace Viettut\Repository\Core;
 use Doctrine\Common\Persistence\ObjectRepository;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 interface TutorialRepositoryInterface extends ObjectRepository
 {
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getTutorialByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null);
+    public function getTutorialByUser(UserEntityInterface $user, $limit = null, $offset = null);
 
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param $hash
      * @return mixed
      */
-    public function getByLecturerAndHash(LecturerInterface $lecturer, $hash);
+    public function getByUserAndHash(UserEntityInterface $user, $hash);
 
     /**
      * @param $maxResult

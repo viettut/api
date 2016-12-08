@@ -14,7 +14,7 @@ use ReflectionClass;
 use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\ModelInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 use Viettut\Repository\Core\CourseRepositoryInterface;
 
 class CourseManager implements CourseManagerInterface
@@ -107,13 +107,13 @@ class CourseManager implements CourseManagerInterface
     }
 
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getCourseByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null)
+    public function getCourseByUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
-        return $this->repository->getCourseByLecturer($lecturer, $limit, $offset);
+        return $this->repository->getCourseByUser($user, $limit, $offset);
     }
 }

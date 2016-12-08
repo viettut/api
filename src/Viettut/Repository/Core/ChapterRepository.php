@@ -10,21 +10,21 @@ namespace Viettut\Repository\Core;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityRepository;
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 class ChapterRepository extends EntityRepository implements ChapterRepositoryInterface
 {
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getChapterByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null)
+    public function getChapterByUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
         $qb = $this->createQueryBuilder('ch')
             ->where('ch.author = :author_id')
-            ->setParameter('author_id', $lecturer->getId(), TYPE::INTEGER);
+            ->setParameter('author_id', $user->getId(), TYPE::INTEGER);
 
         if (is_int($limit)) {
             $qb->setMaxResults($limit);

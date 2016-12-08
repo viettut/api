@@ -14,7 +14,7 @@ use ReflectionClass;
 use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\Core\TutorialInterface;
 use Viettut\Model\ModelInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 use Viettut\Repository\Core\TutorialRepositoryInterface;
 
 class TutorialManager implements TutorialManagerInterface
@@ -100,13 +100,13 @@ class TutorialManager implements TutorialManagerInterface
     }
 
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getTutorialByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null)
+    public function getTutorialByUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
-        return $this->repository->getTutorialByLecturer($lecturer, $limit, $offset);
+        return $this->repository->getTutorialByUser($user, $limit, $offset);
     }
 }

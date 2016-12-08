@@ -10,17 +10,17 @@ namespace Viettut\DomainManager;
 
 
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 interface ChapterManagerInterface extends ManagerInterface
 {
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getChapterByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null);
+    public function getChapterByUser(UserEntityInterface $user, $limit = null, $offset = null);
 
     /**
      * @param CourseInterface $course

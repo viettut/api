@@ -1,0 +1,29 @@
+Viettut\Entity\Core\UserChapter:
+    type: entity
+    table: viettut_user_chapter
+    repositoryClass: Viettut\Repository\Core\UserChapterRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        course:
+            targetEntity: Viettut\Entity\Core\Course
+            inversedBy: chapters
+        user:
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
+        latestChapter:
+            targetEntity: Viettut\Entity\Core\Chapter
+    lifecycleCallbacks: {  }

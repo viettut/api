@@ -1,0 +1,16 @@
+parameters:
+    viettut.entity.core.user_chapter.class: Viettut\Entity\Core\UserChapter
+    
+services:
+    viettut.repository.user_chapter:
+        class: Viettut\Repository\Core\UserChapterRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.user_chapter.class%
+
+    viettut.domain_manager.user_chapter:
+        class: Viettut\DomainManager\UserChapterManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.user_chapter

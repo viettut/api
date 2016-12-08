@@ -11,6 +11,11 @@ services:
         factory_method: getToken
 
     viettut.user_role:
-        class: Viettut\Model\User\Role\UserRoleInterface
+        class: Viettut\Model\User\UserEntityInterface
         factory_service: viettut.token
         factory_method: getUser
+
+    viettut_user.domain_manager.lecturer:
+        class: Viettut\Bundle\UserBundle\DomainManager\LecturerManager
+        arguments:
+            - @fos_user.user_manager

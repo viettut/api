@@ -13,9 +13,12 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Viettut\Entity\Core\UserChapter;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
+use Viettut\Model\Core\UserChapterInterface;
 use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 class ChapterController extends FOSRestController
 {
@@ -33,14 +36,14 @@ class ChapterController extends FOSRestController
     public function detailAction($username, $hash, $cHash)
     {
         $popularSize = $this->container->getParameter('popular_size');
-        $lecturer = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
-        if (!$lecturer instanceof LecturerInterface) {
+        $user = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
+        if (!$user instanceof UserEntityInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
             );
         }
 
-        $course = $this->get('viettut.repository.course')->getByLecturerAndHash($lecturer, $hash);
+        $course = $this->get('viettut.repository.course')->getByLecturerAndHash($user, $hash);
         if (!$course instanceof CourseInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
@@ -52,6 +55,20 @@ class ChapterController extends FOSRestController
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
             );
+        }
+
+        $userChapterManager = $this->get('viettut.domain_manager.user_chapter');
+        $userChapter = $userChapterManager->getUserChapterByUserAndCourse($user, $course);
+        if ($userChapter instanceof UserChapterInterface) {
+            $userChapter->setLatestChapter($chapter);
+            $userChapterManager->save($userChapter);
+        } else {
+            $userChapter = new UserChapter();
+            $userChapter->setUser($user)
+                ->setCourse($course)
+                ->setLatestChapter($chapter);
+
+            $userChapterManager->save($userChapter);
         }
 
         $lastChapter = true;
@@ -106,7 +123,7 @@ class ChapterController extends FOSRestController
     public function nextAction($username, $hash, $cHash)
     {
         $lecturer = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
-        if (!$lecturer instanceof LecturerInterface) {
+        if (!$lecturer instanceof UserEntityInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
             );

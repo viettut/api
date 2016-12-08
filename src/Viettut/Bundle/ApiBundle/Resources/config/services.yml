@@ -1,5 +1,6 @@
 imports:
     - { resource: services/course.services.yml }
+    - { resource: services/user_chapter.services.yml }
     - { resource: services/chapter.services.yml }
     - { resource: services/tutorial.services.yml }
     - { resource: services/tag.services.yml }

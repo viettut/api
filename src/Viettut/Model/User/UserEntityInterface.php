@@ -3,8 +3,9 @@
 namespace Viettut\Model\User;
 
 use Viettut\Model\ModelInterface;
+use FOS\UserBundle\Model\UserInterface as FOSUserInterface;
 
-interface UserEntityInterface extends ModelInterface
+interface UserEntityInterface extends ModelInterface, FOSUserInterface
 {
     public function getId();
 

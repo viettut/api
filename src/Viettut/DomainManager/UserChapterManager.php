@@ -12,21 +12,25 @@ namespace Viettut\DomainManager;
 use Doctrine\ORM\EntityManagerInterface;
 use ReflectionClass;
 use Viettut\Exception\InvalidArgumentException;
-use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
+use Viettut\Model\Core\UserChapterInterface;
 use Viettut\Model\ModelInterface;
 use Viettut\Model\User\UserEntityInterface;
-use Viettut\Repository\Core\ChapterRepositoryInterface;
+use Viettut\Repository\Core\UserChapterRepositoryInterface;
 
-class ChapterManager implements ChapterManagerInterface
+class UserChapterManager implements UserChapterManagerInterface
 {
     /**
      * @var EntityManagerInterface
      */
     protected $em;
+
+    /**
+     * @var UserChapterRepositoryInterface
+     */
     protected $repository;
 
-    public function __construct(EntityManagerInterface $em, ChapterRepositoryInterface $repository)
+    public function __construct(EntityManagerInterface $em, UserChapterRepositoryInterface $repository)
     {
         $this->em = $em;
         $this->repository = $repository;
@@ -41,7 +45,7 @@ class ChapterManager implements ChapterManagerInterface
      */
     public function supportsEntity($entity)
     {
-        return is_subclass_of($entity, ChapterInterface::class);
+        return is_subclass_of($entity, UserChapterInterface::class);
     }
 
     /**
@@ -50,8 +54,8 @@ class ChapterManager implements ChapterManagerInterface
      */
     public function save(ModelInterface $entity)
     {
-        if (!$entity instanceof ChapterInterface) {
-            throw new InvalidArgumentException('expect an ChapterInterface object');
+        if (!$entity instanceof UserChapterInterface) {
+            throw new InvalidArgumentException('expect an UserChapterInterface object');
         }
 
         $this->em->persist($entity);
@@ -64,8 +68,8 @@ class ChapterManager implements ChapterManagerInterface
      */
     public function delete(ModelInterface $entity)
     {
-        if (!$entity instanceof ChapterInterface) {
-            throw new InvalidArgumentException('expect an ChapterInterface object');
+        if (!$entity instanceof UserChapterInterface) {
+            throw new InvalidArgumentException('expect an UserChapterInterface object');
         }
 
         $this->em->remove($entity);
@@ -100,25 +104,8 @@ class ChapterManager implements ChapterManagerInterface
         return $this->repository->findBy($criteria = [], $orderBy = null, $limit, $offset);
     }
 
-    /**
-     * @param UserEntityInterface $user
-     * @param null $limit
-     * @param null $offset
-     * @return mixed
-     */
-    public function getChapterByUser(UserEntityInterface $user, $limit = null, $offset = null)
+    public function getUserChapterByUserAndCourse(UserEntityInterface $user, CourseInterface $course)
     {
-        return $this->repository->getChapterByUser($user, $limit, $offset);
-    }
-
-    /**
-     * @param CourseInterface $course
-     * @param null $limit
-     * @param null $offset
-     * @return mixed
-     */
-    public function getChaptersByCourse(CourseInterface $course, $limit = null, $offset = null)
-    {
-        return $this->repository->getChaptersByCourse($course, $limit, $offset);
+        return $this->repository->getUserChapterByUserAndCourse($user, $course);
     }
 }

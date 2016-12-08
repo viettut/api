@@ -10,24 +10,24 @@ namespace Viettut\Repository\Core;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\ResultSetMapping;
-use Viettut\Bundles\UserSystem\LecturerBundle\Entity\User;
+use Viettut\Bundle\UserBundle\Entity\User;
 use Viettut\Entity\Core\Course;
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 class CourseRepository extends EntityRepository implements CourseRepositoryInterface
 {
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getCourseByLecturer(LecturerInterface $lecturer, $limit = null, $offset = null)
+    public function getCourseByUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
         $qb = $this->createQueryBuilder('c')
             ->where('c.author = :author_id')
-            ->setParameter('author_id', $lecturer->getId(), TYPE::INTEGER);
+            ->setParameter('author_id', $user->getId(), TYPE::INTEGER);
 
         if (is_int($limit)) {
             $qb->setMaxResults($limit);
@@ -123,16 +123,16 @@ class CourseRepository extends EntityRepository implements CourseRepositoryInter
     }
 
     /**
-     * @param LecturerInterface $lecturer
+     * @param UserEntityInterface $user
      * @param $hashTag
      * @return mixed
      */
-    public function getByLecturerAndHash(LecturerInterface $lecturer, $hashTag)
+    public function getByUserAndHash(UserEntityInterface $user, $hashTag)
     {
         $qb = $this->createQueryBuilder('c')
             ->where('c.author = :author_id')
             ->andWhere('c.hashTag = :hashTag')
-            ->setParameter('author_id', $lecturer->getId(), TYPE::INTEGER)
+            ->setParameter('author_id', $user->getId(), TYPE::INTEGER)
             ->setParameter('hashTag', $hashTag, Type::STRING)
         ;
 
