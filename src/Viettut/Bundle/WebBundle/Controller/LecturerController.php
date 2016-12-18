@@ -10,12 +10,12 @@ namespace Viettut\Bundle\WebBundle\Controller;
 
 
 use FOS\RestBundle\Controller\FOSRestController;
-use FOS\UserBundle\Model\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Viettut\Model\User\UserEntityInterface;
 
 class LecturerController extends FOSRestController
 {
@@ -28,12 +28,12 @@ class LecturerController extends FOSRestController
     public function indexAction($username)
     {
         $author = $this->get('fos_user.user_manager')->findUserByUsername($username);
-        if (!$author instanceof UserInterface) {
+        if (!$author instanceof UserEntityInterface) {
             throw new NotFoundHttpException('page not found');
         }
 
         $courses = $this->get('viettut.repository.course')->getCourseByUser($author);
-        $tutorials = $this->get('viettut.repository.tutorial')->getTutorialByLecturer($author);
+        $tutorials = $this->get('viettut.repository.tutorial')->getTutorialByUser($author);
 
         return $this->render('ViettutWebBundle:Lecturer:index.html.twig', array(
             'courses' => $courses,

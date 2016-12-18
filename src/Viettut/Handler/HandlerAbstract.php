@@ -7,7 +7,6 @@ use ReflectionMethod;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormTypeInterface;
-use Viettut\Bundles\AdminApiBundle\Event\HandlerEventLog;
 use Viettut\DomainManager\ManagerInterface as DummyManagerInterface;
 use Viettut\Exception\InvalidArgumentException;
 use Viettut\Exception\InvalidFormException;
@@ -104,10 +103,10 @@ abstract class HandlerAbstract implements HandlerInterface
         $this->domainManager->delete($entity);
 
         // now dispatch a HandlerEventLog for handling event, for example ActionLog handler...
-        if ($this->eventDispatcher !== null && $this->handlerEvent != null) {
-            $event = new HandlerEventLog('DELETE', $entity);
-            $this->dispatchEvent($event);
-        }
+//        if ($this->eventDispatcher !== null && $this->handlerEvent != null) {
+//            $event = new HandlerEventLog('DELETE', $entity);
+//            $this->dispatchEvent($event);
+//        }
     }
 
     /**

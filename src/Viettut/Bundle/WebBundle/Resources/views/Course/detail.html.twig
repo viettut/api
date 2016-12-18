@@ -43,8 +43,7 @@
                                     <span class="pull-right"><i class="fa fa-comments"></i> <a href="#">{{ course.comments | length }} Bình luận</a></span>
                                 </div>
                                 <hr class="tall"/>
-                                <textarea class="hidden" id="introduce">{{ course.introduce | raw }}</textarea>
-                                <wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>
+                                <div>{{ course.introduce | mde }}</div>
                                 {% if lastChapter %}
                                     <div class="row">
                                         <div class="pull-left">
@@ -72,7 +71,7 @@
                                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                                     </span>
                                                                 </span>
-                                                            <p>{{ comment.content | markdown }}</p>
+                                                            <p>{{ comment.content | mde }}</p>
                                                             <span class="date pull-right">{{ comment.createdAt | date('h:i d/m/Y') }}</span>
                                                         </div>
                                                     </div>
@@ -88,7 +87,7 @@
                                                                             <span class="comment-by">
                                                                                 <strong>{{ reply.author.username }}</strong>
                                                                             </span>
-                                                                        <p>{{ reply.content | markdown }}</p>
+                                                                        <p>{{ reply.content | mde }}</p>
                                                                         <span class="date pull-right">{{ reply.createdAt | date('h:M d/m/Y') }}</span>
                                                                     </div>
                                                                 </div>

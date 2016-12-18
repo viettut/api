@@ -4,16 +4,12 @@ namespace Viettut\Bundle\ApiBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\FOSRestController;
-
 use FOS\RestBundle\View\View;
-use FOS\RestBundle\Util\Codes;
-
+use Symfony\Component\HttpFoundation\Response;
 use Viettut\Handler\HandlerInterface;
 use Viettut\Model\ModelInterface;
 use Viettut\Exception\InvalidFormException;
-
 use Symfony\Component\Form\FormTypeInterface;
-
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use InvalidArgumentException;
@@ -56,7 +52,7 @@ abstract class RestControllerAbstract extends FOSRestController
 //                '_format' => $request->get('_format')
 //            );
 //
-            return $this->addRedirectToResource($newEntity, Codes::HTTP_CREATED);
+            return $this->addRedirectToResource($newEntity, Response::HTTP_CREATED);
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
         }
@@ -72,13 +68,13 @@ abstract class RestControllerAbstract extends FOSRestController
         try {
             if (!($entity = $this->getHandler()->get($id))) {
                 // create new
-                $statusCode = Codes::HTTP_CREATED;
+                $statusCode = Response::HTTP_CREATED;
                 $entity = $this->getHandler()->post(
                     $request->request->all()
                 );
             } else {
                 $this->checkUserPermission($entity, 'edit');
-                $statusCode = Codes::HTTP_NO_CONTENT;
+                $statusCode = Response::HTTP_NO_CONTENT;
                 $entity = $this->getHandler()->put(
                     $entity,
                     $request->request->all()
@@ -119,7 +115,7 @@ abstract class RestControllerAbstract extends FOSRestController
 //                '_format' => $request->get('_format')
 //            );
 //
-            return $this->addRedirectToResource($entity, Codes::HTTP_NO_CONTENT);
+            return $this->addRedirectToResource($entity, Response::HTTP_NO_CONTENT);
         } catch (InvalidFormException $exception) {
             return $exception->getForm();
         }
@@ -136,7 +132,7 @@ abstract class RestControllerAbstract extends FOSRestController
 
         $this->getHandler()->delete($entity);
 
-        $view = $this->view(null, Codes::HTTP_NO_CONTENT);
+        $view = $this->view(null, Response::HTTP_NO_CONTENT);
 
         return $this->handleView($view);
     }

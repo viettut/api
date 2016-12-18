@@ -62,10 +62,10 @@ class TutorialController extends Controller
         $user = $this->getUser();
 
         if (!$user instanceof UserEntityInterface) {
-            $this->redirectToRoute('viettut_bundles_web_authen_login');
+            $this->redirectToRoute('fos_user_security_login');
         }
 
-        $courses = $this->get('viettut.repository.course')->getCourseByLecturer($user);
+        $courses = $this->get('viettut.repository.course')->getCourseByUser($user);
         return $this->render('ViettutWebBundle:Course:index.html.twig', array('courses' => $courses));
     }
 
@@ -83,14 +83,14 @@ class TutorialController extends Controller
     public function detailAction($username, $hash)
     {
         $popularSize = $this->container->getParameter('popular_size');
-        $lecturer = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
-        if (!$lecturer instanceof LecturerInterface) {
+        $user = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
+        if (!$user instanceof UserEntityInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
             );
         }
 
-        $tutorial = $this->get('viettut.repository.tutorial')->getByLecturerAndHash($lecturer, $hash);
+        $tutorial = $this->get('viettut.repository.tutorial')->getByUserAndHash($user, $hash);
         if(!$tutorial instanceof TutorialInterface) {
             throw new NotFoundHttpException('');
         }

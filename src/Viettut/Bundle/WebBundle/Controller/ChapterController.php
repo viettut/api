@@ -43,7 +43,7 @@ class ChapterController extends FOSRestController
             );
         }
 
-        $course = $this->get('viettut.repository.course')->getByLecturerAndHash($user, $hash);
+        $course = $this->get('viettut.repository.course')->getByUserAndHash($user, $hash);
         if (!$course instanceof CourseInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")

@@ -20,8 +20,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Viettut\Model\User\UserEntityInterface;
 
 class CourseController extends FOSRestController
 {
@@ -119,14 +119,14 @@ class CourseController extends FOSRestController
     public function detailAction($username, $hash)
     {
         $popularSize = $this->container->getParameter('popular_size');
-        $lecturer = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
-        if (!$lecturer instanceof LecturerInterface) {
+        $user = $this->get('viettut_user.domain_manager.lecturer')->findUserByUsernameOrEmail($username);
+        if (!$user instanceof UserEntityInterface) {
             throw new NotFoundHttpException(
                 sprintf("The resource was not found or you do not have access")
             );
         }
 
-        $course = $this->get('viettut.repository.course')->getByLecturerAndHash($lecturer, $hash);
+        $course = $this->get('viettut.repository.course')->getByUserAndHash($user, $hash);
 
         if(!$course instanceof CourseInterface) {
             throw new NotFoundHttpException('');
