@@ -17,13 +17,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Viettut\Model\Core\TutorialInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Viettut\Model\User\Role\LecturerInterface;
 use Viettut\Model\User\UserEntityInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class TutorialController extends Controller
 {
     /**
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Route("/lecturer/tutorials/create", name="create_tutorial")
+     *
      * @Template()
      */
     public function createAction()
@@ -33,8 +36,10 @@ class TutorialController extends Controller
 
     /**
      * @Route("/tutorials/all", name="tutorial_index")
+     *
      * @param $request
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function indexAction(Request $request)
@@ -53,8 +58,11 @@ class TutorialController extends Controller
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Route("/lecturer/tutorials/mytutorials")
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function myTutorialsAction()
@@ -74,11 +82,12 @@ class TutorialController extends Controller
      * present a specific guide
      *
      * @Route("/{username}/tutorials/{hash}", name="tutorial_detail")
-     * @Template()
      *
      * @param $username
      * @param $hash
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Template()
      */
     public function detailAction($username, $hash)
     {

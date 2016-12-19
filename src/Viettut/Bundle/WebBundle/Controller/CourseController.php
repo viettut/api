@@ -22,11 +22,15 @@ use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Viettut\Model\User\UserEntityInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class CourseController extends FOSRestController
 {
     /**
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Route("/courses/create", name="create_course")
+     *
      * @Template()
      */
     public function createAction()
@@ -35,9 +39,13 @@ class CourseController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Route("/courses/{token}/add-chapter", name="add_chapter")
+     *
      * @param string $token
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function addChapterAction($token)
@@ -54,9 +62,13 @@ class CourseController extends FOSRestController
     }
 
     /**
+     * @Security("has_role('ROLE_USER')")
+     *
      * @Route("/courses/{token}/edit", name="course_edit")
+     *
      * @param string $token
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function editAction($token)
@@ -72,12 +84,12 @@ class CourseController extends FOSRestController
         );
     }
 
-
-
     /**
      * @Route("/courses/all", name="course_index")
+     *
      * @param $request
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function indexAction(Request $request)
@@ -95,9 +107,12 @@ class CourseController extends FOSRestController
         ));
     }
 
-    /**
+    /**@Security("has_role('ROLE_USER')")
+     *
      * @Route("/lecturer/courses/mycourses")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
+     *
      * @Template()
      */
     public function myCoursesAction()
@@ -105,16 +120,16 @@ class CourseController extends FOSRestController
         return $this->render('ViettutWebBundle:Course:myCourses.html.twig');
     }
 
-
     /**
      * present a specific guide
      *
      * @Route("/{username}/courses/{hash}", name="course_detail")
-     * @Template()
      *
      * @param $username
      * @param $hash
      * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Template()
      */
     public function detailAction($username, $hash)
     {
@@ -153,6 +168,7 @@ class CourseController extends FOSRestController
     /**
      * @Route("/courses/upload")
      * @Method({"POST"})
+     *
      * @param Request $request
      * @return string
      */

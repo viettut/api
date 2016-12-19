@@ -26,14 +26,9 @@
                                     <img class="img-responsive" src="{{ course.imagePath }}" alt="image path">
                                 </div>
                             </div>
-                            {#<div class="post-date">#}
-                                {#<span class="day">{{ course.createdAt | date('d') }}</span>#}
-                                {#<span class="month">{{ course.createdAt | date('F') | slice(0, 3) }}</span>#}
-                            {#</div>#}
                             <div class="post-content">
                                 <h2 class="text-center"><a href="#">Chapter {{ chapter.position }}: {{ chapter.header }}</a></h2>
-                                <textarea class="hidden" id="content">{{ chapter.content | raw }}</textarea>
-                                <wiz-markdown content="content" class="markdown-body"></wiz-markdown>
+                                <div>{{ chapter.content | mde }}</div>
                                 {% if lastChapter %}
                                     <div class="row">
                                         <div class="pull-left">
@@ -61,7 +56,7 @@
                                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                                     </span>
                                                                 </span>
-                                                            <p>{{ comment.content | markdown }}</p>
+                                                            <p>{{ comment.content | mde }}</p>
                                                             <span class="date pull-right">{{ comment.createdAt | date('h:i d/m/Y') }}</span>
                                                         </div>
                                                     </div>
@@ -77,7 +72,7 @@
                                                                             <span class="comment-by">
                                                                                 <strong>{{ reply.author.username }}</strong>
                                                                             </span>
-                                                                        <p>{{ reply.content | markdown }}</p>
+                                                                        <p>{{ reply.content | mde }}</p>
                                                                         <span class="date pull-right">{{ reply.createdAt | date('h:M d/m/Y') }}</span>
                                                                     </div>
                                                                 </div>

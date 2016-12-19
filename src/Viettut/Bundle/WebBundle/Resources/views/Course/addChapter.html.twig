@@ -34,8 +34,9 @@
                         {#</div>#}
                         <div class="post-content">
                             <h2 class="text-center"><a href="#">{{ course.title }}</a></h2>
-                            <textarea class="hidden" id="introduce">{{ course.introduce | raw }}</textarea>
-                            <wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>
+                            {#<textarea class="hidden" id="introduce">{{ course.introduce | raw }}</textarea>#}
+                            {#<wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>#}
+                            <div>{{ course.introduce | mde }}</div>
                         </div>
                         <div ng-init="courseId={{ course.id }}"></div>
                     </article>
@@ -63,30 +64,22 @@
                             </div>
                             <div class="tab-content">
                                 <div id="edit" class="tab-pane active">
-                                    <label>Nội dung *</label>
-                                    <wiz-markdown-editor content="content" maxlength="5000" rows="10" class="form-control height300 width100pc">
-                                        <wiz-toolbar-button command="bold"><i class="fa fa-bold" data-toggle="tooltip" data-placement="top" title="Bold"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="italic"><i class="fa fa-italic" data-toggle="tooltip" data-placement="top" title="Italic"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="heading"><i class="fa fa-header" data-toggle="tooltip" data-placement="top" title="Header"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="link"><i class="fa fa-link" data-toggle="tooltip" data-placement="top" title="Add Link"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="img"><i class="fa fa-picture-o" data-toggle="tooltip" data-placement="top" title="Add Picture"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="hr"><i class="fa fa-arrow-down" data-toggle="tooltip" data-placement="top" title="New Line"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="ullist"><i class="fa fa-list-ul" data-toggle="tooltip" data-placement="top" title="Ul List"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="ollist"><i class="fa fa-list-ol" data-toggle="tooltip" data-placement="top" title="Ol List"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="code"><i class="fa fa-code" data-toggle="tooltip" data-placement="top" title="Code"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="undo"><i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Undo"></i></wiz-toolbar-button>
-                                        <wiz-toolbar-button command="redo"><i class="fa fa-repeat" data-toggle="tooltip" data-placement="top" title="Redo"></i></wiz-toolbar-button>
-                                    </wiz-markdown-editor>
+                                    <label for="content">Nội dung *</label>
+                                    <textarea
+                                            ng-model="content"
+                                            name="content"
+                                            markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
+                                            rows="15">
+                                    </textarea>
                                 </div>
                                 <div id="preview" class="tab-pane">
-                                    <wiz-markdown content="content" class="markdown-body"></wiz-markdown>
+                                    <div marked="content" class="markdown" style="padding: 20px"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="add()" class="ladda-button btn-primary border-radius5">Thêm</button>
-                                {#<button ng-click="preview()" class="ladda-button btn-primary border-radius5"><{ previewText }></button>#}
                             </div>
                         </div>
                         <div class="modal fade hidden" id="add-chapter-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
