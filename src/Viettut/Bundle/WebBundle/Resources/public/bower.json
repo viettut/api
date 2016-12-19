@@ -40,7 +40,8 @@
     "ngstorage": "~0.3.9",
     "satellizer": "~0.13.3",
     "wiz-markdown": "*",
-    "ui-comments": "~0.1.2"
+    "ui-comments": "~0.1.2",
+    "angular-markdown-editor-ghiscoding": "^1.1.0"
   },
   "resolutions": {
     "font-awesome": "~4.4.0",

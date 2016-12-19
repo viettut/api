@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, TagService, AuthenService,  config) {
+    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, TagService, AuthenService, config) {
         $scope.laddaLoading = false;
         $scope.error = '';
         $scope.showError = false;

@@ -10,7 +10,7 @@
      * Main module of the application.
      */
     angular
-        .module('viettut', ['ui.router', 'ngTagsInput', 'ngSanitize', 'ngFileUpload', 'wiz.markdown', 'ladda', 'ngStorage', 'satellizer', 'ngAnimate', 'ui.bootstrap'])
+        .module('viettut', ['hc.marked', 'hljs', 'angular-markdown-editor', 'ui.router', 'ngTagsInput', 'ngSanitize', 'ngFileUpload', 'ladda', 'ngStorage', 'satellizer', 'ngAnimate', 'ui.bootstrap'])
         //.constant('config', {
         //    'API_URL' : '/api/v1/',
         //    'PUBLIC_API_URL' : '/public/api/',
@@ -76,5 +76,27 @@
                 type: '2.0',
                 popupOptions: { width: 1020, height: 618 }
             });
-        });
+        })
+        .config(['markedProvider', 'hljsServiceProvider', function(markedProvider, hljsServiceProvider) {
+            // marked config
+            markedProvider.setOptions({
+                gfm: true,
+                tables: true,
+                sanitize: true,
+                highlight: function (code, lang) {
+                    if (lang) {
+                        return hljs.highlight(lang, code, true).value;
+                    } else {
+                        return hljs.highlightAuto(code).value;
+                    }
+                }
+            });
+
+            // highlight config
+            hljsServiceProvider.setOptions({
+                // replace tab with 4 spaces
+                tabReplace: '    '
+            });
+        }])
+    ;
 })();
