@@ -42,13 +42,30 @@
                         </tags-input>
                     </div>
                     <div class="form-group">
-                        <label for="content">Nội dung</label>
-                        <textarea
-                                ng-model="content"
-                                name="content"
-                                markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
-                                rows="15">
-                        </textarea>
+                        <div class="tabs">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>Chỉnh sửa</a>
+                                </li>
+                                <li>
+                                    <a aria-expanded="true" href="#preview" data-toggle="tab">Xem trước</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            <div id="edit" class="tab-pane active">
+                                <label for="content">Nội dung</label>
+                                <textarea
+                                        ng-model="content"
+                                        name="content"
+                                        markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical', hiddenButtons : ['cmdPreview']}"
+                                        rows="15">
+                                </textarea>
+                            </div>
+                            <div id="preview" class="tab-pane">
+                                <div marked="content" class="markdown" style="padding: 20px"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

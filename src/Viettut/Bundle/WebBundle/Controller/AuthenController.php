@@ -10,8 +10,6 @@ namespace Viettut\Bundle\WebBundle\Controller;
 
 
 use FOS\UserBundle\Model\UserInterface;
-use Google_Client;
-use Google_Service_Oauth2;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -19,62 +17,48 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Viettut\Model\User\UserEntityInterface;
 
 class AuthenController extends Controller
 {
     /**
-     * @Method({"POST"})
      * @Route("/facebook/login", name="facebook_login")
      */
     public function facebookLoginAction(Request $request)
     {
-        $code = $request->get('code');
+        $lecturerManager = $this->get('viettut_user.domain_manager.lecturer');
         $fb = new \Facebook\Facebook([
-            'app_id' => '529276757135612',
-            'app_secret' => '0fe34b757c10440e7259665a53dda55a',
+            'app_id' => '1245562308819573',
+            'app_secret' => '55ea4598ddcd5707ef67aaa4d0224086',
             'default_graph_version' => 'v2.5',
-            //'default_access_token' => '{access-token}', // optional
         ]);
-
-
+        var_dump($fb);
+        $helper = $fb->getRedirectLoginHelper();
         try {
-            $accessToken = $fb->getOAuth2Client()->getAccessTokenFromCode($code, 'http://api.viettut.com/');
-            $response = $fb->get('/me?fields=id,name,email', $accessToken->getValue());
-            $user = $response->getGraphUser();
-            $userManager = $this->container->get('viettut_user.domain_manager.lecturer');
+            $accessToken = $helper->getAccessToken();
+            $fb->setDefaultAccessToken($accessToken);
+            $response = $fb->get('/me?fields=id,name,email', $fb->getDefaultAccessToken());
+            $userNode = $response->getGraphUser();
+            $email = $userNode->getEmail();
+            $user = $lecturerManager->findUserByUsernameOrEmail($email);
 
-            $lecturer = $userManager->findUserByUsernameOrEmail($user['email']);
-            if($lecturer instanceof UserInterface) {
-                $lecturer->setFacebookId($user['id'])
-                ->setName($user['name']);
-            }
-            else {
-                $userDiscriminator = $this->get('rollerworks_multi_user.user_discriminator');
-                $userDiscriminator->setCurrentUser('viettut_user_system_lecturer');
-                $lecturer = $userManager->createNew();
-
-                $lecturer->setEnabled(true)
-                    ->setFacebookId($user['id'])
-                    ->setPlainPassword($user['email'])
-                    ->setUsername($user['email'])
-                    ->setEmail($user['email'])
-                    ->setName($user['name'])
-                    ->setActive(true)
-                    ->setAvatar(sprintf('https://graph.facebook.com/%s/picture?type=square', $user['id']))
-                ;
-                $userManager->save($lecturer);
+            if (!$user instanceof UserEntityInterface) {
+                throw $this->createNotFoundException('No demouser found!');
             }
 
-            $jwtManager = $this->get('lexik_jwt_authentication.jwt_manager');
-            $jwtTransformer = $this->get('viettut_api.service.jwt_response_transformer');
-            $tokenString = $jwtManager->create($lecturer);
+            $token = new UsernamePasswordToken($user, $user->getPassword(), 'main', $user->getRoles());
 
-            return JsonResponse::create($jwtTransformer->transform(['token' => $tokenString], $lecturer), 200);
+            $this->get("security.token_storage")->setToken($token);
         } catch(\Facebook\Exceptions\FacebookResponseException $e) {
-            throw new UnauthorizedHttpException('Can not login with that account');
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
         } catch(\Facebook\Exceptions\FacebookSDKException $e) {
-            throw new UnauthorizedHttpException('Can not login with that account');
+            // When validation fails or other local issues
+            echo 'Facebook SDK returned an error: ' . $e->getMessage();
         }
+
+        return $this->redirect($this->generateUrl('home_page'));
     }
 
     /**

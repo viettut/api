@@ -25,7 +25,9 @@
         "jms/serializer-bundle": "^1.1",
         "stof/doctrine-extensions-bundle": "^1.2",
         "friendsofsymfony/rest-bundle": "^2.1",
-        "bgaze/parsedown-bundle": "dev-master"
+        "bgaze/parsedown-bundle": "dev-master",
+        "facebook/graph-sdk": "^5.4",
+        "google/apiclient": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

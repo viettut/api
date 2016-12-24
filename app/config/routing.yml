@@ -6,6 +6,12 @@ viettut_web:
     type:     annotation
     prefix:   /
 
+
+viettut_user_bundle:
+    resource: "@ViettutUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 viettut_api:
     resource: "@ViettutApiBundle/Resources/config/routing.yml"
     type:   rest
