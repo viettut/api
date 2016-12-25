@@ -20,7 +20,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Viettut\Handler\HandlerInterface;
 use Viettut\Model\Core\CourseInterface;
-use Viettut\Model\User\Role\LecturerInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 /**
  * @RouteResource("Course")
@@ -92,7 +92,7 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
     public function getMycoursesAction()
     {
         $lecturer = $this->getUser();
-        if (!$lecturer instanceof LecturerInterface) {
+        if (!$lecturer instanceof UserEntityInterface) {
             throw new AccessDeniedException(
                 sprintf(
                     'You do not have permission to view this %s or it does not exist',
@@ -101,7 +101,7 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
             );
         }
 
-        return $this->get('viettut.domain_manager.course')->getCourseByLecturer($lecturer);
+        return $this->get('viettut.domain_manager.course')->getCourseByUser($lecturer);
     }
 
     /**

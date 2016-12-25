@@ -42,11 +42,11 @@
                             <div class="col-md-12">
                                 <div class="post-meta">
                                     <span><i class="fa fa-calendar"></i><{ course.createdAt | date : "d/M/y" }></span>
-                                    <span ng-if="course.courseTags.length > 0"><i class="fa fa-tag"></i>
-                                        <a href="#" ng-repeat="t in course.courseTags">
-                                            <{ t.tag.text }>
-                                        </a>
-                                    </span>
+<span ng-if="course.courseTags.length > 0"><i class="fa fa-tag"></i>
+<a href="#" ng-repeat="t in course.courseTags">
+    <{ t.tag.text }>
+</a>
+</span>
                                     <span><i class="fa fa-book"></i> <a href="#"><{ course.chapters.length }> Chương</a></span>
                                     <div class="btn-group pull-right" role="group" aria-label="Basic example">
                                         <a href="<{ buildViewLink(course) }>" class="btn btn-primary padding-left-5 padding-right-5" target="_blank" title="view in another tab">Xem</a>
@@ -92,4 +92,5 @@
 {% block custom %}
     <script src="{{ asset('bundles/viettutweb/js/controller/course/mycourse/course.js') }}"></script>
 {% endblock %}
+
 

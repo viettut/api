@@ -107,17 +107,20 @@ class CourseController extends FOSRestController
         ));
     }
 
-    /**@Security("has_role('ROLE_USER')")
+    /**
+     * @Security("has_role('ROLE_USER')")
      *
-     * @Route("/lecturer/courses/mycourses")
+     * @Route("/mycourses/", name="my_courses")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      *
      * @Template()
      */
-    public function myCoursesAction()
+    public function myCoursesAction($username)
     {
-        return $this->render('ViettutWebBundle:Course:myCourses.html.twig');
+        $user = $this->getUser();
+        $courses = $this->get('viettut.repository.course')->getCourseByUser($user);
+        return $this->render('ViettutWebBundle:Course:myCourses.html.twig', array('courses' => $courses));
     }
 
     /**

@@ -58,12 +58,12 @@ class SecurityController extends BaseController
         $facebookLoginUrl = $helper->getLoginUrl('http://test.dev/app_dev.php/facebook/login', $permissions);
 
         $api = new Google_Client();
-        $api->setApplicationName("InfoTuts"); // Set Application name
-        $api->setClientId('########################################'); // Set Client ID
-        $api->setClientSecret('####################################'); //Set client Secret
-        $api->setAccessType('online'); // Access method
-        $api->setScopes(array('https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile'));
-        $api->setRedirectUri('http://www.infotuts.com/demo/googlelogin/login.php'); // Enter your file path (Redirect Uri) that you have set to get client ID in API console
+        $api->setApplicationName("Viettut Academy"); // Set Application name
+        $api->setClientId('355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com'); // Set Client ID
+        $api->setClientSecret('eyeBjN6tVwQwNrkG-S0XQmxa '); //Set client Secret
+        $api->addScope('email');
+        $api->addScope('profile');
+        $api->setRedirectUri('http://test.dev/app_dev.php/google/login'); // Enter your file path (Redirect Uri) that you have set to get client ID in API console
         $googleLoginUrl = $api->createAuthUrl();
 
         return $this->renderLogin(array(

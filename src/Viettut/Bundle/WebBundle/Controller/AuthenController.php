@@ -10,6 +10,8 @@ namespace Viettut\Bundle\WebBundle\Controller;
 
 
 use FOS\UserBundle\Model\UserInterface;
+use Google_Client;
+use Google_Service_Oauth2;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -33,7 +35,7 @@ class AuthenController extends Controller
             'app_secret' => '55ea4598ddcd5707ef67aaa4d0224086',
             'default_graph_version' => 'v2.5',
         ]);
-        var_dump($fb);
+
         $helper = $fb->getRedirectLoginHelper();
         try {
             $accessToken = $helper->getAccessToken();
@@ -41,10 +43,26 @@ class AuthenController extends Controller
             $response = $fb->get('/me?fields=id,name,email', $fb->getDefaultAccessToken());
             $userNode = $response->getGraphUser();
             $email = $userNode->getEmail();
+            $avatar = $userNode->getPicture();
             $user = $lecturerManager->findUserByUsernameOrEmail($email);
 
             if (!$user instanceof UserEntityInterface) {
-                throw $this->createNotFoundException('No demouser found!');
+                $lecturer = $lecturerManager->createNew();
+
+                $lecturer->setEnabled(true)
+                    ->setPlainPassword($userNode->getEmail())
+                    ->setUsername($userNode->getEmail())
+                    ->setEmail($userNode->getEmail())
+                    ->setName($userNode->getName())
+                    ->setFacebookId($userNode->getId())
+                    ->setActive(true)
+                    ->setAvatar($avatar)
+                ;
+                $lecturerManager->save($lecturer);
+            } else {
+                $user->setAvatar(sprintf('http://graph.facebook.com/%s/picture?type=normal', $userNode->getId()));
+                $user->setFacebookId($userNode->getId());
+                $lecturerManager->save($user);
             }
 
             $token = new UsernamePasswordToken($user, $user->getPassword(), 'main', $user->getRoles());
@@ -63,7 +81,6 @@ class AuthenController extends Controller
 
     /**
      * @param Request $request
-     * @Method({"POST"})
      * @Route("/google/login", name="google_login")
      */
     public function googleLoginAction(Request $request)
@@ -72,14 +89,13 @@ class AuthenController extends Controller
         ########## Google Settings.Client ID, Client Secret from https://console.developers.google.com #############
         $client_id = '355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com';
         $client_secret = 'eyeBjN6tVwQwNrkG-S0XQmxa';
-        $redirect_uri = $request->get('redirectUri');
 
         ###################################################################
 
         $client = new Google_Client();
         $client->setClientId($client_id);
         $client->setClientSecret($client_secret);
-        $client->setRedirectUri($redirect_uri);
+        $client->setRedirectUri('http://test.dev/app_dev.php/google/login');
         $client->addScope("email");
         $client->addScope("profile");
 
@@ -90,14 +106,14 @@ class AuthenController extends Controller
 
         $userManager = $this->container->get('viettut_user.domain_manager.lecturer');
         $lecturer = $userManager->findUserByUsernameOrEmail($user['email']);
-        if($lecturer instanceof UserInterface) {
-            $lecturer->setGoogleId($user['id'])
+        if($lecturer instanceof UserEntityInterface) {
+            $lecturer
+                ->setGoogleId($user['id'])
                 ->setName($user['name'])
                 ->setGender($user['gender']);
+            $userManager->save($lecturer);
         }
         else {
-            $userDiscriminator = $this->get('rollerworks_multi_user.user_discriminator');
-            $userDiscriminator->setCurrentUser('viettut_user_system_lecturer');
             $lecturer = $userManager->createNew();
 
             $lecturer->setEnabled(true)
@@ -109,14 +125,14 @@ class AuthenController extends Controller
                 ->setActive(true)
                 ->setAvatar($user['picture'])
             ;
+
             $userManager->save($lecturer);
         }
 
-        $jwtManager = $this->get('lexik_jwt_authentication.jwt_manager');
-        $jwtTransformer = $this->get('viettut_api.service.jwt_response_transformer');
-        $tokenString = $jwtManager->create($lecturer);
+        $token = new UsernamePasswordToken($lecturer, $lecturer->getPassword(), 'main', $lecturer->getRoles());
 
-        return JsonResponse::create($jwtTransformer->transform(['token' => $tokenString], $lecturer), 200);
+        $this->get("security.token_storage")->setToken($token);
+        return $this->redirect($this->generateUrl('home_page'));
     }
 
     /**

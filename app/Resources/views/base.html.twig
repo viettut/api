@@ -27,7 +27,7 @@
     <header id="header" ng-controller="NavBarController">
         <div class="container">
             <div class="logo">
-                <a href="">
+                <a href="{{ path('home_page') }}">
                     <img alt="Porto" width="111" height="54" data-sticky-width="82" data-sticky-height="40" src="{{ asset('bundles/viettutweb/img/viettut.png') }}">
                 </a>
             </div>
@@ -133,7 +133,7 @@
                                                             <a href="{{ path('fos_user_profile_show') }}">Tài khoản</a>
                                                         </li>
                                                         <li>
-                                                            <a href="#">Khóa học của tôi</a>
+                                                            <a href="{{ path('my_courses') }}">Khóa học của tôi</a>
                                                         </li>
                                                         <li>
                                                             <a href="{{ path('fos_user_security_logout') }}" >Log Out</a>

@@ -57,7 +57,7 @@ abstract class EntityVoterAbstract implements VoterInterface
         if ($user->hasRole('ROLE_ADMIN')) {
             return VoterInterface::ACCESS_GRANTED;
         }
-        if ($user->hasRole('ROLE_LECTURER') && $this->isPublisherActionAllowed($entity, $user, $attribute)) {
+        if ($user->hasRole('ROLE_USER') && $this->isPublisherActionAllowed($entity, $user, $attribute)) {
             return VoterInterface::ACCESS_GRANTED;
         }
         return VoterInterface::ACCESS_DENIED;

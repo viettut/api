@@ -18,6 +18,8 @@ angular
         };
 
         $scope.delete = function() {
+            $scope.hideConfirm();
+            
             if ($scope.deletingCourse == null) {
                 return;
             }
@@ -28,7 +30,6 @@ angular
                 function(response){
                     $scope.loading = false;
                     if(response.status == 204) {
-                        $scope.hideConfirm();
                         $scope.alertSuccess();
                         $scope.myCourses.splice($scope.deletingCourse, 1);
                     }
