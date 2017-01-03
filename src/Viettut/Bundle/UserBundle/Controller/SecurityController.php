@@ -20,6 +20,8 @@ class SecurityController extends BaseController
      */
     public function loginAction(Request $request)
     {
+        $facebookRedirectUri = $this->getParameter('facebook_redirect_uri');
+        $googleRedirectUri = $this->getParameter('google_redirect_uri');
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
         $session = $request->getSession();
 
@@ -55,7 +57,7 @@ class SecurityController extends BaseController
 
         $helper = $fb->getRedirectLoginHelper();
         $permissions = ['email', 'user_likes']; // optional
-        $facebookLoginUrl = $helper->getLoginUrl('http://test.dev/app_dev.php/facebook/login', $permissions);
+        $facebookLoginUrl = $helper->getLoginUrl($facebookRedirectUri, $permissions);
 
         $api = new Google_Client();
         $api->setApplicationName("Viettut Academy"); // Set Application name
@@ -63,7 +65,7 @@ class SecurityController extends BaseController
         $api->setClientSecret('eyeBjN6tVwQwNrkG-S0XQmxa '); //Set client Secret
         $api->addScope('email');
         $api->addScope('profile');
-        $api->setRedirectUri('http://test.dev/app_dev.php/google/login'); // Enter your file path (Redirect Uri) that you have set to get client ID in API console
+        $api->setRedirectUri($googleRedirectUri); // Enter your file path (Redirect Uri) that you have set to get client ID in API console
         $googleLoginUrl = $api->createAuthUrl();
 
         return $this->renderLogin(array(

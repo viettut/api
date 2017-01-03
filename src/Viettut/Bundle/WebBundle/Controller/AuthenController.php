@@ -43,24 +43,27 @@ class AuthenController extends Controller
             $response = $fb->get('/me?fields=id,name,email', $fb->getDefaultAccessToken());
             $userNode = $response->getGraphUser();
             $email = $userNode->getEmail();
-            $avatar = $userNode->getPicture();
+            $avatar = sprintf('http://graph.facebook.com/%s/picture?type=normal', $userNode->getId());
             $user = $lecturerManager->findUserByUsernameOrEmail($email);
 
             if (!$user instanceof UserEntityInterface) {
-                $lecturer = $lecturerManager->createNew();
+                $user = $lecturerManager->createNew();
 
-                $lecturer->setEnabled(true)
+                $user
+                    ->setEnabled(true)
                     ->setPlainPassword($userNode->getEmail())
                     ->setUsername($userNode->getEmail())
                     ->setEmail($userNode->getEmail())
                     ->setName($userNode->getName())
                     ->setFacebookId($userNode->getId())
-                    ->setActive(true)
                     ->setAvatar($avatar)
                 ;
-                $lecturerManager->save($lecturer);
+                $lecturerManager->save($user);
             } else {
-                $user->setAvatar(sprintf('http://graph.facebook.com/%s/picture?type=normal', $userNode->getId()));
+                if (!$user->getGoogleId()) {
+                    $user->setAvatar($avatar);
+                }
+
                 $user->setFacebookId($userNode->getId());
                 $lecturerManager->save($user);
             }

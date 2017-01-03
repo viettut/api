@@ -113,14 +113,14 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Viettut\Bundle\UserBundle\Entity\User
+    service:
+        mailer: fos_user.mailer.twig_swift
     registration:
         form:
             type: viettut_user_registration
         confirmation:
             enabled:    true # change to true for required email confirmation
             template:   FOSUserBundle:Registration:email.txt.twig
-    service:
-        mailer: fos_user.mailer.twig_swift
 
 fos_rest:
     serializer:
