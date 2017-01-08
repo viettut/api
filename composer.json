@@ -28,7 +28,10 @@
         "bgaze/parsedown-bundle": "dev-master",
         "facebook/graph-sdk": "^5.4",
         "google/apiclient": "^2.0",
-        "jms/i18n-routing-bundle": "dev-master"
+        "jms/i18n-routing-bundle": "^2.0",
+        "jms/translation-bundle": "^1.3",
+        "twig/extensions": "^1.4",
+        "jms/di-extra-bundle": "^1.8"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",

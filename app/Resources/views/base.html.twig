@@ -62,6 +62,10 @@
                     <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
                     <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
                 </ul>
+                <div class="pull-right" style="padding-right: 10px;">
+                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'vi'})) }}">Tiếng Việt</a>
+                    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a>
+                </div>
                 <nav class="nav-main mega-menu">
                     <ul class="nav nav-pills nav-main" id="mainMenu">
                         <li class="dropdown">

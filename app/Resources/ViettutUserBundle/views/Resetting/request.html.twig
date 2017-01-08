@@ -5,7 +5,7 @@
     <div class="container">
         <div class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="box-content">
-                <h4>Reset Password</h4>
+                <h4>{{ 'layout.reset_password' | trans }}</h4>
                 <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
                     <div class="row">
                         <div class="form-group">

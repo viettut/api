@@ -1,0 +1,9 @@
+# Global strings
+header:
+    course: 'Course'
+    tutorial: 'Tutorial'
+    question_answer: 'Question & Answer'
+    challenge: 'Challenge'
+    contact: 'Contact Us'
+    search: 'Search'
+

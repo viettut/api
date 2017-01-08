@@ -20,3 +20,5 @@ parameters:
     upload_directory: /uploads/images
     popular_size: 10
     page_size: 5
+    facebook_redirect_uri: http://viettut.dev/app_dev.php/facebook/login
+    google_redirect_uri: http://viettut.dev/app_dev.php/google/login

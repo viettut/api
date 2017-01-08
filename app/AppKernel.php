@@ -23,7 +23,9 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Bgaze\ParsedownBundle\BgazeParsedownBundle(),
-
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+//            new JMS\TranslationBundle\JMSTranslationBundle(),
+            
             new Viettut\Bundle\UserBundle\ViettutUserBundle(),
             new Viettut\Bundle\WebBundle\ViettutWebBundle(),
             new Viettut\Bundle\ApiBundle\ViettutApiBundle(),

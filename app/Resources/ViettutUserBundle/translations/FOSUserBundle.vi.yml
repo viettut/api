@@ -12,9 +12,10 @@ group:
 security:
     login:
         password: 'Mật khẩu:'
-        remember_me: 'Ghi nhớ thông tin của tôi'
+        remember_me: 'Nhớ thông tin của tôi'
         submit: 'Đăng nhập'
         username: 'Tên đăng nhập:'
+        sign_up_question: "Chưa có tài khoản!"
 profile:
     edit:
         submit: 'Cập nhật'
@@ -52,6 +53,7 @@ resetting:
 layout:
     logged_in_as: 'Đăng nhập như %username%'
     login: 'Đăng nhập'
+    reset_password: 'Quên mật khẩu'
     logout: 'Đăng xuất'
     register: 'Đăng ký'
 form:

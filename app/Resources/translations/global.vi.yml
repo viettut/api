@@ -1,0 +1,9 @@
+# Global strings
+header:
+    course: 'Khóa Học'
+    tutorial: 'Hướng Dẫn'
+    question_answer: 'Hỏi Đáp'
+    challenge: 'Bài Test'
+    contact: 'Liên Hệ'
+    search: 'Tìm Kiếm'
+

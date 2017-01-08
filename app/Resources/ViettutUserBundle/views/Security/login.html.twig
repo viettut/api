@@ -16,7 +16,7 @@
             <div class="panel panel-info" >
                 <div class="panel-heading">
                     <div class="panel-title">{{ 'layout.login' | trans}}</div>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="{{ path('fos_user_resetting_request') }}">Forgot password?</a></div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="{{ path('fos_user_resetting_request') }}">{{ 'layout.reset_password' | trans }}?</a></div>
                 </div>
 
                 <div style="padding-top:30px" class="panel-body" >
@@ -69,9 +69,9 @@
                     <div class="form-group">
                         <div class="col-md-12 control">
                             <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                Don't have an account!
+                                {{ 'security.login.sign_up_question' | trans }}
                                 <a href="{{ path('fos_user_registration_register') }}">
-                                    Sign Up Here
+                                    {{ 'layout.register' | trans }}
                                 </a>
                             </div>
                         </div>

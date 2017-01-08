@@ -9,8 +9,14 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: vi
     jms_serializer.json_serialization_visitor.class: Viettut\Behaviors\JsonSerializationVisitor
+
+services:
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
 
 framework:
     #esi:             ~
@@ -113,6 +119,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb' and 'couchdb'
     firewall_name: main
     user_class: Viettut\Bundle\UserBundle\Entity\User
+    from_email:
+        address:        noreply@viettut.com
+        sender_name:    Viettut Academy
     service:
         mailer: fos_user.mailer.twig_swift
     registration:
@@ -178,3 +187,18 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+jms_i18n_routing:
+    default_locale: vi
+    locales: [vi, en]
+    strategy: prefix_except_default
+
+#jms_translation:
+#    configs:
+#        app:
+#            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+#            output_dir: %kernel.root_dir%/Resources/translations
+#            ignored_domains: [routes]
+#            excluded_names: ["*TestCase.php", "*Test.php"]
+#            excluded_dirs: [cache, data, logs]
+#            extractors: [alias_of_the_extractor]
