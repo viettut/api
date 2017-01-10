@@ -6,4 +6,20 @@ header:
     challenge: 'Challenge'
     contact: 'Contact Us'
     search: 'Search'
+    log_in: 'Login'
+    log_out: 'Log out'
+    my_course: 'My courses'
+    my_account: 'My account'
+    faq: 'FAQ'
+    testimonial: 'Testimonial'
+    update: 'Update'
+
+course:
+    all: 'All Course'
+    create: 'Create Course'
+
+tutorial:
+    all: 'All Tutorial'
+    create: 'Create Tutorial'
+
 

@@ -1,3 +1,5 @@
+{% trans_default_domain 'global' %}
+
 <!doctype html>
 <html>
 <head>
@@ -34,7 +36,7 @@
             <div class="search">
                 <form id="searchForm" method="get" action="{{ path('public_search') }}">
                     <div class="input-group">
-                        <input type="text" class="form-control search" name="q" id="q" placeholder="Search..." required>
+                        <input type="text" class="form-control search" name="q" id="q" placeholder="{{ 'header.search' | trans }}..." required>
 								<span class="input-group-btn">
 									<button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
 								</span>
@@ -44,7 +46,7 @@
             <nav>
                 <ul class="nav nav-pills nav-top">
                     <li>
-                        <a href="#"><i class="fa fa-angle-right"></i>Liên Hệ</a>
+                        <a href="#"><i class="fa fa-angle-right"></i>{{ 'header.contact' | trans }}</a>
                     </li>
                     <li class="phone">
                         <span><i class="fa fa-phone"></i>0961.61.4387</span>
@@ -70,44 +72,44 @@
                     <ul class="nav nav-pills nav-main" id="mainMenu">
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                Khóa học
+                                {{ 'header.course' | trans }}
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('course_index') }}">Tất cả</a></li>
-                                <li><a href="{{ path('create_course') }}">Soạn khóa học<span class="tip">hot</span></a></li>
-                                <li><a href="#">Tìm kiếm</a></li>
+                                <li><a href="{{ path('course_index') }}">{{ 'course.all' | trans }}</a></li>
+                                <li><a href="{{ path('create_course') }}">{{ 'course.create' | trans }}<span class="tip">hot</span></a></li>
+                                <li><a href="#">{{ 'header.search' | trans }}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                Hướng dẫn
+                                {{ 'header.tutorial' | trans }}
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('tutorial_index') }}">Tất cả</a></li>
-                                <li><a href="{{ path('create_tutorial') }}">Viết bài</a></li>
-                                <li><a href="#">Tìm kiếm</a></li>
+                                <li><a href="{{ path('tutorial_index') }}">{{ 'tutorial.all' | trans }}</a></li>
+                                <li><a href="{{ path('create_tutorial') }}">{{ 'tutorial.create' | trans }}</a></li>
+                                <li><a href="#">{{ 'header.search' | trans }}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="{{ path('coming_soon') }}">
-                                Hỏi & Đáp
+                                {{ 'header.question_answer' | trans }}
                             </a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                Bài test
+                                {{ 'header.challenge' | trans }}
                                 <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path('coming_soon') }}">Tất cả</a></li>
-                                <li><a href="{{ path('coming_soon') }}">Tìm kiếm</a></li>
+                                <li><a href="{{ path('coming_soon') }}">{{ 'tutorial.all' | trans }}</a></li>
+                                <li><a href="{{ path('coming_soon') }}">{{ 'header.search' | trans }}</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#">
-                                Liên Hệ
+                                {{ 'header.contact' | trans }}
                             </a>
                         </li>
                         {% if app.user %}
@@ -134,13 +136,13 @@
                                                 <div class="col-md-6">
                                                     <ul class="list-account-options">
                                                         <li>
-                                                            <a href="{{ path('fos_user_profile_show') }}">Tài khoản</a>
+                                                            <a href="{{ path('fos_user_profile_show') }}">{{ 'header.my_account' | trans }}</a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ path('my_courses') }}">Khóa học của tôi</a>
+                                                            <a href="{{ path('my_courses') }}">{{ 'header.my_course' | trans }}</a>
                                                         </li>
                                                         <li>
-                                                            <a href="{{ path('fos_user_security_logout') }}" >Log Out</a>
+                                                            <a href="{{ path('fos_user_security_logout') }}" >{{ 'header.log_out' | trans }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -152,7 +154,7 @@
                         {% else %}
                             <li>
                                 <a class="dropdown-toggle" href="{{ path('fos_user_security_login') }}">
-                                    <i class="fa fa-user"></i> Log In
+                                    <i class="fa fa-user"></i> {{ 'header.log_in' | trans }}
                                 </a>
                             </li>
                         {% endif %}
@@ -176,7 +178,7 @@
                 </div>
                 <div class="col-md-3">
                     <div class="newsletter">
-                        <h4>Cập nhật</h4>
+                        <h4>{{ 'header.update' | trans }}</h4>
                         <p>Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn.</p>
 
                         <div class="alert alert-success" ng-show="subscribeSuccess">
@@ -202,14 +204,14 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <h4>Mọi người nói gì</h4>
+                    <h4>{{ 'header.testimonial' | trans }}</h4>
                     <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options='{"username": "", "count": 2}'>
                         <p>Please wait...</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="contact-details">
-                        <h4>Liên Hệ</h4>
+                        <h4>{{ 'header.contact' | trans }}</h4>
                         <ul class="contact">
                             {#<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</p></li>#}
                             <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong>0961.61.4387</p></li>
@@ -243,9 +245,9 @@
                     <div class="col-md-4">
                         <nav id="sub-menu">
                             <ul>
-                                <li><a href="#">Câu hỏi thường gặp</a></li>
+                                <li><a href="#">{{ 'header.faq' | trans }}</a></li>
                                 <li><a href="#">Site Map</a></li>
-                                <li><a href="#">Liên Hệ</a></li>
+                                <li><a href="#">{{ 'header.contact' | trans}}</a></li>
                             </ul>
                         </nav>
                     </div>

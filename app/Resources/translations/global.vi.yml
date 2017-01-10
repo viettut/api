@@ -6,4 +6,18 @@ header:
     challenge: 'Bài Test'
     contact: 'Liên Hệ'
     search: 'Tìm Kiếm'
+    log_in: 'Đăng nhập'
+    log_out: 'Đăng xuất'
+    my_course: 'Khóa học của tôi'
+    my_account: 'Tài khoản'
+    faq: 'Câu hỏi thường gặp'
+    testimonial: 'Mọi người nói gì'
+    update: 'Cập nhật thông tin'
 
+course:
+    all: 'Tất cả'
+    create: 'Soạn khóa học'
+
+tutorial:
+    all: 'Tất cả'
+    create: 'Viết hướng dẫn'
