@@ -16,8 +16,7 @@ trait StringFactory {
     protected  function getUrlFriendlyString($str)
     {
         $str = $this->convertViToEn($str);
-
-        return ereg_replace("[-]+", "-", ereg_replace("[^a-z0-9-]", "", strtolower( str_replace(" ", "-", $str))));
+        return strtolower(trim(preg_replace('/[^a-zA-Z0-9]+/', '-', $str), '-'));
     }
 
     /**

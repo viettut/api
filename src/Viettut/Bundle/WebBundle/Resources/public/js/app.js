@@ -11,20 +11,20 @@
      */
     angular
         .module('viettut', ['hc.marked', 'hljs', 'angular-markdown-editor', 'ui.router', 'ngTagsInput', 'ngSanitize', 'ngFileUpload', 'ladda', 'ngStorage', 'satellizer', 'ngAnimate', 'ui.bootstrap'])
-        //.constant('config', {
-        //    'API_URL' : '/api/v1/',
-        //    'PUBLIC_API_URL' : '/public/api/',
-        //    'BASE_URL' : '/',
-        //    'SIGN_UP_URL' : '/api/user/v1/users',
-        //    'SIGN_UP_REDIRECT' : 'login'
-        //})
         .constant('config', {
-            'API_URL' : '/app_dev.php/api/v1/',
-            'PUBLIC_API_URL' : '/app_dev.php/public/api/',
-            'BASE_URL' : '/app_dev.php/',
-            'SIGN_UP_URL' : '/app_dev.php/api/user/v1/users',
+            'API_URL' : '/api/v1/',
+            'PUBLIC_API_URL' : '/public/api/',
+            'BASE_URL' : '/',
+            'SIGN_UP_URL' : '/api/user/v1/users',
             'SIGN_UP_REDIRECT' : 'login'
         })
+        //.constant('config', {
+        //    'API_URL' : '/app_dev.php/api/v1/',
+        //    'PUBLIC_API_URL' : '/app_dev.php/public/api/',
+        //    'BASE_URL' : '/app_dev.php/',
+        //    'SIGN_UP_URL' : '/app_dev.php/api/user/v1/users',
+        //    'SIGN_UP_REDIRECT' : 'login'
+        //})
         .config(function ($authProvider, $interpolateProvider, config) {
             $interpolateProvider.startSymbol('<{');
             $interpolateProvider.endSymbol('}>');
