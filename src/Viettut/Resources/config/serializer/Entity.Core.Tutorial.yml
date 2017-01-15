@@ -1,0 +1,30 @@
+Viettut\Entity\Core\Tutorial:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        author:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        title:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        content:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        tutorialTags:
+            expose: true
+            groups: [tutorial.detail]
+        comments:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        hashTag:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]
+        view:
+            expose: true
+            groups: [tutorial.detail]
+        createdAt:
+            expose: true
+            groups: [tutorial.detail, tutorial.summary]

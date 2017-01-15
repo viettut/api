@@ -1,0 +1,26 @@
+Viettut\Bundle\UserBundle\Entity\User:
+    exclusion_policy: ALL
+    accessor_order: custom
+    custom_accessor_order:
+        - id
+        - username
+        - email
+        - roles
+        - last_login
+        - enabled
+    properties:
+        id:
+            expose: true
+            groups: [user.summary]
+        username:
+            expose: true
+            groups: [user.summary]
+        email:
+            expose: true
+        lastLogin:
+            expose: true
+        enabled:
+            expose: true
+        avatar:
+            expose: true
+            groups: [user.summary]
