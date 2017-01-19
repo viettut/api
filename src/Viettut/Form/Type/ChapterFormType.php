@@ -32,6 +32,7 @@ class ChapterFormType extends AbstractRoleSpecificFormType
             ->add('header')
             ->add('content')
             ->add('course')
+            ->add('published')
         ;
 
         $builder->addEventListener(
@@ -57,6 +58,10 @@ class ChapterFormType extends AbstractRoleSpecificFormType
                     $chapter->setPosition(count($course->getChapters()));
                     $chapter->setToken(uniqid('', true));
                 }
+
+                if ($chapter->isPublished() === null) {
+                    $chapter->setPublished(false);
+                }
             }
         );
     }
@@ -69,6 +74,7 @@ class ChapterFormType extends AbstractRoleSpecificFormType
                 'csrf_protection'   => false
             ]);
     }
+    
     /**
      * Returns the name of this type.
      *

@@ -35,6 +35,10 @@ Viettut\Entity\Core\Course:
         token:
             type: string
             nullable: false
+        published:
+            type: boolean
+            options:
+                default: false
         enroll:
             type: integer
             options:

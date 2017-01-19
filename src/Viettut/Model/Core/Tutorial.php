@@ -35,6 +35,11 @@ class Tutorial implements TutorialInterface
     protected $content;
 
     /**
+     * @var bool
+     */
+    protected $published = false;
+
+    /**
      * @var boolean
      */
     protected $active;
@@ -81,6 +86,7 @@ class Tutorial implements TutorialInterface
 
     function __construct()
     {
+        $this->published = false;
     }
 
 
@@ -122,6 +128,24 @@ class Tutorial implements TutorialInterface
     public function getHashTag()
     {
         return $this->hashTag;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
     }
 
     /**

@@ -23,6 +23,7 @@ class Course extends CourseModel
     protected $hashTag;
     protected $comments;
     protected $view;
+    protected $published;
     protected $enroll;
     protected $createdAt;
     protected $updatedAt;

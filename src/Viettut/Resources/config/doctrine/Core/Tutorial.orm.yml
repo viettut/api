@@ -32,6 +32,10 @@ Viettut\Entity\Core\Tutorial:
             type: integer
             options:
                 default: 0
+        published:
+            type: boolean
+            options:
+                default: false
         createdAt:
             type: datetime
             gedmo:

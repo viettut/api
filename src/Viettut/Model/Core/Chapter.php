@@ -40,6 +40,11 @@ class Chapter implements ChapterInterface
     protected $position;
 
     /**
+     * @var bool
+     */
+    protected $published = false;
+
+    /**
      * @var boolean
      */
     protected $active;
@@ -81,6 +86,7 @@ class Chapter implements ChapterInterface
 
     function __construct()
     {
+        $this->published = false;
     }
 
 
@@ -115,6 +121,25 @@ class Chapter implements ChapterInterface
     {
         return $this->header;
     }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
 
     /**
      * Set hashTag

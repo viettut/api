@@ -30,6 +30,16 @@ interface CourseInterface extends ModelInterface
     public function setTitle($title);
 
     /**
+     * @return boolean
+     */
+    public function isPublished();
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published);
+    /**
      * Get title
      *
      * @return string

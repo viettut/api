@@ -19,15 +19,21 @@ class CourseRepository extends EntityRepository implements CourseRepositoryInter
 {
     /**
      * @param UserEntityInterface $user
+     * @param null $published
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getCourseByUser(UserEntityInterface $user, $limit = null, $offset = null)
+    public function getCourseByUser(UserEntityInterface $user, $published = null, $limit = null, $offset = null)
     {
         $qb = $this->createQueryBuilder('c')
             ->where('c.author = :author_id')
             ->setParameter('author_id', $user->getId(), TYPE::INTEGER);
+
+        if (is_bool($published)) {
+            $qb->andWhere('c.published = :published')
+                ->setParameter('published', $published);
+        }
 
         if (is_int($limit)) {
             $qb->setMaxResults($limit);

@@ -116,17 +116,17 @@ class CourseController extends FOSRestController
      *
      * @Template()
      */
-    public function myCoursesAction($username)
+    public function myCoursesAction()
     {
         $user = $this->getUser();
-        $courses = $this->get('viettut.repository.course')->getCourseByUser($user);
+        $courses = $this->get('viettut.repository.course')->getCourseByUser($user, $published = null);
         return $this->render('ViettutWebBundle:Course:myCourses.html.twig', array('courses' => $courses));
     }
 
     /**
      * present a specific guide
      *
-     * @Route("/{username}/courses/{hash}", name="course_detail")
+     * @Route("/{username}/courses/{hash}", name="course_detail", requirements={"username" = "[a-z0-9]{3,}"})
      *
      * @param $username
      * @param $hash
@@ -146,9 +146,14 @@ class CourseController extends FOSRestController
 
         $course = $this->get('viettut.repository.course')->getByUserAndHash($user, $hash);
 
-        if(!$course instanceof CourseInterface) {
+        if (!$course instanceof CourseInterface) {
             throw new NotFoundHttpException('');
         }
+
+        if (!$course->isPublished()) {
+            throw new NotFoundHttpException('');
+        }
+
         $lastChapter = true;
         $nextChapter = $this->get('viettut.repository.chapter')->getChapterByCourseAndPosition($course, 1);
         if (!$nextChapter instanceof ChapterInterface) {

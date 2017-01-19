@@ -50,6 +50,16 @@ interface TutorialInterface extends ModelInterface
      */
     public function getContent();
 
+    /**
+     * @return boolean
+     */
+    public function isPublished();
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published);
 
     /**
      * Set active

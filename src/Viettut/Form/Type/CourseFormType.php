@@ -30,6 +30,7 @@ class CourseFormType extends AbstractRoleSpecificFormType
         $builder
             ->add('title')
             ->add('introduce')
+            ->add('published')
             ->add('imagePath')
             ->add('courseTags', 'collection', array(
                 'mapped' => true,
@@ -44,7 +45,7 @@ class CourseFormType extends AbstractRoleSpecificFormType
             function (FormEvent $event) {
                 /** @var CourseInterface $course */
                 $course = $event->getData();
-                if($course->getId() === null){
+                if ($course->getId() === null) {
                     $course->setView(0);
                     $course->setEnroll(0);
                     $course->setActive(false);
@@ -57,6 +58,10 @@ class CourseFormType extends AbstractRoleSpecificFormType
                 /** @var CourseTagInterface $courseTag */
                 foreach($courseTags as $courseTag) {
                     $courseTag->setCourse($course);
+                }
+
+                if ($course->isPublished() === null) {
+                    $course->setPublished(false);
                 }
             }
         );

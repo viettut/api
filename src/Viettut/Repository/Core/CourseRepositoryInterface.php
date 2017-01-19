@@ -15,11 +15,12 @@ interface CourseRepositoryInterface extends ObjectRepository
 {
     /**
      * @param UserEntityInterface $user
+     * @param bool $published
      * @param null $limit
      * @param null $offset
      * @return mixed
      */
-    public function getCourseByUser(UserEntityInterface $user, $limit = null, $offset = null);
+    public function getCourseByUser(UserEntityInterface $user, $published = true, $limit = null, $offset = null);
 
     /**
      * @param $hashTag
