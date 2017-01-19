@@ -62,7 +62,7 @@
                                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                                     </span>
                                                                 </span>
-                                                            <p>{{ comment.content }}</p>
+                                                            <div>{{ comment.content | mde}}</div>
                                                             <span class="date pull-right">{{ comment.createdAt | date('h:i d/m/Y') }}</span>
                                                         </div>
                                                     </div>
@@ -102,7 +102,7 @@
                                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                                     </span>
                                                                 </span>
-                                                        <p><{ comment.content }></p>
+                                                        <div marked="comment.content" class="markdown" style="padding: 20px"></div>
                                                         <span class="date pull-right"><{ comment.createdAt | date:'yyyy-MM-dd HH:mm:ss' }></span>
                                                     </div>
                                                 </div>
@@ -127,32 +127,33 @@
                                         </ul>
                                     </div>
 
-                                    <div class="post-leave-comment">
-                                        <h3>Ý kiến</h3>
-                                        <div ng-init="currentTutorial={{ tutorial.id }}"></div>
-                                        <form>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-12">
-                                                        <wiz-markdown-editor content="content" maxlength="5000" rows="10" class="form-control" style="height: 200px;width: 90%;">
-                                                        </wiz-markdown-editor>
+                                    {% if app.user %}
+                                        <div class="post-leave-comment">
+                                            <h3>Ý kiến</h3>
+                                            <div ng-init="currentTutorial={{ tutorial.id }}"></div>
+                                            <form>
+                                                <div class="row">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <textarea ng-model="commentContent" rows="5" class="form-control" style="height: 200px;width: 90%;">
+                                                            </textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <button
-                                                            ladda-button="laddaLoading"
-                                                            data-style="slide-right"
-                                                            ng-click="addComment()"
-                                                            class="ladda-button btn-primary"
-                                                            style="border-radius: 5px;">Đăng</button>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <button
+                                                                ladda-button="laddaLoading"
+                                                                data-style="slide-right"
+                                                                ng-click="addComment()"
+                                                                class="ladda-button btn-primary"
+                                                                style="border-radius: 5px;">Đăng</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
+                                    {% endif %}
                                 </div>
-
                             </div>
                         </article>
                     </div>
