@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block controller %}ng-controller="CourseController"{% endblock %}
 {% block main %}
     <section class="page-top">
@@ -7,13 +8,13 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active"><a href="{{ path('course_index') }}">Khóa học</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">{{ 'course.all' | trans }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Cập nhật khóa học</h1>
+                    <h1>{{ 'course.edit_form.header' | trans }}</h1>
                 </div>
             </div>
         </div>
@@ -30,7 +31,7 @@
                 </div>
                 <form class="form-horizontal" role="form" name="createGuide" ng-hide="loading">
                     <div class="form-group">
-                        <label for="title">Tên khóa học <span ng-show="titleValid">*</span></label>
+                        <label for="title">{{ 'course.edit_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
                     </div>
                     <div class="form-group">
@@ -43,8 +44,8 @@
                         </tags-input>
                     </div>
                     <div class="form-group">
-                        <label for="image">Ảnh</label><br>
-                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">Thay ảnh</button>
+                        <label for="image">{{ 'course.edit_form.image' | trans }}</label><br>
+                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">{{ 'course.edit_form.file' | trans }}</button>
                         <div class="alert alert-danger" ng-if="uploadError">
                             <strong>Error !</strong> <{ uploadErrorMsg }>
                         </div>
@@ -57,15 +58,15 @@
                         <div class="tabs">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>Chỉnh sửa</a>
+                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>{{ 'course.edit_form.edit_tab' | trans }}</a>
                                 </li>
                                 <li>
-                                    <a aria-expanded="true" href="#preview" data-toggle="tab">Xem trước</a>
+                                    <a aria-expanded="true" href="#preview" data-toggle="tab">{{ 'course.edit_form.preview_tab' | trans }}</a>
                                 </li>
                             </ul>
                             <div class="tab-content">
                                 <div id="edit" class="tab-pane active">
-                                    <label for="introduce">Nội dung</label>
+                                    <label for="introduce">{{ 'course.edit_form.introduce' | trans }}</label>
                                 <textarea
                                         ng-model="introduce"
                                         name="introduce"
@@ -81,8 +82,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="create()" class="ladda-button btn-primary border-radius5">Cập nhật</button>
-                            <button class="ladda-button btn-primary border-radius5" ng-disabled="!isAuthenticated" ng-click="addChapter()">Thêm Chương</button>
+                            <button ladda-button="laddaLoading" data-style="slide-right"  ng-click="create()" class="ladda-button btn-primary border-radius5">{{ 'course.edit_form.submit' | trans }}</button>
+                            <button class="ladda-button btn-primary border-radius5"  ng-click="addChapter()">{{ 'course.edit_form.add_chapter' | trans }}</button>
                         </div>
                     </div>
                 </form>
@@ -90,9 +91,9 @@
             <div class="col-md-3">
                 <aside class="sidebar">
                     <div class="sticky">
-                        <h4>Danh sách các chương</h4>
+                        <h4>{{ 'course.edit_form.chapter_list' | trans }}</h4>
                         <div class="list-group">
-                            <a href="#" class="list-group-item active">Giới thiệu khóa học</a>
+                            <a href="#" class="list-group-item active">{{ 'course.edit_form.introduce' | trans }}</a>
                             {% for chapter in course.chapters %}
                                 <a href="{{ path('chapter_edit', {'token': chapter.token}) }}" class="list-group-item">Chapter {{ chapter.position }} : {{ chapter.header }}</a>
                             {% endfor %}

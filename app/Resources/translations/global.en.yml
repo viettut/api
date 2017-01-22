@@ -17,7 +17,30 @@ header:
 course:
     all: 'All Course'
     create: 'Create Course'
-
+    create_form:
+        title: 'Title'
+        image: 'Image'
+        file: 'Select file'
+        edit_tab: 'Edit'
+        preview_tab: 'Preview'
+        introduce: 'Course introduce'
+        submit: 'Post'
+    edit_form:
+        header: 'Update Course'
+        chapter_list: 'Chapter List'
+        title: 'Title'
+        image: 'Image'
+        file: 'Change file'
+        edit_tab: 'Edit'
+        preview_tab: 'Preview'
+        introduce: 'Course introduce'
+        submit: 'update'
+        add_chapter: 'Add Chapter'
+    delete:
+        confirm: 'confirm'
+        message: 'Do you want to delete the course?'
+        delete: 'Delete'
+        cancel: 'Cancel'
 tutorial:
     all: 'All Tutorial'
     create: 'Create Tutorial'

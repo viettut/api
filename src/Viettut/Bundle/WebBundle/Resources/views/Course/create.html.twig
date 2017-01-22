@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block controller %}ng-controller="CourseController"{% endblock %}
 {% block main %}
     <section class="page-top">
@@ -7,13 +8,13 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active"><a href="{{ path('course_index') }}">Khóa học</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">{{ 'course.all' | trans }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Soạn khóa học</h1>
+                    <h1>{{ 'course.create' | trans }}</h1>
                 </div>
             </div>
         </div>
@@ -23,7 +24,7 @@
             <div class="col-md-12">
                 <form class="form-horizontal" role="form" name="createGuide">
                     <div class="form-group">
-                        <label for="title">Tên khóa học</label>
+                        <label for="title">{{ 'course.create_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
                     </div>
                     <div class="form-group">
@@ -36,8 +37,8 @@
                         </tags-input>
                     </div>
                     <div class="form-group">
-                        <label for="image">Ảnh đại diện *</label><br>
-                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">Select File</button>
+                        <label for="image">{{ 'course.create_form.image' | trans }}</label><br>
+                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">{{ 'course.create_form.file' | trans }}</button>
                         <div class="alert alert-danger" ng-if="uploadError">
                             <strong>Error !</strong> <{ uploadErrorMsg }>
                         </div>
@@ -50,16 +51,16 @@
                         <div class="tabs">
                             <ul class="nav nav-tabs">
                                 <li class="active">
-                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>Chỉnh sửa</a>
+                                    <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>{{ 'course.create_form.edit_tab' | trans }}</a>
                                 </li>
                                 <li>
-                                    <a aria-expanded="true" href="#preview" data-toggle="tab">Xem trước</a>
+                                    <a aria-expanded="true" href="#preview" data-toggle="tab">{{ 'course.create_form.preview_tab' | trans }}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="tab-content">
                             <div id="edit" class="tab-pane active">
-                                <label for="introduce">Giới thiệu khóa học</label>
+                                <label for="introduce">{{ 'course.create_form.introduce' | trans }}</label>
                                 <textarea
                                         ng-model="introduce"
                                         name="introduce"
@@ -74,7 +75,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button ladda-button="laddaLoading" data-style="slide-right" ng-click="create()" class="btn btn-primary border-radius5 btn-lg">Đăng</button>
+                            <button ladda-button="laddaLoading" data-style="slide-right" ng-click="create()" class="btn btn-primary border-radius5 btn-lg">{{ 'course.create_form.submit' | trans }}</button>
                         </div>
                     </div>
                 </form>

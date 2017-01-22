@@ -17,7 +17,30 @@ header:
 course:
     all: 'Tất cả'
     create: 'Soạn khóa học'
-
+    create_form:
+        title: 'Tên khóa học'
+        image: 'Ảnh đại diện'
+        file: 'Chọn ảnh'
+        edit_tab: 'Chỉnh sửa'
+        preview_tab: 'Xem trước'
+        introduce: 'Giới thiệu khóa học'
+        submit: 'Đăng'
+    edit_form:
+        header: 'Cập nhật khóa học'
+        chapter_list: 'Danh sách chương'
+        title: 'Tên khóa học'
+        image: 'Ảnh đại diện'
+        file: 'Đổi ảnh'
+        edit_tab: 'Chỉnh sửa'
+        preview_tab: 'Xem trước'
+        introduce: 'Giới thiệu khóa học'
+        submit: 'Cập nhật'
+        add_chapter: 'Thêm Chương'
+    delete:
+        confirm: 'xác nhận'
+        message: 'Bạn có chắc muốn xóa khóa học này?'
+        delete: 'Xóa'
+        cancel: 'Hủy'
 tutorial:
     all: 'Tất cả'
     create: 'Viết hướng dẫn'
