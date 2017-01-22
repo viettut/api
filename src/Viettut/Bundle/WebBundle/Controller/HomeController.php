@@ -12,6 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Viettut\Entity\Core\Subscriber;
+use Viettut\Model\Core\SubscriberInterface;
 
 class HomeController extends Controller
 {
@@ -38,5 +41,27 @@ class HomeController extends Controller
     public function comingSoonAction()
     {
         return $this->render('ViettutWebBundle:Home:comingSoon.html.twig');
+    }
+
+
+    /**
+     * @Route("/public/api/subscribe", name="user_subscribe")
+     * @Method("POST")
+     * @param Request $request
+     */
+    public function subscribeAction(Request $request)
+    {
+        $params = $request->request->all();
+        if (!array_key_exists('email', $params)) {
+            return false;
+        }
+        $subscriber = $this->get('viettut.repository.subscriber')->getByEmail($params['email']);
+        if (!$subscriber instanceof SubscriberInterface) {
+            $subscriber = new Subscriber();
+            $subscriber->setEmail($params['email']);
+            $this->getDoctrine()->getEntityManager()->persist($subscriber);
+            $this->getDoctrine()->getEntityManager()->flush();
+        }
+        return true;
     }
 }

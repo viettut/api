@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block controller %}ng-controller="CourseController"{% endblock %}
 {% block main %}
     <section class="page-top">
@@ -7,7 +8,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active">Khóa học</li>
+                        <li class="active">{{ 'course.all' | trans }}</li>
                     </ul>
                 </div>
             </div>
@@ -42,16 +43,16 @@
                             <div class="col-md-12">
                                 <div class="post-meta">
                                     <span><i class="fa fa-calendar"></i><{ course.createdAt | date : "d/M/y" }></span>
-<span ng-if="course.courseTags.length > 0"><i class="fa fa-tag"></i>
-<a href="#" ng-repeat="t in course.courseTags">
-    <{ t.tag.text }>
-</a>
-</span>
+                                    <span ng-if="course.courseTags.length > 0"><i class="fa fa-tag"></i>
+                                    <a href="#" ng-repeat="t in course.courseTags">
+                                        <{ t.tag.text }>
+                                    </a>
+                                    </span>
                                     <span><i class="fa fa-book"></i> <a href="#"><{ course.chapters.length }> Chương</a></span>
                                     <div class="btn-group pull-right" role="group" aria-label="Basic example">
-                                        <a href="<{ buildViewLink(course) }>" class="btn btn-primary padding-left-5 padding-right-5" target="_blank" title="view in another tab">Xem</a>
-                                        <a ng-click="edit($index)" class="btn btn-primary padding-left-5 padding-right-5" title="edit this course">Sửa</a>
-                                        <a ng-click="showConfirm($index)" class="btn btn-primary padding-left-5 padding-right-5" title="delete this course">Xóa</a>
+                                        <a href="<{ buildViewLink(course) }>" class="btn btn-primary padding-left-5 padding-right-5" target="_blank" title="view in another tab">{{ 'course.my_course.view' | trans }}</a>
+                                        <a ng-click="edit($index)" class="btn btn-primary padding-left-5 padding-right-5" title="edit this course">{{ 'course.my_course.update' | trans }}</a>
+                                        <a ng-click="showConfirm($index)" class="btn btn-primary padding-left-5 padding-right-5" title="delete this course">{{ 'course.my_course.delete' | trans }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +62,7 @@
             </div>
             <div class="col-md-3">
                 <aside class="sidebar">
-                    <h4>Links and references</h4>
+                    <h4>{{ 'header.reference' | trans }}</h4>
                     <ul class="nav nav-list primary push-bottom">
                         <li><a href="http://knpuniversity.com" target="_blank">Knp University</a></li>
                         <li><a href="http://scotch.io" target="_blank">Scotch.io</a></li>
@@ -75,14 +76,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Xác nhận</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'course.delete.confirm' | trans }}</h4>
                     </div>
                     <div class="modal-body">
-                        Bạn có chắc muốn xóa khóa học này !
+                        {{ 'course.delete.message' | trans }}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" ng-click="delete()">OK</button>
-                        <button type="button" class="btn btn-primary" ng-click="hideConfirm()">Hủy</button>
+                        <button type="button" class="btn btn-default" ng-click="delete()">{{ 'course.delete.delete' | trans }}</button>
+                        <button type="button" class="btn btn-primary" ng-click="hideConfirm()">{{ 'course.delete.cancel' | trans }}</button>
                     </div>
                 </div>
             </div>

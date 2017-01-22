@@ -13,6 +13,7 @@ header:
     faq: 'Câu hỏi thường gặp'
     testimonial: 'Mọi người nói gì'
     update: 'Cập nhật thông tin'
+    reference: 'Link tham khảo'
 
 course:
     all: 'Tất cả'
@@ -41,6 +42,10 @@ course:
         message: 'Bạn có chắc muốn xóa khóa học này?'
         delete: 'Xóa'
         cancel: 'Hủy'
+    my_course:
+        view: 'xem'
+        update: 'sửa'
+        delete: 'xóa'
 tutorial:
     all: 'Tất cả'
     create: 'Viết hướng dẫn'

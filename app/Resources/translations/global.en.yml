@@ -13,6 +13,7 @@ header:
     faq: 'FAQ'
     testimonial: 'Testimonial'
     update: 'Update'
+    reference: 'Links and references'
 
 course:
     all: 'All Course'
@@ -41,6 +42,10 @@ course:
         message: 'Do you want to delete the course?'
         delete: 'Delete'
         cancel: 'Cancel'
+    my_course:
+        view: 'view'
+        update: 'update'
+        delete: 'delete'
 tutorial:
     all: 'All Tutorial'
     create: 'Create Tutorial'
