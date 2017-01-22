@@ -34,6 +34,7 @@ class TutorialFormType extends AbstractRoleSpecificFormType
         $builder
             ->add('title')
             ->add('content')
+            ->add('published')
             ->add('tutorialTags', 'collection', array(
                 'mapped' => true,
                 'allow_add' => true,
@@ -62,6 +63,10 @@ class TutorialFormType extends AbstractRoleSpecificFormType
                 /** @var TutorialTagInterface $tutorialTag */
                 foreach($tutorialTags as $tutorialTag) {
                     $tutorialTag->setTutorial($tutorial);
+                }
+
+                if ($tutorial->isPublished() === null) {
+                    $tutorial->setPublished(false);
                 }
             }
         );

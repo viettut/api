@@ -33,6 +33,11 @@ class Course implements CourseInterface
     protected $author;
 
     /**
+     * @var bool
+     */
+    protected $published = false;
+
+    /**
      * @var ChapterInterface[]
      */
     protected $chapters;
@@ -95,6 +100,7 @@ class Course implements CourseInterface
 
     function __construct()
     {
+        $this->published = false;
     }
 
 
@@ -158,6 +164,24 @@ class Course implements CourseInterface
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
     }
 
     /**

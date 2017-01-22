@@ -33,6 +33,11 @@ Viettut\Entity\Core\Chapter:
             type: string
             nullable: false
 
+        published:
+            type: boolean
+            options:
+                default: false
+
         createdAt:
             type: datetime
             gedmo:

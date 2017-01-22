@@ -52,6 +52,16 @@ interface ChapterInterface extends ModelInterface
     public function getHashTag();
 
     /**
+     * @return boolean
+     */
+    public function isPublished();
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published);
+    /**
      * Set content
      *
      * @param string $content
