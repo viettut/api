@@ -14,7 +14,11 @@ header:
     testimonial: 'Mọi người nói gì'
     update: 'Cập nhật thông tin'
     reference: 'Link tham khảo'
-
+footer:
+    subscribe: 'Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn!'
+    subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'
+    subscribed_failed: 'Email của bạn hiện chưa được thêm vào danh sách!'
+    subscribed_invalid: 'Email không hợp lệ!'
 course:
     all: 'Tất cả'
     create: 'Soạn khóa học'

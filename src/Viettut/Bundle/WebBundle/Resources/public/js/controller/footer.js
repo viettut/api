@@ -22,7 +22,7 @@ angular
                 email: $scope.email
             };
 
-            $http.post(config.PUBLIC_API_URL + 'subscribe', data).
+            $http.post(config.API_URL + 'subscribes', data).
                 then(
                 function(response){
                     angular.element('#subscribeButton').button('reset');

@@ -14,7 +14,11 @@ header:
     testimonial: 'Testimonial'
     update: 'Update'
     reference: 'Links and references'
-
+footer:
+    subscribe: 'Subscribe to get latest news and updates'
+    subscribed_success: 'Your email has been added successfully!'
+    subscribed_failed: 'Your email has not been added!'
+    subscribed_invalid: 'Invalid email!'
 course:
     all: 'All Course'
     create: 'Create Course'

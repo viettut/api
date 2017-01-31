@@ -179,18 +179,21 @@
                 <div class="col-md-3">
                     <div class="newsletter">
                         <h4>{{ 'header.update' | trans }}</h4>
-                        <p>Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn.</p>
+                        <p>{{ 'footer.subscribe' | trans }}</p>
 
-                        <div class="alert alert-success" ng-show="subscribeSuccess">
-                            <strong>Email</strong> của bạn đã được thêm vào danh sách thành công.
+                        <div class="alert alert-success alert-dismissable" ng-show="subscribeSuccess">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ 'footer.subscribed_success' | trans }}
                         </div>
 
-                        <div class="alert alert-danger" ng-show="subscribeFail">
-                            Email của bạn hiện chưa được thêm vào danh sách
+                        <div class="alert alert-danger alert-dismissable" ng-show="subscribeFail">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ 'footer.subscribed_failed' | trans }}
                         </div>
 
-                        <div class="alert alert-danger" ng-show="invalidEmail">
-                            Email không hợp lệ !
+                        <div class="alert alert-danger alert-dismissable" ng-show="invalidEmail">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            {{ 'footer.subscribed_invalid' | trans }}
                         </div>
 
                         <form name="subscribeForm">
@@ -214,7 +217,7 @@
                         <h4>{{ 'header.contact' | trans }}</h4>
                         <ul class="contact">
                             {#<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</p></li>#}
-                            <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong>0961.61.4387</p></li>
+                            <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> 0961.61.4387</p></li>
                             <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:support@viettut.com">support@viettut.com</a></p></li>
                         </ul>
                     </div>

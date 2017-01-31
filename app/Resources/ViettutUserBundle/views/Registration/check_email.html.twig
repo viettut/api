@@ -3,8 +3,10 @@
 
 {% block main %}
     <div class="row">
-        <div class="col-md-12 center">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 center" style="margin-top:40px;">
             <p class="short lead">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+        <div class="col-md-2"></div>
         </div>
     </div>
 {% endblock %}
