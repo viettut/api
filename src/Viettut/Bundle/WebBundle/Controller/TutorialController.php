@@ -25,7 +25,7 @@ class TutorialController extends Controller
     /**
      * @Security("has_role('ROLE_USER')")
      *
-     * @Route("/lecturer/tutorials/create", name="create_tutorial")
+     * @Route("/tutorials/create", name="create_tutorial")
      *
      * @Template()
      */
@@ -81,7 +81,7 @@ class TutorialController extends Controller
     /**
      * present a specific guide
      *
-     * @Route("/{username}/tutorials/{hash}", name="tutorial_detail")
+     * @Route("/{username}/tutorials/{hash}", name="tutorial_detail", requirements={"username" = "[a-z0-9]{3,}"})
      *
      * @param $username
      * @param $hash

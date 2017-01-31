@@ -97,7 +97,7 @@ class CourseController extends FOSRestController
         $pageSize = $this->getParameter('page_size');
 
         $pagination = $this->get('knp_paginator')->paginate(
-            $this->get('viettut.repository.course')->getAllCourseQuery(),
+            $this->get('viettut.repository.course')->getAllCourseQuery(true),
             $request->query->getInt('page', 1)/*page number*/,
             $pageSize
         );

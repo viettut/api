@@ -48,9 +48,8 @@
                                         <{ t.tag.text }>
                                     </a>
                                     </span>
-                                    <span><i class="fa fa-book"></i> <a href="#"><{ course.chapters.length }> Chương</a></span>
+                                    <span><i class="fa fa-book"></i> <a href="#"><{ course.chapters.length }> {{ 'header.chapter' | trans }}</a></span>
                                     <div class="btn-group pull-right" role="group" aria-label="Basic example">
-                                        <a href="<{ buildViewLink(course) }>" class="btn btn-primary padding-left-5 padding-right-5" target="_blank" title="view in another tab">{{ 'course.my_course.view' | trans }}</a>
                                         <a ng-click="edit($index)" class="btn btn-primary padding-left-5 padding-right-5" title="edit this course">{{ 'course.my_course.update' | trans }}</a>
                                         <a ng-click="showConfirm($index)" class="btn btn-primary padding-left-5 padding-right-5" title="delete this course">{{ 'course.my_course.delete' | trans }}</a>
                                     </div>

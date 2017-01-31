@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block controller %}ng-controller="ChapterController"{% endblock %}
 {% block main %}
     <section class="page-top">
@@ -7,13 +8,13 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active"><a href="{{ path('course_index') }}">Khóa học</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">{{ 'course.all' | trans }}</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Thêm chương</h1>
+                    <h1>{{ 'chapter.add.header' | trans }}</h1>
                 </div>
             </div>
         </div>
@@ -34,8 +35,6 @@
                         {#</div>#}
                         <div class="post-content">
                             <h2 class="text-center"><a href="#">{{ course.title }}</a></h2>
-                            {#<textarea class="hidden" id="introduce">{{ course.introduce | raw }}</textarea>#}
-                            {#<wiz-markdown content="introduce" class="markdown-body"></wiz-markdown>#}
                             <div>{{ course.introduce | mde }}</div>
                         </div>
                         <div ng-init="courseId={{ course.id }}"></div>
@@ -47,24 +46,24 @@
                 <div class="col-md-12">
                     <form class="form-horizontal" role="form" name="addChapter">
                         <div class="form-group">
-                            <label for="chapter">Tên chương *</label>
+                            <label for="chapter">{{ 'chapter.add.title' | trans }}</label>
                             <input type="text" value="" class="form-control" id="chapter" ng-model="header" required>
                         </div>
                         <div class="form-group">
                             <div class="tabs">
                                 <ul class="nav nav-tabs">
                                     <li class="active">
-                                        <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>Chỉnh sửa</a>
+                                        <a aria-expanded="false" href="#edit" data-toggle="tab"><i class="fa fa-star"></i>{{ 'chapter.add.edit' | trans }}</a>
                                     </li>
                                     <li>
-                                        <a aria-expanded="true" href="#preview" data-toggle="tab">Xem trước</a>
+                                        <a aria-expanded="true" href="#preview" data-toggle="tab">{{ 'chapter.add.preview' | trans }}</a>
                                     </li>
                                 </ul>
 
                             </div>
                             <div class="tab-content">
                                 <div id="edit" class="tab-pane active">
-                                    <label for="content">Nội dung *</label>
+                                    <label for="content">{{ 'chapter.add.content' | trans }}</label>
                                     <textarea
                                             ng-model="content"
                                             name="content"
@@ -79,7 +78,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <button ladda-button="laddaLoading" data-style="slide-right" ng-disabled="!isAuthenticated && createGuide.$valid" ng-click="add()" class="ladda-button btn-primary border-radius5">Thêm</button>
+                                <button ladda-button="laddaLoading" data-style="slide-right"  ng-click="add()" class="ladda-button btn-primary btn border-radius5">{{ 'chapter.add.submit' | trans }}</button>
                             </div>
                         </div>
                         <div class="modal fade hidden" id="add-chapter-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -87,14 +86,14 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myModalLabel">Xác nhận</h4>
+                                        <h4 class="modal-title" id="myModalLabel">{{ 'chapter.add.confirm' | trans }}</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Chương "<{ header }>" thêm thành công !
+                                        {{ 'chapter.add.message' | trans }}
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" ng-click="goHome()">Home</button>
-                                        <button type="button" class="btn btn-primary" ng-click="addAnotherChapter()">Tiếp tục thêm</button>
+                                        <button type="button" class="btn btn-default" ng-click="goHome()">{{ 'chapter.add.publish' | trans }}</button>
+                                        <button type="button" class="btn btn-primary" ng-click="addAnotherChapter()">{{ 'chapter.add.continue' | trans }}</button>
                                     </div>
                                 </div>
                             </div>
@@ -107,10 +106,10 @@
         <div class="col-md-3">
             <aside class="sidebar">
                 <div class="sticky">
-                    <h4>Chapters</h4>
+                    <h4>{{ 'chapter.add.list' | trans }}</h4>
                     <div class="list-group">
-                        <a href="#" class="list-group-item active">Giới thiệu khóa học</a>
-                        <a href="#" class="list-group-item" ng-repeat="chapter in course.chapters">Chương <{ chapter.position }> : <{ chapter.header }></a>
+                        <a href="#" class="list-group-item active">{{ 'course.create_form.introduce' | trans }}</a>
+                        <a href="#" class="list-group-item" ng-repeat="chapter in course.chapters">{{ 'chapter.add.prefix' | trans }} <{ chapter.position }> : <{ chapter.header }></a>
                     </div>
                 </div>
             </aside>
@@ -118,6 +117,7 @@
     </div>
 {% endblock %}
 {% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/prism.js') }}"></script>
     <script src="{{ asset('bundles/viettutweb/js/controller/course/comment.js') }}"></script>
     <script src="{{ asset('bundles/viettutweb/js/controller/course/chapter.js') }}"></script>
 {% endblock %}

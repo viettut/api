@@ -62,9 +62,10 @@ interface CourseRepositoryInterface extends ObjectRepository
     public function getByUserAndHash(UserEntityInterface $user, $hash);
 
     /**
+     * @param $published = null
      * @return mixed
      */
-    public function getAllCourseQuery();
+    public function getAllCourseQuery($published = null);
 
     /**
      * @param $keyword

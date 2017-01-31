@@ -80,10 +80,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <input type="checkbox" ng-model="published" required name="published" ng-checked="published" />
+                        <label for="published">{{ 'course.create_form.publish' | trans }}</label>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button ladda-button="laddaLoading" data-style="slide-right"  ng-click="create()" class="ladda-button btn-primary border-radius5">{{ 'course.edit_form.submit' | trans }}</button>
-                            <button class="ladda-button btn-primary border-radius5"  ng-click="addChapter()">{{ 'course.edit_form.add_chapter' | trans }}</button>
+                            <button ladda-button="laddaLoading" data-style="slide-right"  ng-click="create()" class="ladda-button btn btn-primary border-radius5">{{ 'course.edit_form.submit' | trans }}</button>
+                            <button class="ladda-button btn btn-primary border-radius5"  ng-click="addChapter()">{{ 'course.edit_form.add_chapter' | trans }}</button>
                         </div>
                     </div>
                 </form>
@@ -105,5 +109,6 @@
     </div>
 {% endblock %}
 {% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/prism.js') }}"></script>
     <script src="{{ asset('bundles/viettutweb/js/controller/course/edit/course.js') }}"></script>
 {% endblock %}

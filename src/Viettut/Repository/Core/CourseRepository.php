@@ -148,9 +148,16 @@ class CourseRepository extends EntityRepository implements CourseRepositoryInter
     /**
      * @return mixed
      */
-    public function getAllCourseQuery()
+    public function getAllCourseQuery($published = null)
     {
-        return $this->createQueryBuilder('c')->getQuery();
+        $qb = $this->createQueryBuilder('c');
+
+        if (is_bool($published)) {
+           $qb->where('c.published = :published')
+               ->setParameter('published', $published);
+        }
+
+        return $qb->getQuery();
     }
 
     public function search($keyword)

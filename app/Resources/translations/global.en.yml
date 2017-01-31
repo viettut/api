@@ -14,6 +14,8 @@ header:
     testimonial: 'Testimonial'
     update: 'Update'
     reference: 'Links and references'
+    comment: 'comment'
+    chapter: 'chapter'
 footer:
     subscribe: 'Subscribe to get latest news and updates'
     subscribed_success: 'Your email has been added successfully!'
@@ -21,6 +23,7 @@ footer:
     subscribed_invalid: 'Invalid email!'
 course:
     all: 'All Course'
+    read_more: 'Read more'
     create: 'Create Course'
     create_form:
         title: 'Title'
@@ -30,6 +33,7 @@ course:
         preview_tab: 'Preview'
         introduce: 'Course introduce'
         submit: 'Post'
+        publish: 'Publish'
     edit_form:
         header: 'Update Course'
         chapter_list: 'Chapter List'
@@ -41,6 +45,7 @@ course:
         introduce: 'Course introduce'
         submit: 'update'
         add_chapter: 'Add Chapter'
+        publish: 'Publish'
     delete:
         confirm: 'confirm'
         message: 'Do you want to delete the course?'
@@ -50,6 +55,20 @@ course:
         view: 'view'
         update: 'update'
         delete: 'delete'
+chapter:
+    add:
+        header: 'Add chapter'
+        list: 'Chapters'
+        prefix: 'Chapter'
+        title: 'Title'
+        content: 'Content'
+        submit: 'Add'
+        publish: 'Publish'
+        confirm: 'confirm'
+        message: 'The chapter has been added successfully'
+        continue: 'Add another'
+        edit: 'Edit'
+        preview: 'Preview'
 tutorial:
     all: 'All Tutorial'
     create: 'Create Tutorial'

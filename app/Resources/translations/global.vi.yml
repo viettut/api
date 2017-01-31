@@ -14,6 +14,8 @@ header:
     testimonial: 'Mọi người nói gì'
     update: 'Cập nhật thông tin'
     reference: 'Link tham khảo'
+    comment: 'bình luận'
+    chapter: 'chương'
 footer:
     subscribe: 'Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn!'
     subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'
@@ -21,6 +23,7 @@ footer:
     subscribed_invalid: 'Email không hợp lệ!'
 course:
     all: 'Tất cả'
+    read_more: 'Đọc tiếp'
     create: 'Soạn khóa học'
     create_form:
         title: 'Tên khóa học'
@@ -30,6 +33,7 @@ course:
         preview_tab: 'Xem trước'
         introduce: 'Giới thiệu khóa học'
         submit: 'Đăng'
+        publish: 'Xuất bản'
     edit_form:
         header: 'Cập nhật khóa học'
         chapter_list: 'Danh sách chương'
@@ -41,6 +45,7 @@ course:
         introduce: 'Giới thiệu khóa học'
         submit: 'Cập nhật'
         add_chapter: 'Thêm Chương'
+        publish: 'Xuất bản'
     delete:
         confirm: 'xác nhận'
         message: 'Bạn có chắc muốn xóa khóa học này?'
@@ -50,6 +55,20 @@ course:
         view: 'xem'
         update: 'sửa'
         delete: 'xóa'
+chapter:
+    add:
+        header: 'Thêm chương'
+        list: 'Danh sách chương'
+        prefix: 'Chương'
+        title: 'Tên chương'
+        content: 'Nội dung'
+        submit: 'Thêm'
+        publish: 'Xuất bản'
+        confirm: 'confirm'
+        message: 'Thêm chương thành công'
+        continue: 'Thêm chương'
+        edit: 'Chỉnh sửa'
+        preview: 'Xem trước'
 tutorial:
     all: 'Tất cả'
     create: 'Viết hướng dẫn'

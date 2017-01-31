@@ -25,7 +25,7 @@ class ChapterController extends FOSRestController
     /**
      * present a specific guide
      *
-     * @Route("/{username}/courses/{hash}/{cHash}", name="chapter_detail")
+     * @Route("/{username}/courses/{hash}/{cHash}", name="chapter_detail", requirements={"username" = "[a-z0-9]{3,}"})
      * @Template()
      *
      * @param $username
@@ -114,7 +114,7 @@ class ChapterController extends FOSRestController
     }
 
     /**
-     * @Route("/{username}/courses/{hash}/{cHash}/next", name="next_chapter_detail")
+     * @Route("/{username}/courses/{hash}/{cHash}/next", name="next_chapter_detail", requirements={"username" = "[a-z0-9]{3,}"})
      * @param $username
      * @param $hash
      * @param $cHash

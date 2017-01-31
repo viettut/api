@@ -11,6 +11,7 @@ angular
         $scope.image = '';
         $scope.chapter = '';
         $scope.content = '';
+        $scope.published = false;
         $scope.uploaded = false;
         $scope.uploadError = false;
         $scope.preview = '';
@@ -52,7 +53,8 @@ angular
                 title: $scope.title,
                 imagePath: $scope.image,
                 introduce: $scope.introduce,
-                courseTags: $scope.courseTags
+                courseTags: $scope.courseTags,
+                published: $scope.published
             };
 
             // start progress
@@ -101,6 +103,7 @@ angular
                         $scope.introduce = $scope.course.introduce;
                         $scope.title = $scope.course.title;
                         $scope.image = $scope.course.imagePath;
+                        $scope.published = $scope.course.published;
 
                         var tagsLength = $scope.course.courseTags.length;
                         for(var i = 0; i < tagsLength; i++) {

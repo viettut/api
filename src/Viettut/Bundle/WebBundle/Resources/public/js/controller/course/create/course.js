@@ -14,6 +14,7 @@ angular
         $scope.uploaded = false;
         $scope.uploadError = false;
         $scope.preview = '';
+        $scope.published = false;
         $scope.titleValid = $scope.title.length < 15;
         $scope.introduceValid = $scope.introduce < 32;
 
@@ -51,7 +52,8 @@ angular
                 title: $scope.title,
                 imagePath: $scope.image,
                 introduce: $scope.introduce,
-                courseTags: $scope.courseTags
+                courseTags: $scope.courseTags,
+                published: $scope.published
             };
 
             // start progress
@@ -66,7 +68,7 @@ angular
                         $window.location.href = config.BASE_URL + 'courses/' + $scope.course.token + '/add-chapter';
                     }
                 },
-                function(response){
+                function(response) {
                     if(response.status == 401) {
                         if($auth.isAuthenticated()) {
                             $auth.logout();
@@ -80,7 +82,6 @@ angular
                     $scope.showError = true;
                 });
         };
-
 
         $scope.isAuthenticated = $auth.isAuthenticated();
 

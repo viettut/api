@@ -13,6 +13,9 @@ Viettut\Entity\Core\Course:
         introduce:
             expose: true
             groups: [course.detail, course.summary]
+        published:
+            expose: true
+            groups: [course.detail, course.summary]
         chapters:
             expose: true
             groups: [course.detail, course.summary]
