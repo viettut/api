@@ -22,10 +22,19 @@ security:
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                always_use_default_target_path: true
+                default_target_path: home_page
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
 
-            logout:       true
+            logout:
+                path:   fos_user_security_logout
+                target: home_page
+            remember_me:
+                lifetime: 604800
+                secret: "%secret%"
             anonymous:    true
 
     access_control:
