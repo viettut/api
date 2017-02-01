@@ -1,19 +1,14 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block controller %}ng-controller="TutorialController"{% endblock %}
 {% block main %}
-    <style>
-        textarea {
-            width: 100%;
-            height: 90%;
-        }
-    </style>
     <section class="page-top">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active"><a href="{{ path('tutorial_index') }}">Hướng dẫn</a></li>
+                        <li class="active"><a href="{{ path('tutorial_index') }}">{{ 'header.tutorial' | trans }}</a></li>
                     </ul>
                 </div>
             </div>
@@ -26,10 +21,6 @@
                 <div class="row">
                     <div class="blog-posts single-post">
                         <article class="post post-large blog-single-post">
-                            {#<div class="post-date">#}
-                                {#<span class="day">{{ tutorial.createdAt | date('d') }}</span>#}
-                                {#<span class="month">{{ tutorial.createdAt | date('F') | slice(0, 3) }}</span>#}
-                            {#</div>#}
                             <div class="post-content">
                                 <h2 class="text-center"><a href="#">{{ tutorial.title }}</a></h2>
                                 <div class="post-meta">
@@ -39,14 +30,14 @@
                                             <a href="{{ path('tag_index', {'tag' : t.tag.text}) }}">{{ t.tag.text }}</a>
                                         {% endfor %}
                                     </span>
-                                    <span class="pull-right"><i class="fa fa-comments"></i> <a href="#">{{ tutorial.comments | length }} Comments</a></span>
+                                    <span class="pull-right"><i class="fa fa-comments"></i> <a href="#">{{ tutorial.comments | length }} {{ 'header.comment' | trans }}</a></span>
                                 </div>
                                 <hr class="tall"/>
                                 <div>{{ tutorial.content | mde }}</div>
                                 <div class="row col-md-12" ng-controller="CommentController">
                                     <div class="post-block post-comments clearfix row col-md-12">
-                                        <h3 ng-hide="commentToggle"><i class="fa fa-comments"></i>Bình luận ({{ tutorial.comments | length }})</h3>
-                                        <h3 ng-if="commentToggle"><i class="fa fa-comments"></i>Bình luận (<{ numberComments }>)</h3>
+                                        <h3 ng-hide="commentToggle"><i class="fa fa-comments"></i>{{ 'tutorial.comment' | trans }} ({{ tutorial.comments | length }})</h3>
+                                        <h3 ng-if="commentToggle"><i class="fa fa-comments"></i>{{ 'tutorial.comment' | trans }} (<{ numberComments }>)</h3>
                                         <ul class="comments" ng-hide="commentToggle">
                                             {% for comment in tutorial.comments %}
                                                 <li>
@@ -102,7 +93,7 @@
                                                                         <span> <a href="#"><i class="fa fa-reply"></i> Reply</a></span>
                                                                     </span>
                                                                 </span>
-                                                        <div marked="comment.content" class="markdown" style="padding: 20px"></div>
+                                                        <div marked="comment.content" class="markdown padding20"></div>
                                                         <span class="date pull-right"><{ comment.createdAt | date:'yyyy-MM-dd HH:mm:ss' }></span>
                                                     </div>
                                                 </div>
@@ -117,7 +108,7 @@
                                                                         <span class="comment-by">
                                                                             <strong><{ reply.author.username }></strong>
                                                                         </span>
-                                                                <div marked="reply.content" class="markdown" style="padding: 20px"></div>
+                                                                <div marked="reply.content" class="markdown padding20"></div>
                                                                 <span class="date pull-right"><{ reply.createdAt | date:'yyyy-MM-dd HH:mm:ss' }></span>
                                                             </div>
                                                         </div>
@@ -129,13 +120,13 @@
 
                                     {% if app.user %}
                                         <div class="post-leave-comment">
-                                            <h3>Ý kiến</h3>
+                                            <h3>{{ 'tutorial.comment' | trans }}</h3>
                                             <div ng-init="currentTutorial={{ tutorial.id }}"></div>
                                             <form>
                                                 <div class="row">
                                                     <div class="form-group">
                                                         <div class="col-md-12">
-                                                            <textarea ng-model="commentContent" rows="5" class="form-control" style="height: 200px;width: 90%;">
+                                                            <textarea ng-model="commentContent" rows="5" class="form-control">
                                                             </textarea>
                                                         </div>
                                                     </div>
@@ -146,8 +137,8 @@
                                                                 ladda-button="laddaLoading"
                                                                 data-style="slide-right"
                                                                 ng-click="addComment()"
-                                                                class="ladda-button btn-primary"
-                                                                style="border-radius: 5px;">Đăng</button>
+                                                                class="ladda-button btn-primary border-radius5"
+                                                                >{{ 'tutorial.create_form.submit' | trans }}</button>
                                                     </div>
                                                 </div>
                                             </form>

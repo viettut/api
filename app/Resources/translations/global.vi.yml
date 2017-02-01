@@ -18,13 +18,15 @@ header:
     chapter: 'chương'
     read_more: 'Đọc tiếp'
     popular_courses: 'Khóa học tiêu biểu'
-    popular_tutorials: 'Favorite tutorials'
+    popular_tutorials: 'Bài hướng dẫn được quan tâm'
+    next_chap: 'Chương tiếp theo'
 footer:
     subscribe: 'Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn!'
     subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'
     subscribed_failed: 'Email của bạn hiện chưa được thêm vào danh sách!'
     subscribed_invalid: 'Email không hợp lệ!'
 course:
+    comment: 'Bình luận'
     all: 'Tất cả'
     read_more: 'Đọc tiếp'
     create: 'Soạn khóa học'
@@ -75,3 +77,10 @@ chapter:
 tutorial:
     all: 'Tất cả'
     create: 'Viết hướng dẫn'
+    comment: 'Bình luận'
+    create_form:
+        submit: 'Đăng'
+        edit_tab: 'Chỉnh sửa'
+        preview_tab: 'Xem trước'
+        title: 'Tiêu đề'
+        content: 'Nội dung'

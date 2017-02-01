@@ -3,6 +3,12 @@
     background-color: #dde !important;
 }
 
+.text-auto-wrap {
+    word-wrap: break-word;      /* IE 5.5-7 */
+    white-space: -moz-pre-wrap !important; /* Firefox 1.0-2.0 */
+    white-space: pre-wrap !important;
+}
+
 textarea {
     width: 100%;
     height: 90%;
@@ -35,4 +41,16 @@ textarea {
 #comment-form .form-control {
     height: 200px;
     width: 90%;
+}
+
+.top10 {
+    top: 10px;
+}
+
+.right25 {
+    margin-right: 25px;
+}
+
+.padding20 {
+    padding: 20px;
 }

@@ -29,10 +29,6 @@
                                 <img class="img-responsive" src="{{ course.imagePath }}" alt="image path">
                             </div>
                         </div>
-                        {#<div class="post-date">#}
-                            {#<span class="day">{{ course.createdAt | date('d') }}</span>#}
-                            {#<span class="month">{{ course.createdAt | date('F') | slice(0, 3) }}</span>#}
-                        {#</div>#}
                         <div class="post-content">
                             <h2 class="text-center"><a href="#">{{ course.title }}</a></h2>
                             <div>{{ course.introduce | mde }}</div>
@@ -72,7 +68,7 @@
                                     </textarea>
                                 </div>
                                 <div id="preview" class="tab-pane">
-                                    <div marked="content" class="markdown" style="padding: 20px"></div>
+                                    <div marked="content" class="markdown padding20"></div>
                                 </div>
                             </div>
                         </div>

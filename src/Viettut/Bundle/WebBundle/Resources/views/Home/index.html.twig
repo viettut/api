@@ -1,24 +1,17 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'global' %}
 {% block main %}
-    <style>
-        .text-auto-wrap {
-            word-wrap: break-word;      /* IE 5.5-7 */
-            white-space: -moz-pre-wrap !important; /* Firefox 1.0-2.0 */
-            white-space: pre-wrap !important;
-        }
-    </style>
     <section class="page-top custom-product">
         <div class="container">
             <div class="row">
                 <div class="col-sm-7">
-                    <h1><strong>ViettuT</strong> academy.</h1>
+                    <h1><strong>ViettuT</strong> Academy.</h1>
                     <p class="lead">
                         Học lập trình từ cơ bản đến nâng cao thông qua các ví dụ thực tế kèm theo <bold>mã nguồn</bold> và các bài <em>test</em>.
                         <br>
                         <span>Các khóa học bao gồm nhưng <em>ngôn ngữ</em> và <em>framework</em> thông dụng nhất.</span>
                     </p>
-                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default btn-lg push-bottom">Đăng Ký</a> <span class="arrow hlt" style="top: 10px;"></span>
+                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default btn-lg push-bottom">Đăng Ký</a> <span class="arrow hlt top10"></span>
                 </div>
             </div>
         </div>
@@ -26,6 +19,19 @@
 
     <div class="container">
         <div class="row push-top">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-box-icon">
+                        <i class="fa fa-money"></i>
+                    </div>
+                    <div class="feature-box-info">
+                        <h4 class="shorter">Các khóa học miễn phí</h4>
+                        <p class="tall">
+                            Các khóa học hoàn toàn <strong>miễn phí</strong> được biên soạn, sưu tập bởi các lập trình viên giàu kinh nghiệm.
+                        </p>
+                    </div>
+                </div>
+            </div>
             <div class="col-md-4">
                 <div class="feature-box">
                     <div class="feature-box-icon">
@@ -42,25 +48,12 @@
             <div class="col-md-4">
                 <div class="feature-box">
                     <div class="feature-box-icon">
-                        <i class="fa fa-file"></i>
+                        <i class="fa fa-share-alt"></i>
                     </div>
                     <div class="feature-box-info">
-                        <h4 class="shorter">Các khóa học miễn phí</h4>
+                        <h4 class="shorter">Chia sẻ</h4>
                         <p class="tall">
-                            Tham gia các khóa học miễn phí được biên soạn, sưu tập bởi các lập trình viên giàu kinh nghiệm
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="feature-box">
-                    <div class="feature-box-icon">
-                        <i class="fa fa-google-plus"></i>
-                    </div>
-                    <div class="feature-box-info">
-                        <h4 class="shorter">Nhật ký lập trình</h4>
-                        <p class="tall">
-                            Trang cá nhân là nơi lập trình viên lưu giữ vấn đề và cách giải quyết, những thủ thuật tâm đắc và chia sẻ với cộng đồng.
+                            Chia sẻ là cách tốt nhất để chúng ta trau dồi kiến thức và tự nâng tầm của mình lên.
                         </p>
                     </div>
                 </div>
@@ -71,12 +64,12 @@
             <div class="col-md-4">
                 <div class="feature-box">
                     <div class="feature-box-icon">
-                        <i class="fa fa-user"></i>
+                        <i class="fa fa-video-camera"></i>
                     </div>
                     <div class="feature-box-info">
-                        <h4 class="shorter">Lưu giữ code</h4>
+                        <h4 class="shorter">Học bằng video</h4>
                         <p class="tall">
-                            Lập trình viên có thể lưu giữ các đoạn code đẹp, hay dùng cho riêng mình hoặc có thể chia sẻ với cộng đồng.
+                            Mỗi bài học sẽ gồm text hướng dẫn, video trực quan và mã nguồn giúp việc học trở nên dễ dàng và nhớ lâu hơn.
                         </p>
                     </div>
                 </div>
@@ -84,12 +77,12 @@
             <div class="col-md-4">
                 <div class="feature-box">
                     <div class="feature-box-icon">
-                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-pencil"></i>
                     </div>
                     <div class="feature-box-info">
-                        <h4 class="shorter">Soạn thảo bằng MarkDown</h4>
+                        <h4 class="shorter">Soạn thảo dễ dàng</h4>
                         <p class="tall">
-                            Các bài hướng dẫn hoặc các khóa học đều được soạn thảo dưới định dạng MarkDown giúp người đọc dễ theo dõi.
+                            Các bài hướng dẫn hoặc các khóa học đều được soạn thảo dưới định dạng <strong>MarkDown</strong> giúp người đọc dễ theo dõi.
                         </p>
                     </div>
                 </div>
@@ -112,9 +105,6 @@
     </div>
     <hr>
     <div class="container">
-        {#<div class="row text-center">#}
-            {#<h2>Thử xem qua <strong>các khóa học</strong> của chúng tôi</h2>#}
-        {#</div>#}
         <div class="row">
             <div class="tabs">
                 <ul class="nav nav-tabs">
@@ -152,7 +142,7 @@
                             </div>
                             <div class="row">
                                 <div class="span12 pagination-centered">
-                                    <a class="btn btn-primary btn-lg pull-right" style="margin-right:25px" href="{{ path('course_index') }}">{{ 'header.read_more' | trans }}</a>
+                                    <a class="btn btn-primary btn-lg pull-right right25" href="{{ path('course_index') }}">{{ 'header.read_more' | trans }}</a>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +172,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="span12 pagination-centered">
-                                        <a class="btn btn-primary btn-lg pull-right" style="margin-right: 25px;" href="{{ path('course_index') }}">{{ 'header.read_more' | trans }}</a>
+                                        <a class="btn btn-primary btn-lg pull-right right25" href="{{ path('course_index') }}">{{ 'header.read_more' | trans }}</a>
                                     </div>
                                 </div>
                             </div>
