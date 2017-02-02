@@ -16,6 +16,9 @@ header:
     reference: 'Link tham khảo'
     comment: 'bình luận'
     chapter: 'chương'
+    read_more: 'Đọc tiếp'
+    popular_courses: 'Khóa học tiêu biểu'
+    popular_tutorials: 'Favorite tutorials'
 footer:
     subscribe: 'Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn!'
     subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'

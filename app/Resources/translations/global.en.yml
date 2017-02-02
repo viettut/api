@@ -16,6 +16,9 @@ header:
     reference: 'Links and references'
     comment: 'comment'
     chapter: 'chapter'
+    read_more: 'Read more'
+    popular_courses: 'Favorite courses'
+    popular_tutorials: 'Favorite tutorials'
 footer:
     subscribe: 'Subscribe to get latest news and updates'
     subscribed_success: 'Your email has been added successfully!'
