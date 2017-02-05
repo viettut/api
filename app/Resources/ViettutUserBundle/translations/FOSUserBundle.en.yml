@@ -34,6 +34,8 @@ change_password:
 registration:
     check_email: 'An email has been sent to %email%. It contains an activation link you must click to activate your account.'
     confirmed: 'Congrats %username%, your account is now activated.'
+    confirmed1: "Now you can create courses, tutorials for yourself and comment on other's writing"
+    create_course: 'Create course?'
     back: 'Back to the originating page.'
     submit: Register
     flash:

@@ -32,6 +32,7 @@ class CourseFormType extends AbstractRoleSpecificFormType
             ->add('introduce')
             ->add('published')
             ->add('imagePath')
+            ->add('videoEmbedded')
             ->add('courseTags', 'collection', array(
                 'mapped' => true,
                 'allow_add' => true,

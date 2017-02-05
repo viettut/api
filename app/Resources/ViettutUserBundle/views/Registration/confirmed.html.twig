@@ -1,10 +1,24 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
+{% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+{% block main %}
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 center" style="margin-top:40px;">
+            <p class="short lead">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+            <p class="short lead">
+                {{ 'registration.confirmed1'|trans }}
+            </p>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 center" style="margin-top:40px;">
+            <p>
+                <a href="{{ path('create_course') }}"> {{ 'registration.create_course' | trans }}</a>
+            </p>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+{% endblock %}

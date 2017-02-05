@@ -200,4 +200,14 @@ interface CourseInterface extends ModelInterface
      * @return self
      */
     public function setToken($token);
+
+    /**
+     * @return string
+     */
+    public function getVideoEmbedded();
+
+    /**
+     * @param string $videoEmbedded
+     */
+    public function setVideoEmbedded($videoEmbedded);
 }

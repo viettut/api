@@ -43,6 +43,9 @@ Viettut\Entity\Core\Course:
             type: integer
             options:
                 default: 0
+        videoEmbedded:
+            type: string
+            nullable: true
         imagePath:
             type: string
             nullable: true

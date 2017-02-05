@@ -25,6 +25,7 @@ class Course extends CourseModel
     protected $view;
     protected $published;
     protected $enroll;
+    protected $videoEmbedded;
     protected $createdAt;
     protected $updatedAt;
     protected $deletedAt;

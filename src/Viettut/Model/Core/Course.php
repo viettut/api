@@ -38,6 +38,11 @@ class Course implements CourseInterface
     protected $published = false;
 
     /**
+     * @var string
+     */
+    protected $videoEmbedded;
+
+    /**
      * @var ChapterInterface[]
      */
     protected $chapters;
@@ -183,6 +188,23 @@ class Course implements CourseInterface
         $this->published = $published;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getVideoEmbedded()
+    {
+        return $this->videoEmbedded;
+    }
+
+    /**
+     * @param string $videoEmbedded
+     */
+    public function setVideoEmbedded($videoEmbedded)
+    {
+        $this->videoEmbedded = $videoEmbedded;
+    }
+    
 
     /**
      * Set active
