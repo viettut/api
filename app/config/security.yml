@@ -1,6 +1,7 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    access_denied_url: fos_user_security_login
     access_decision_manager:
         strategy: unanimous
 
@@ -19,6 +20,7 @@ security:
     firewalls:
         main:
             pattern: ^/
+            access_denied_url: fos_user_security_login
             form_login:
                 provider: fos_userbundle
                 csrf_token_generator: security.csrf.token_manager

@@ -39,6 +39,7 @@ course:
         introduce: 'Giới thiệu khóa học'
         submit: 'Đăng'
         publish: 'Xuất bản'
+        error: 'Không thể tạo được khóa học, bạn vui lòng thử lại sau!'
     edit_form:
         header: 'Cập nhật khóa học'
         chapter_list: 'Danh sách chương'
@@ -51,6 +52,7 @@ course:
         submit: 'Cập nhật'
         add_chapter: 'Thêm Chương'
         publish: 'Xuất bản'
+        error: 'Không thể cập nhật khóa học, bạn vui lòng thử lại sau!'
     delete:
         confirm: 'xác nhận'
         message: 'Bạn có chắc muốn xóa khóa học này?'
@@ -74,6 +76,7 @@ chapter:
         continue: 'Thêm chương'
         edit: 'Chỉnh sửa'
         preview: 'Xem trước'
+        error: 'Đã có lỗi xảy ra, bạn vui lòng thử lại sau!'
 tutorial:
     all: 'Tất cả'
     create: 'Viết hướng dẫn'
@@ -84,3 +87,4 @@ tutorial:
         preview_tab: 'Xem trước'
         title: 'Tiêu đề'
         content: 'Nội dung'
+        error: 'Không thể tạo được bài hướng dẫn, bạn vui lòng thử lại sau!'

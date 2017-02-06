@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block main %}
     <section class="page-top">
         <div class="container">
@@ -22,11 +23,11 @@
             <div class="tabs">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>Khóa học</a>
+                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>{{ 'header.course' | trans }}</a>
                     </li>
                     {% if tutorials | length > 0 %}
                         <li>
-                            <a href="#tutorials" data-toggle="tab">Bài hướng dẫn</a>
+                            <a href="#tutorials" data-toggle="tab">{{ 'header.tutorial' | trans }}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -55,7 +56,7 @@
                             </div>
                             <div class="row">
                                 <div class="span12 pagination-centered">
-                                    <a class="btn btn-primary btn-lg pull-right" href="{{ path("course_index") }}">Read more ...</a>
+                                    <a class="btn btn-primary btn-lg pull-right right25" href="{{ path("course_index") }}">{{ 'header.read_more' | trans }}</a>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +86,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="span12 pagination-centered">
-                                        <a class="btn btn-primary btn-lg pull-right" href="{{ path('tutorial_index') }}">Read more ...</a>
+                                        <a class="btn btn-primary btn-lg pull-right right25" href="{{ path('tutorial_index') }}">{{ 'header.read_more' | trans }}</a>
                                     </div>
                                 </div>
                             </div>

@@ -23,6 +23,10 @@
         <div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" role="form" name="createGuide">
+                    <div class="alert alert-danger alert-dismissable" ng-if="showError">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ 'course.create_form.error' | trans }}
+                    </div>
                     <div class="form-group">
                         <label for="title">{{ 'course.create_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>

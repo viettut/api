@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
 {% block main %}
     <section class="page-top">
         <div class="container">
@@ -6,7 +7,7 @@
                 <div class="col-md-12">
                     <ul class="breadcrumb">
                         <li><a href="{{ path('home_page') }}">Home</a></li>
-                        <li class="active"><a href="#">Lecturers</a></li>
+                        {#<li class="active"><a href="#">Lecturers</a></li>#}
                     </ul>
                 </div>
             </div>
@@ -21,7 +22,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img alt="author" height="300" class="img-responsive" src="{{ lecturer.avatar }}">
+                    <img alt="author" class="img-responsive" src="{{ lecturer.avatar }}">
                 </div>
             </div>
 
@@ -50,11 +51,11 @@
             <div class="tabs">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>Khóa học</a>
+                        <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>{{ 'header.course' | trans }}</a>
                     </li>
                     {% if tutorials | length > 0 %}
                         <li>
-                            <a href="#tutorials" data-toggle="tab">Bài hướng dẫn</a>
+                            <a href="#tutorials" data-toggle="tab">{{ 'header.tutorial' | trans }}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -62,7 +63,6 @@
                     <div id="courses" class="tab-pane active">
                         <div class="container">
                             <div class="row">
-                                <h3>Khóa học</h3>
                                 <ul class="portfolio-list sort-destination" data-sort-id="portfolio">
                                     {% for c in courses %}
                                         <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
@@ -84,7 +84,7 @@
                             </div>
                             <div class="row">
                                 <div class="span12 pagination-centered">
-                                    <a class="btn btn-primary btn-lg pull-right" href="{{ path("course_index") }}">Read more ...</a>
+                                    <a class="btn btn-primary btn-lg pull-right right25" href="{{ path("course_index") }}">{{ 'header.read_more' | trans }}</a>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="span12 pagination-centered">
-                                        <a class="btn btn-primary btn-lg pull-right" href="{{ path('tutorial_index') }}">Read more ...</a>
+                                        <a class="btn btn-primary btn-lg pull-right right25" href="{{ path('tutorial_index') }}">{{ 'header.read_more' | trans }}</a>
                                     </div>
                                 </div>
                             </div>

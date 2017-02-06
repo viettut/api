@@ -39,6 +39,7 @@ course:
         introduce: 'Course introduce'
         submit: 'Post'
         publish: 'Publish'
+        error: 'Can not create the course, please try again later!'
     edit_form:
         header: 'Update Course'
         chapter_list: 'Chapter List'
@@ -51,6 +52,7 @@ course:
         submit: 'update'
         add_chapter: 'Add Chapter'
         publish: 'Publish'
+        error: 'Can not update the course, please try again later!'
     delete:
         confirm: 'confirm'
         message: 'Do you want to delete the course?'
@@ -74,6 +76,7 @@ chapter:
         continue: 'Add another'
         edit: 'Edit'
         preview: 'Preview'
+        error: 'Can not add the chapter, please try again later!'
 tutorial:
     all: 'All Tutorial'
     create: 'Create Tutorial'
@@ -84,5 +87,6 @@ tutorial:
         preview_tab: 'Preview'
         title: 'Title'
         content: 'Content'
+        error: 'Can not create the tutorial, please try again later!'
 
 

@@ -30,6 +30,10 @@
                     </div>
                 </div>
                 <form class="form-horizontal" role="form" name="createGuide" ng-hide="loading">
+                    <div class="alert alert-danger alert-dismissable" ng-if="showError">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ 'course.edit_form.error' | trans }}
+                    </div>
                     <div class="form-group">
                         <label for="title">{{ 'course.edit_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
