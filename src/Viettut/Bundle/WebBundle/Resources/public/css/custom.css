@@ -47,6 +47,16 @@ textarea {
     top: 10px;
 }
 
+.mtop50 {
+  margin-top: 50px;
+}
+
+.text-right-top {
+    float:right;
+    position: relative;
+    top:-10px
+}
+
 .right25 {
     margin-right: 25px;
 }
