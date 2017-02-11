@@ -35,8 +35,11 @@ registration:
     confirmed1: 'Hiện tại bạn có thể tự tạo các khóa học, viết các bài hướng dẫn và có thể bình luận các bài viết của những thành viên khác.'
     create_course: 'Tạo khóa học ngay?'
     email:
-        message: 'Xin chào %username%! Để hoàn tất kích hoạt tài khoản của bạn - vui lòng truy cập %confirmationUrl%. Cám ơn.'
         subject: 'Chào mừng %username%!'
+        message1: 'Xin chào %username%!'
+        message2: 'Để hoàn tất kích hoạt tài khoản của bạn - vui lòng truy cập đường link sau.'
+        message3: |
+            Cám ơn.
     flash:
         user_created: 'Người sử dụng đã được khởi tạo'
     submit: 'Đăng ký'

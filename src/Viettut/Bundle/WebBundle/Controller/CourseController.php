@@ -154,6 +154,10 @@ class CourseController extends FOSRestController
             throw new NotFoundHttpException('');
         }
 
+        $courseManager = $this->get('viettut.domain_manager.course');
+        $course->increaseView();
+        $courseManager->save($course);
+
         $lastChapter = true;
         $nextChapter = $this->get('viettut.repository.chapter')->getChapterByCourseAndPosition($course, 1);
         if (!$nextChapter instanceof ChapterInterface) {

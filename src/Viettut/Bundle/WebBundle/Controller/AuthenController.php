@@ -29,10 +29,12 @@ class AuthenController extends Controller
      */
     public function facebookLoginAction(Request $request)
     {
+        $appId = $this->getParameter('facebook_app_id');
+        $appSecret = $this->getParameter('facebook_app_secret');
         $lecturerManager = $this->get('viettut_user.domain_manager.lecturer');
         $fb = new \Facebook\Facebook([
-            'app_id' => '1245562308819573',
-            'app_secret' => '55ea4598ddcd5707ef67aaa4d0224086',
+            'app_id' => $appId,
+            'app_secret' => $appSecret,
             'default_graph_version' => 'v2.5',
         ]);
 
@@ -90,15 +92,16 @@ class AuthenController extends Controller
     {
         $code = $request->get('code');
         ########## Google Settings.Client ID, Client Secret from https://console.developers.google.com #############
-        $client_id = '355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com';
-        $client_secret = 'eyeBjN6tVwQwNrkG-S0XQmxa';
+        $clientId = $this->getParameter('google_client_id');
+        $clientSecret = $this->getParameter('google_client_secret');
+        $redirectUri = $this->getParameter('google_redirect_uri');
 
         ###################################################################
 
         $client = new Google_Client();
-        $client->setClientId($client_id);
-        $client->setClientSecret($client_secret);
-        $client->setRedirectUri('http://test.dev/app_dev.php/google/login');
+        $client->setClientId($clientId);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUri);
         $client->addScope("email");
         $client->addScope("profile");
 

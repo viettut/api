@@ -20,6 +20,7 @@ header:
     popular_courses: 'Khóa học tiêu biểu'
     popular_tutorials: 'Bài hướng dẫn được quan tâm'
     next_chap: 'Chương tiếp theo'
+    change_password: 'Đổi password'
 footer:
     subscribe: 'Subscribe để nhận được thông tin mới nhất về các khóa học và các bài hướng dẫn!'
     subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'

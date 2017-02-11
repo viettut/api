@@ -42,11 +42,9 @@ registration:
         user_created: 'The user has been created successfully.'
     email:
         subject: 'Welcome %username%!'
-        message: |
-            Hello %username%!
-
-            To finish activating your account - please visit %confirmationUrl%
-
+        message1: 'Hello %username%!'
+        message2: 'To finish activating your account - please visit the following link'
+        message3: |
             Regards,
             the Team.
 

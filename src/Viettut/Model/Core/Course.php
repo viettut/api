@@ -431,4 +431,13 @@ class Course implements CourseInterface
 
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function increaseView()
+    {
+        $this->view++;
+        return $this;
+    }
 }

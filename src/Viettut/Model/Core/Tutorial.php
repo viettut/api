@@ -332,4 +332,13 @@ class Tutorial implements TutorialInterface
         $this->tutorialTags = $tutorialTags;
         return $this;
     }
+
+    /**
+     * @return $this
+     */
+    public function increaseView()
+    {
+        $this->view++;
+        return $this;
+    }
 }

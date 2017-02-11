@@ -210,4 +210,9 @@ interface CourseInterface extends ModelInterface
      * @param string $videoEmbedded
      */
     public function setVideoEmbedded($videoEmbedded);
+
+    /**
+     * @return $this
+     */
+    public function increaseView();
 }

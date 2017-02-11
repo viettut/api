@@ -20,7 +20,11 @@ class SecurityController extends BaseController
      */
     public function loginAction(Request $request)
     {
+        $facebookAppId = $this->getParameter('facebook_app_id');
+        $facebookAppSecret = $this->getParameter('facebook_app_secret');
         $facebookRedirectUri = $this->getParameter('facebook_redirect_uri');
+        $googleClientId = $this->getParameter('google_client_id');
+        $googleClientSecret = $this->getParameter('google_client_secret');
         $googleRedirectUri = $this->getParameter('google_redirect_uri');
         /** @var $session \Symfony\Component\HttpFoundation\Session\Session */
         $session = $request->getSession();
@@ -50,8 +54,8 @@ class SecurityController extends BaseController
             : null;
 
         $fb = new \Facebook\Facebook([
-            'app_id' => '1245562308819573',
-            'app_secret' => '55ea4598ddcd5707ef67aaa4d0224086',
+            'app_id' => $facebookAppId,
+            'app_secret' => $facebookAppSecret,
             'default_graph_version' => 'v2.5',
         ]);
 
@@ -61,8 +65,8 @@ class SecurityController extends BaseController
 
         $api = new Google_Client();
         $api->setApplicationName("Viettut Academy"); // Set Application name
-        $api->setClientId('355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com'); // Set Client ID
-        $api->setClientSecret('eyeBjN6tVwQwNrkG-S0XQmxa '); //Set client Secret
+        $api->setClientId($googleClientId); // Set Client ID
+        $api->setClientSecret($googleClientSecret); //Set client Secret
         $api->addScope('email');
         $api->addScope('profile');
         $api->setRedirectUri($googleRedirectUri); // Enter your file path (Redirect Uri) that you have set to get client ID in API console

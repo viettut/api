@@ -158,4 +158,9 @@ interface TutorialInterface extends ModelInterface
      * @return self
      */
     public function setTutorialTags($tutorialTags);
+    
+    /**
+     * @return $this
+     */
+    public function increaseView();
 }

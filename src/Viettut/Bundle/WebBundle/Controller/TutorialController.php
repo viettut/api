@@ -104,6 +104,9 @@ class TutorialController extends Controller
             throw new NotFoundHttpException('');
         }
 
+        $tutorialManager = $this->get('viettut.domain_manager.tutorial');
+        $tutorial->increaseView();
+        $tutorialManager->save($tutorial);
         $popularCourses = $this->get('viettut.repository.course')->getPopularCourse(intval($popularSize));
         $popularTutorials = $this->get('viettut.repository.tutorial')->getPopularTutorial(intval($popularSize));
 

@@ -108,9 +108,11 @@
         <div class="row">
             <div class="tabs">
                 <ul class="nav nav-tabs">
+                    {% if popularCourses | length > 0 %}
                     <li class="active">
                         <a href="#courses" data-toggle="tab"><i class="fa fa-star"></i>{{ 'header.popular_courses' | trans }}</a>
                     </li>
+                    {% endif %}
                     {% if popularTutorial | length > 0 %}
                         <li>
                             <a href="#tutorials" data-toggle="tab">{{ 'header.popular_tutorials' | trans }}</a>
@@ -118,6 +120,7 @@
                     {% endif %}
                 </ul>
                 <div class="tab-content">
+                    {% if popularCourses | length > 0 %}
                     <div id="courses" class="tab-pane active">
                         <div class="container">
                             <div class="row">
@@ -147,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% if popularTutorial | length > 0 %}
                         <div id="tutorials" class="tab-pane">
                             <div class="container">
@@ -156,7 +160,7 @@
                                             <li class="col-md-4 col-sm-6 col-xs-12 isotope-item websites">
                                                 <div class="portfolio-item img-thumbnail">
                                                     <a href="{{ path('tutorial_detail', {'hash' : tut.hashTag, 'username' : tut.author.username}) }}" class="thumb-info">
-                                                        <img alt="" class="img-responsive" src="{{ asset('bundles/viettutweb/img/projects/project.png') }}">
+                                                        <img alt="tutorial" class="img-responsive" src="{{ asset('bundles/viettutweb/img/projects/project.jpg') }}">
                                                         <span class="thumb-info-title">
                                                             <span class="thumb-info-inner text-auto-wrap">{{ tut.title }}</span>
                                                             <span class="thumb-info-type">{{ tut.author.username }}</span>

@@ -20,6 +20,7 @@ header:
     popular_courses: 'Favorite courses'
     popular_tutorials: 'Favorite tutorials'
     next_chap: 'Next chapter'
+    change_password: 'Change password'
 footer:
     subscribe: 'Subscribe to get latest news and updates'
     subscribed_success: 'Your email has been added successfully!'
