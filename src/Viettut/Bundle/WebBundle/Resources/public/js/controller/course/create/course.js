@@ -1,9 +1,7 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, TagService, AuthenService, config) {
+    .controller('CourseController', function ($http, $scope, $window, Upload, $timeout, config) {
         $scope.laddaLoading = false;
-        $scope.error = '';
-        $scope.showError = false;
         $scope.title = '';
         $scope.courseTags = [];
         $scope.selectedTags = [];
@@ -13,23 +11,19 @@ angular
         $scope.content = '';
         $scope.uploaded = false;
         $scope.uploadError = false;
-        $scope.preview = '';
         $scope.published = false;
-        $scope.titleValid = $scope.title.length < 15;
-        $scope.introduceValid = $scope.introduce < 32;
 
         $scope.course = {};
 
         $scope.initTag = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-            $scope.allTags = TagService.getAllTags();
+            $http.get(config.API_URL + 'tags')
+            .then(function(response) {
+                $scope.allTags = response.data;
+            });
         };
+
         //initialize
         $scope.initTag();
-
-        $scope.loadTags = function() {
-            return $scope.allTags;
-        };
 
         $scope.addTag = function(tag) {
             if (typeof tag.id == 'undefined') {
@@ -46,8 +40,6 @@ angular
         };
 
         $scope.create = function () {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-
             var data = {
                 title: $scope.title,
                 imagePath: $scope.image,
@@ -69,21 +61,11 @@ angular
                     }
                 },
                 function(response) {
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
-
                     $scope.laddaLoading = false;
-                    $scope.error = response.data;
-                    $scope.showError = true;
+                    $scope.addError(response.data.message);
                 });
         };
 
-        $scope.isAuthenticated = $auth.isAuthenticated();
 
         $scope.uploadFiles = function (file) {
             $scope.f = file;
@@ -111,6 +93,33 @@ angular
                 $scope.uploadError = true;
                 $scope.uploadErrorMsg = 'Image\'s max height is 1000px and max size is 1MB';
             }
+        };
+
+        $scope.filterTags = function($query) {
+            var matches = [];
+            for (var i = 0; i < $scope.allTags.length ; i++) {
+                if ($scope.allTags[i].text.indexOf($query.toLowerCase()) >= 0 && $query.toLowerCase().length >= 3) {
+                    matches.push($scope.allTags[i]);
+                }
+            }
+
+            return matches;
+        };
+
+        $scope.addError = function(message) {
+            var html = '<div class="alert alert-danger alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
+        };
+
+        $scope.addInfo = function(message) {
+            var html = '<div class="alert alert-success alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
         };
     });
 

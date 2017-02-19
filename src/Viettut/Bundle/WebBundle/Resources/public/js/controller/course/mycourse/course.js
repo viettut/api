@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, AuthenService, config) {
+    .controller('CourseController', function ($http, $scope, $window, config) {
         $scope.myCourses = [];
         $scope.loading = true;
         $scope.deletingCourse = null;
@@ -24,25 +24,18 @@ angular
                 return;
             }
 
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
             $http.delete(config.API_URL + 'courses/' + $scope.myCourses[$scope.deletingCourse].id).
             then(
                 function(response){
                     $scope.loading = false;
                     if(response.status == 204) {
-                        $scope.alertSuccess();
+                        $scope.addInfo('The course has been deleted successfully!');
                         $scope.myCourses.splice($scope.deletingCourse, 1);
                     }
                 },
                 function(response){
                     $scope.loading = false;
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
+                    $scope.addError(response.message);
                 });
         };
 
@@ -55,40 +48,38 @@ angular
             $('#deleteConfirm').modal('hide');
         };
 
-        $scope.isAuthenticated = $auth.isAuthenticated();
-
-        $scope.alertSuccess = function() {
-            var html = '<div class="alert alert-success">' +
-                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                '    <strong>Good job!</strong> The course has been deleted successfully !' +
-                '</div>';
-            angular.element($('div.blog-posts')).before(html);
-        };
-
         $scope.loadCourses = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
             $http.get(config.API_URL + 'mycourses').
             then(
                 function(response){
                     $scope.loading = false;
-                    if(response.status == 200) {
+                    if (response.status == 200) {
                         $scope.myCourses = response.data;
-
                     }
                 },
                 function(response){
                     $scope.loading = false;
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
+                    $scope.addError(response.message);
                 });
         };
 
         $scope.loadCourses();
+
+        $scope.addError = function(message) {
+            var html = '<div class="alert alert-danger alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('div.blog-posts')).before(html);
+        };
+
+        $scope.addInfo = function(message) {
+            var html = '<div class="alert alert-success alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('div.blog-posts')).before(html);
+        };
     });
 
 

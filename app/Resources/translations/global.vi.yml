@@ -89,3 +89,8 @@ tutorial:
         title: 'Tiêu đề'
         content: 'Nội dung'
         error: 'Không thể tạo được bài hướng dẫn, bạn vui lòng thử lại sau!'
+search:
+    header: 'Tìm kiếm'
+    result: 'kết quả tìm kếm cho'
+    new_search: 'Tiếp tục tìm kiếm:'
+    new_search_message: 'Thay đổi từ khóa nếu kết quả không như bạn mong muốn:'

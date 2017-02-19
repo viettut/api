@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)">
                             <auto-complete
-                                    source="loadTags()"
+                                    source="filterTags($query)"
                                     min-length="1"
                                     select-first-match="false">
                             </auto-complete>

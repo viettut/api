@@ -11,8 +11,8 @@ angular
                 $http({
                     method: 'GET',
                     url: config.API_URL + 'tags'
-                }).success(function (data) {
-                    deferred.resolve(data);
+                }).success(function (response) {
+                    deferred.resolve(response.data);
                 }).error(function (msg) {
                     deferred.reject(msg);
                 });

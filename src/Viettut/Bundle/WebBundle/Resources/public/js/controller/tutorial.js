@@ -1,40 +1,35 @@
 angular
     .module('viettut')
-    .controller('TutorialController', function ($auth, $http, $scope, $window, config, AuthenService) {
+    .controller('TutorialController', function ($http, $scope, $window, config) {
         $scope.laddaLoading = false;
         $scope.error = '';
-        $scope.showError = false;
         $scope.tutorialTags = [];
         $scope.selectedTags = [];
         $scope.allTags = [];
-        $scope.preview = '';
-        $scope.previewText = 'Show Preview';
-        $scope.showPreview = false;
-
         $scope.title = '';
         $scope.content = '';
-
         $scope.tutorial = {};
 
         $scope.initTag = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-            $scope.allTags = $http.get(config.BASE_URL + 'api/v1/tags');
+            $http.get(config.API_URL + 'tags')
+            .then(function(response) {
+                $scope.allTags = response.data;
+            });
         };
+
+        $scope.filterTags = function($query) {
+            var matches = [];
+            for (var i = 0; i < $scope.allTags.length ; i++) {
+                if ($scope.allTags[i].text.indexOf($query.toLowerCase()) >= 0 && $query.toLowerCase().length >= 3) {
+                    matches.push($scope.allTags[i]);
+                }
+            }
+
+            return matches;
+        };
+        
         //initialize
         $scope.initTag();
-
-        $scope.preview = function(){
-            $scope.showPreview = !$scope.showPreview;
-
-            if($scope.showPreview) {
-                $scope.previewText = 'Hide Preview';
-            }
-            else $scope.previewText = 'Show Preview';
-        };
-
-        $scope.loadTags = function() {
-            return $scope.allTags;
-        };
 
         $scope.addTag = function(tag) {
             if (typeof tag.id == 'undefined') {
@@ -46,8 +41,6 @@ angular
         };
 
         $scope.create = function () {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-
             var data = {
                 title: $scope.title,
                 content: $scope.content,
@@ -67,21 +60,25 @@ angular
                     }
                 },
                 function(response){
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
-
                     $scope.laddaLoading = false;
-                    $scope.error = response.data;
-                    $scope.showError = true;
+                    $scope.addError(response.data.message);
                 });
         };
 
-        $scope.isAuthenticated = $auth.isAuthenticated();
+        $scope.addError = function(message) {
+            var html = '<div class="alert alert-danger alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
+        };
 
+        $scope.addInfo = function(message) {
+            var html = '<div class="alert alert-success alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
+        };
     });
 

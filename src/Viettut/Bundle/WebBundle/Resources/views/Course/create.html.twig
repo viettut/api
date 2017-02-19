@@ -22,11 +22,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form class="form-horizontal" role="form" name="createGuide">
-                    <div class="alert alert-danger alert-dismissable" ng-if="showError">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ 'course.create_form.error' | trans }}
-                    </div>
+                <form class="form-horizontal" role="form" id="createCourse">
                     <div class="form-group">
                         <label for="title">{{ 'course.create_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
@@ -34,9 +30,10 @@
                     <div class="form-group">
                         <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
                             <auto-complete
-                                    source="loadTags()"
+                                    source="filterTags($query)"
                                     min-length="2"
-                                    select-first-match="false">
+                                    select-first-match="false"
+                                    max-results-to-show="100">
                             </auto-complete>
                         </tags-input>
                     </div>
@@ -78,7 +75,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" ng-model="published" required name="published">
+                        <input type="checkbox" ng-model="published" name="published">
                         <label for="published">{{ 'course.create_form.publish' | trans }}</label>
                     </div>
                     <div class="row">
@@ -92,7 +89,7 @@
     </div>
 {% endblock %}
 {% block custom %}
-    <script src="{{ asset('bundles/viettutweb/js/prism.js') }}"></script>
+    {#<script src="{{ asset('bundles/viettutweb/js/prism.js') }}"></script>#}
     <script src="{{ asset('bundles/viettutweb/js/controller/course/comment.js') }}"></script>
     <script src="{{ asset('bundles/viettutweb/js/controller/course/create/course.js') }}"></script>
 {% endblock %}

@@ -29,11 +29,7 @@
                         <span class="sr-only">45% Complete</span>
                     </div>
                 </div>
-                <form class="form-horizontal" role="form" name="createGuide" ng-hide="loading">
-                    <div class="alert alert-danger alert-dismissable" ng-if="showError">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        {{ 'course.edit_form.error' | trans }}
-                    </div>
+                <form class="form-horizontal" role="form"  ng-hide="loading" id="editCourse">
                     <div class="form-group">
                         <label for="title">{{ 'course.edit_form.title' | trans }}</label>
                         <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
@@ -41,7 +37,7 @@
                     <div class="form-group">
                         <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
                             <auto-complete
-                                    source="loadTags()"
+                                    source="filterTags($query)"
                                     min-length="2"
                                     select-first-match="false">
                             </auto-complete>

@@ -89,5 +89,9 @@ tutorial:
         title: 'Title'
         content: 'Content'
         error: 'Can not create the tutorial, please try again later!'
-
+search:
+    header: 'Search'
+    result: 'Search result for'
+    new_search: 'New search:'
+    new_search_message: 'If you are not happy with the results below please do another search:'
 

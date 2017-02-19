@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('ChapterController', function ($auth, $http, $scope, $window, config, AuthenService) {
+    .controller('ChapterController', function ( $http, $scope, $window, config) {
         $scope.previewText = 'Show Preview';
         $scope.showPreview = false;
         $scope.header = '';
@@ -10,12 +10,11 @@ angular
         $scope.introduce = $('textarea#introduce').val();
 
         $scope.getCourse = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
             $http({
                 method: 'GET',
                 url: config.API_URL + 'courses/' + $scope.courseId
             }).then(function successCallback(response) {
-                $scope.course = responses.data;
+                $scope.course = response.data;
             }, function errorCallback(response) {
             });
 
@@ -28,7 +27,6 @@ angular
         });
 
         $scope.add = function(){
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
             var data = {
                 header: $scope.header,
                 content: $scope.content,
@@ -47,38 +45,34 @@ angular
                     }
                 },
                 function(response){
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
-
+                    $scope.addError(response.message);
                     $scope.laddaLoading = false;
-                    $scope.error = response.data;
-                    $scope.showError = true;
                 });
         };
 
         $scope.goHome = function() {
-            AuthenService.goHome();
+            $window.location.href = config.BASE_URL;
         };
 
         $scope.addAnotherChapter = function(){
             $window.location.reload();
         };
 
-        $scope.preview = function(){
-            $scope.showPreview = !$scope.showPreview;
-
-            if($scope.showPreview) {
-                $scope.previewText = 'Hide Preview';
-            }
-            else $scope.previewText = 'Show Preview';
+        $scope.addError = function(message) {
+            var html = '<div class="alert alert-danger alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
         };
 
-        $scope.isAuthenticated = $auth.isAuthenticated();
+        $scope.addInfo = function(message) {
+            var html = '<div class="alert alert-success alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
+        };
     });
 
 

@@ -1,9 +1,7 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, TagService, AuthenService,  config) {
+    .controller('CourseController', function ($http, $scope, $window, Upload, $timeout, $state, config) {
         $scope.laddaLoading = false;
-        $scope.error = '';
-        $scope.showError = false;
         $scope.title = '';
         $scope.courseTags = [];
         $scope.selectedTags = [];
@@ -14,24 +12,30 @@ angular
         $scope.published = false;
         $scope.uploaded = false;
         $scope.uploadError = false;
-        $scope.preview = '';
-        $scope.titleValid = $scope.title.length < 15;
-        $scope.introduceValid = $scope.introduce < 32;
         $scope.loading = true;
 
         $scope.course = {};
 
         $scope.initTag = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-            $scope.allTags = TagService.getAllTags();
+            $http.get(config.API_URL + 'tags')
+            .then(function(response) {
+                $scope.allTags = response.data;
+            });
         };
         //initialize
         $scope.initTag();
 
-        $scope.loadTags = function() {
-            return $scope.allTags;
-        };
+        $scope.filterTags = function($query) {
+            var matches = [];
+            for (var i = 0; i < $scope.allTags.length ; i++) {
+                if ($scope.allTags[i].text.indexOf($query.toLowerCase()) >= 0 && $query.toLowerCase().length >= 3) {
+                    matches.push($scope.allTags[i]);
+                }
+            }
 
+            return matches;
+        };
+        
         $scope.addTag = function(tag) {
             if (typeof tag.id == 'undefined') {
                 $scope.courseTags.push({'tag': tag})
@@ -47,8 +51,6 @@ angular
         };
 
         $scope.create = function () {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-
             var data = {
                 title: $scope.title,
                 imagePath: $scope.image,
@@ -66,34 +68,32 @@ angular
                     $scope.laddaLoading = false;
                     if(response.status == 204) {
                         $scope.course = response.data;
-                        $scope.alertSuccess();
+                        $scope.addInfo('The course has been updated successfully!');
                     }
                 },
                 function(response){
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
-
                     $scope.laddaLoading = false;
-                    $scope.error = response.data;
-                    $scope.showError = true;
+                    $scope.addError(response.data.message);
                 });
         };
 
-        $scope.alertSuccess = function() {
-            var html = '<div class="alert alert-success">' +
-                       '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                       '    <strong>Good job!</strong> The course has been created successfully !' +
-                       '</div>';
+        $scope.addError = function(message) {
+            var html = '<div class="alert alert-danger alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
+            angular.element($('form.form-horizontal')).before(html);
+        };
+
+        $scope.addInfo = function(message) {
+            var html = '<div class="alert alert-success alert-dismissable">' +
+                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
+                message +
+                '</div>';
             angular.element($('form.form-horizontal')).before(html);
         };
 
         $scope.loadCourse = function() {
-            $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
             $http.get(config.API_URL + 'courses/' + $scope.courseId).
             then(
                 function(response){
@@ -116,13 +116,8 @@ angular
                 },
                 function(response){
                     $scope.loading = false;
-                    if(response.status == 401) {
-                        if($auth.isAuthenticated()) {
-                            $auth.logout();
-                        }
-                        // re-login
-                        AuthenService.login();
-                    }
+                    $scope.laddaLoading = false;
+                    $scope.addError(response.data.message);
                 });
         };
 
@@ -164,8 +159,6 @@ angular
             var courseToken = $('input#course-token').val();
             $window.location.href = config.BASE_URL + 'courses/' + courseToken + '/add-chapter';
         };
-
-        $scope.isAuthenticated = $auth.isAuthenticated();
     });
 
 
