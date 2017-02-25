@@ -47,14 +47,8 @@ services:
                 event: 'lexik_jwt_authentication.on_jwt_created'
                 method: 'onJWTCreated'
 
-#    viettut_api.mailer.mailer:
-#        class: Viettut\Bundle\ApiBundle\Mailer\Mailer
-#        arguments:
-#            - '@mailer'
-#            - '@router'
-#            - '@templating'
-#            -
-#                resetting.template: ViettutApiBundle:Resetting:email.txt.twig
-#                from_email:
-#                    resetting: %viettut_user_system_lecturer.resetting.email.from_email%
-#                password_resetting_link: %password_resetting_link%
+    viettut.services.video_service:
+        class: Viettut\Services\VideoService
+        arguments:
+            - '%video_width%'
+            - '%video_height%'

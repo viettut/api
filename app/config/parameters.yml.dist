@@ -20,5 +20,11 @@ parameters:
     upload_directory: /uploads/images
     popular_size: 10
     page_size: 5
-    facebook_redirect_uri: http://viettut.dev/app_dev.php/facebook/login
-    google_redirect_uri: http://viettut.dev/app_dev.php/google/login
+    facebook_app_id: '1245562308819573'
+    facebook_app_secret: '55ea4598ddcd5707ef67aaa4d0224086'
+    facebook_redirect_uri: 'http://viettut.dev/app_dev.php/facebook/login'
+    google_client_id: '355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com'
+    google_client_secret: 'eyeBjN6tVwQwNrkG-S0XQmxa'
+    google_redirect_uri: 'http://viettut.dev/app_dev.php/google/login'
+    video_width: 500
+    video_height: 300

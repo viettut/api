@@ -51,7 +51,7 @@
                     {% for tutorial in tutorials %}
                         <li>
                             <div class="post-info">
-                                <a href="{{ path('course_detail', {'hash' : course.hashTag, 'username' : tutorial.author.username}) }}">{{ tutorial.title }}</a>
+                                <a href="{{ path('tutorial_detail', {'hash' : tutorial.hashTag, 'username' : tutorial.author.username}) }}">{{ tutorial.title }}</a>
                                 <div class="post-meta">
                                     {{ tutorial.createdAt | date('F d y') }}
                                 </div>

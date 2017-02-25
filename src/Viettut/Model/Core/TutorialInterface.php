@@ -163,4 +163,24 @@ interface TutorialInterface extends ModelInterface
      * @return $this
      */
     public function increaseView();
+
+    /**
+     * @return string
+     */
+    public function getVideo();
+
+    /**
+     * @param string $video
+     */
+    public function setVideo($video);
+
+    /**
+     * @return boolean
+     */
+    public function isHasVideo();
+
+    /**
+     * @param boolean $hasVideo
+     */
+    public function setHasVideo($hasVideo);
 }

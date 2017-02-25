@@ -70,6 +70,16 @@ class Tutorial implements TutorialInterface
     protected $view;
 
     /**
+     * @var string
+     */
+    protected $video;
+
+    /**
+     * @var bool
+     */
+    protected $hasVideo;    
+
+    /**
      * @var \DateTime
      */
     protected $createdAt;
@@ -340,5 +350,37 @@ class Tutorial implements TutorialInterface
     {
         $this->view++;
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
+     * @param string $video
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isHasVideo()
+    {
+        return $this->hasVideo;
+    }
+
+    /**
+     * @param boolean $hasVideo
+     */
+    public function setHasVideo($hasVideo)
+    {
+        $this->hasVideo = $hasVideo;
     }
 }

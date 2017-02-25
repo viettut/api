@@ -29,7 +29,7 @@ services:
     viettut.form.type.tutorial:
         class: %viettut.form.type.tutorial.class%
         arguments:
-            - @viettut.repository.tutorial
+            - '@viettut.services.video_service'
         tags:
             - { name: form.type, alias: tagcade_form_tutorial }
 

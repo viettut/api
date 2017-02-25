@@ -16,15 +16,33 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Viettut\Entity\Core\Chapter;
 use Viettut\Entity\Core\Tutorial;
+use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\Core\TutorialInterface;
 use Viettut\Model\Core\TutorialTagInterface;
+use Viettut\Services\VideoServiceInterface;
 use Viettut\Utilities\StringFactory;
 
 class TutorialFormType extends AbstractRoleSpecificFormType
 {
     use StringFactory;
+
+    /**
+     * @var VideoServiceInterface
+     */
+    protected $videoService;
+
+
+    /**
+     * TutorialFormType constructor.
+     * @param VideoServiceInterface $videoService
+     */
+    public function __construct(VideoServiceInterface $videoService)
+    {
+        $this->videoService = $videoService;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -35,6 +53,7 @@ class TutorialFormType extends AbstractRoleSpecificFormType
             ->add('title')
             ->add('content')
             ->add('published')
+            ->add('video')
             ->add('tutorialTags', 'collection', array(
                 'mapped' => true,
                 'allow_add' => true,
@@ -65,8 +84,20 @@ class TutorialFormType extends AbstractRoleSpecificFormType
                     $tutorialTag->setTutorial($tutorial);
                 }
 
-                if ($tutorial->isPublished() === null) {
+                if ($tutorial->isPublished() === null) {https://www.youtube.com/watch?v=tdE2-xI3VNE
                     $tutorial->setPublished(false);
+                }
+
+                if (empty($tutorial->getVideo())) {
+                    $tutorial->setHasVideo(false);
+                } else {
+                    try {
+                        $object = $this->videoService->getVideoObject($tutorial->getVideo());
+                        $tutorial->setVideo($object);
+                        $tutorial->setHasVideo(true);
+                    } catch (InvalidArgumentException $ex) {
+                        throw $ex;
+                    }
                 }
             }
         );

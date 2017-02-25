@@ -22,6 +22,8 @@ class Tutorial extends TutorialModel
     protected $likes;
     protected $view;
     protected $published;
+    protected $video;
+    protected $hasVideo;
     protected $createdAt;
     protected $updatedAt;
     protected $deletedAt;

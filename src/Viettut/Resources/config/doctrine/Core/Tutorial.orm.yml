@@ -36,6 +36,15 @@ Viettut\Entity\Core\Tutorial:
             type: boolean
             options:
                 default: false
+        video:
+            type: text
+            nullable: true
+
+        hasVideo:
+            type: boolean
+            nullable: false
+            options:
+                default: false
         createdAt:
             type: datetime
             gedmo:

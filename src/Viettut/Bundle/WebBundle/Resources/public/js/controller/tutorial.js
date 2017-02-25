@@ -7,6 +7,7 @@ angular
         $scope.selectedTags = [];
         $scope.allTags = [];
         $scope.title = '';
+        $scope.video = '';
         $scope.content = '';
         $scope.tutorial = {};
 
@@ -43,6 +44,7 @@ angular
         $scope.create = function () {
             var data = {
                 title: $scope.title,
+                video: $scope.video,
                 content: $scope.content,
                 tutorialTags: $scope.tutorialTags
             };
@@ -50,7 +52,7 @@ angular
             // start progress
             $scope.laddaLoading = true;
 
-            $http.post(config.BASE_URL + 'api/v1/tutorials', data).
+            $http.post(config.BASE_URL + 'api/v1/tutorials?XDEBUG_SESSION_START=1', data).
                 then(
                 function(response){
                     $scope.laddaLoading = false;

@@ -33,7 +33,13 @@
                                     <span class="pull-right"><i class="fa fa-comments"></i> <a href="#">{{ tutorial.comments | length }} {{ 'header.comment' | trans }}</a></span>
                                 </div>
                                 <hr class="tall"/>
-                                <div>{{ tutorial.content | mde }}</div>
+                                {% if tutorial.hasVideo %}
+                                    <div class="row">
+                                        {{ tutorial.video | raw }}
+                                    </div>
+                                    <hr class="tall"/>
+                                {% endif %}
+                                <div class="row">{{ tutorial.content | mde }}</div>
                                 <div class="row col-md-12" ng-controller="CommentController">
                                     <div class="post-block post-comments clearfix row col-md-12">
                                         <h3 ng-hide="commentToggle"><i class="fa fa-comments"></i>{{ 'tutorial.comment' | trans }} ({{ tutorial.comments | length }})</h3>
