@@ -13,8 +13,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Viettut\Exception\InvalidArgumentException;
 use Viettut\Model\Core\TutorialInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Viettut\Model\User\UserEntityInterface;
@@ -118,4 +121,5 @@ class TutorialController extends Controller
             )
         );
     }
+
 }

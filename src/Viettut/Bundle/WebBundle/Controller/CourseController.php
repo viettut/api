@@ -177,27 +177,4 @@ class CourseController extends FOSRestController
         ));
     }
 
-    /**
-     * @Route("/courses/upload")
-     * @Method({"POST"})
-     *
-     * @param Request $request
-     * @return string
-     */
-    public function uploadImage(Request $request)
-    {
-        $uploadRootDir = $this->container->getParameter('upload_root_directory');
-        $uploadDir = $this->container->getParameter('upload_directory');
-        foreach ($_FILES as $file) {
-
-            $uploadFile = new UploadedFile($file['tmp_name'], $file['name'], $file['type'], $file['size'], $file['error'], $test = false);
-            $baseName = uniqid('', true);
-            $uploadFile->move($uploadRootDir,
-                $baseName.substr($uploadFile->getClientOriginalName(), -4)
-            );
-
-            return new JsonResponse(join('/', array($uploadDir, $baseName.substr($uploadFile->getClientOriginalName(), -4))));
-        }
-        throw new InvalidArgumentException('Invalid files');
-    }
 }

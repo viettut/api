@@ -7,9 +7,9 @@
     <!-- Basic -->
     <meta charset="utf-8">
     <title>Viettut - Learn programming from the best</title>
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Viettut - Learn programming from the best">
-    <meta name="author" content="viettut.com">
+    <meta name="keywords" content="lap trinh; hoc online; lap trinh vien; php; symfony; java; nodejs; mien phi; free; video; sinh vien;" />
+    <meta name="description" content="Learn programming online with videos. Học lập trình online miễn phí từ cơ bản đến nâng cao. Dành cho sinh viên và senior, junior developers. Nhận trợ giúp từ cộng đồng.">
+    <meta name="author" content="Le Truong Giang - giangcoffee">
 
     <!-- Mobile Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="logo">
                 <a href="{{ path('home_page') }}">
-                    <img alt="Viettut Academy" height="74" data-sticky-width="82" data-sticky-height="40" src="{{ asset('bundles/viettutweb/img/viettut_white.png') }}">
+                    <img alt="Viettut Academy" height="104" data-sticky-width="104" data-sticky-height="82" src="{{ asset('bundles/viettutweb/img/viettut_white.png') }}">
                 </a>
             </div>
             <div class="search">
@@ -74,7 +74,7 @@
                     <li class="twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter">Twitter</a></li>
                     <li class="linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin">Linkedin</a></li>
                 </ul>
-                <div class="pull-right" style="padding-right: 10px;">
+                <div class="pull-right padding-right-10">
                     <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'vi'})) }}">Tiếng Việt</a>
                     <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">English</a>
                 </div>
@@ -103,7 +103,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a class="dropdown-toggle" href="{{ path('coming_soon') }}">
+                            <a class="dropdown-toggle" href="http://qa.viettut.com" target="_blank">
                                 {{ 'header.question_answer' | trans }}
                             </a>
                         </li>
@@ -230,8 +230,9 @@
                         <h4>{{ 'header.contact' | trans }}</h4>
                         <ul class="contact">
                             {#<li><p><i class="fa fa-map-marker"></i> <strong>Address:</strong> 1234 Street Name, City Name, United States</p></li>#}
-                            <li><p><i class="fa fa-phone"></i> <strong>Phone:</strong> 0961.61.4387</p></li>
+                            <li><p><i class="fa fa-phone"></i> <strong>Hot line:</strong> 0961.61.4387</p></li>
                             <li><p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:support@viettut.com">support@viettut.com</a></p></li>
+                            <li><p><i class="fa fa-comments"></i> <a href="https://m.me/viettutacademy">{{ 'footer.message' | trans }}</a></p></li>
                         </ul>
                     </div>
                 </div>
@@ -250,12 +251,12 @@
         <div class="footer-copyright">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-1">
-                        <a href="{{ path('home_page') }}" class="logo">
-                            <img alt="ViettuT academy" class="img-responsive" src="{{ asset('bundles/viettutweb/img/viettut_black.png') }}">
-                        </a>
-                    </div>
-                    <div class="col-md-7">
+                    {#<div class="col-md-1">#}
+                        {#<a href="{{ path('home_page') }}" class="logo">#}
+                            {#<img alt="ViettuT academy" class="img-responsive" src="{{ asset('bundles/viettutweb/img/viettut_black.png') }}">#}
+                        {#</a>#}
+                    {#</div>#}
+                    <div class="col-md-8">
                         <p>© Copyright 2015. All Rights Reserved.</p>
                     </div>
                     <div class="col-md-4">

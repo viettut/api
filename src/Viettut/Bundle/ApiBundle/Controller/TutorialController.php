@@ -9,16 +9,25 @@
 namespace Viettut\Bundle\ApiBundle\Controller;
 
 
+use DateTime;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
 use FOS\RestBundle\View\View;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Viettut\Exception\InvalidArgumentException;
 use Viettut\Handler\HandlerInterface;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Viettut\Model\Core\TutorialInterface;
+use Viettut\Model\User\UserEntityInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * @RouteResource("Tutorial")
@@ -104,6 +113,41 @@ class TutorialController extends RestControllerAbstract implements ClassResource
     public function postAction(Request $request)
     {
         return $this->post($request);
+    }
+
+
+    /**
+     * @Route("/tutorials/upload")
+     * @Method({"POST"})
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function uploadFile(Request $request)
+    {
+        $user = $this->getUser();
+        if (!$user instanceof UserEntityInterface) {
+            throw new AccessDeniedException(
+                sprintf(
+                    'You do not have permission to view this %s or it does not exist',
+                    $this->getResourceName()
+                )
+            );
+        }
+        $today = (new DateTime())->format('Y-m-d');
+        $uploadRootDir = $this->container->getParameter('upload_root_directory');
+        $uploadDir = $this->container->getParameter('upload_directory');
+        foreach ($_FILES as $file) {
+
+            $uploadFile = new UploadedFile($file['tmp_name'], $file['name'], $file['type'], $file['size'], $file['error'], $test = false);
+            $baseName = uniqid('', true);
+            $uploadFile->move($uploadRootDir,
+                $baseName.substr($uploadFile->getClientOriginalName(), -4)
+            );
+
+            return new JsonResponse(join('/', array($uploadDir, $user->getUsername(), $today, $baseName.substr($uploadFile->getClientOriginalName(), -4))));
+        }
+        throw new InvalidArgumentException('Invalid files');
     }
 
     /**

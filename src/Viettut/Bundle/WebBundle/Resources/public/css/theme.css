@@ -2230,6 +2230,7 @@ aside ul.nav-list > li > a {
 
 #footer .logo {
 	display: block;
+	margin-top: -25px;
 }
 
 #footer .logo.push-bottom {

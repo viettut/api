@@ -28,12 +28,17 @@ security:
                 check_path: fos_user_security_check
                 always_use_default_target_path: true
                 default_target_path: home_page
+                success_handler: viettut.handler.authentication_success_handler
                 # if you are using Symfony < 2.8, use the following config instead:
                 # csrf_provider: form.csrf_provider
 
             logout:
                 path:   fos_user_security_logout
                 target: home_page
+                delete_cookies:
+                    logged_in_userid:
+                        path: '/'
+                        domain: '.viettut.com'
             remember_me:
                 lifetime: 604800
                 secret: "%secret%"

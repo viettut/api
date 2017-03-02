@@ -26,6 +26,7 @@ footer:
     subscribed_success: 'Email của bạn đã được thêm vào danh sách thành công!'
     subscribed_failed: 'Email của bạn hiện chưa được thêm vào danh sách!'
     subscribed_invalid: 'Email không hợp lệ!'
+    message: 'Gửi tin nhắn Facebook'
 course:
     comment: 'Bình luận'
     all: 'Tất cả'

@@ -26,6 +26,7 @@ footer:
     subscribed_success: 'Your email has been added successfully!'
     subscribed_failed: 'Your email has not been added!'
     subscribed_invalid: 'Invalid email!'
+    message: 'Message us on Facebook'
 course:
     comment: 'Comment'
     all: 'All Course'

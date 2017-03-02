@@ -28,3 +28,6 @@ parameters:
     google_redirect_uri: 'http://viettut.dev/app_dev.php/google/login'
     video_width: 500
     video_height: 300
+    cookie_domain: '.viettut.com'
+    cookie_path: '/'
+    cookie_lifetime: 3600
