@@ -66,7 +66,7 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
         $session->save();
         $request->setSession($session);
 
-        $response = new RedirectResponse('/app_dev.php');
+        $response = new RedirectResponse('/');
         $cookie = new Cookie('is_logged_in', true, time() + $this->cookieLifetime, $this->cookiePath, $this->cookieDomain);
         $response->headers->setCookie($cookie);
 

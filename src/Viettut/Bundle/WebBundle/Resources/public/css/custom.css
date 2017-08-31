@@ -3,6 +3,10 @@
     background-color: #dde !important;
 }
 
+pre {
+    font-size: 1.125em !important;
+}
+
 .text-auto-wrap {
     word-wrap: break-word;      /* IE 5.5-7 */
     white-space: -moz-pre-wrap !important; /* Firefox 1.0-2.0 */

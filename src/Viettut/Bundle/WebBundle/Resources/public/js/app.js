@@ -54,7 +54,7 @@
                 clientId: '355171488116-rml9h7b9ivdn8ub5sgu6r6eh1vkluvav.apps.googleusercontent.com',
                 url: '/google/login',
                 authorizationEndpoint: 'https://accounts.google.com/o/oauth2/auth',
-                redirectUri: window.location.origin + '/app_dev.php',
+                redirectUri: window.location.origin,
                 requiredUrlParams: ['scope'],
                 optionalUrlParams: ['display'],
                 scope: ['profile', 'email'],
