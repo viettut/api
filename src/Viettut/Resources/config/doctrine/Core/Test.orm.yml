@@ -1,0 +1,42 @@
+Viettut\Entity\Core\Test:
+    type: entity
+    table: viettut_test
+    repositoryClass: Viettut\Repository\Core\TestRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        type:
+            type: integer
+            nullable: false
+        options:
+            type: json_array
+            nullable: true
+        description:
+            type: text
+            nullable: false
+        initialCode:
+            type: string
+            nullable: true
+        expectedResult:
+            type: json_array
+            nullable: false
+        fileList:
+            type: json_array
+            nullable: true
+
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        author:
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User

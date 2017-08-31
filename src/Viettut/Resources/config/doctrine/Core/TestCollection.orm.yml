@@ -1,0 +1,38 @@
+Viettut\Entity\Core\TestCollection:
+    type: entity
+    table: viettut_test_collection
+    repositoryClass: Viettut\Repository\Core\TestCollectionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        position:
+            type: integer
+            nullable: false
+        timeLimit:
+            type: integer
+            nullable: true
+            options:
+                default: -1
+        earnedPoint:
+            type: integer
+            nullable: true
+            options:
+                default: 0
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        author:
+            targetEntity: Viettut\Bundle\UserBundle\Entity\User
+        test:
+            targetEntity: Viettut\Entity\Core\Test
