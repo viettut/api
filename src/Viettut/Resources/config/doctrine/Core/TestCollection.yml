@@ -1,0 +1,15 @@
+Viettut\Entity\Core\TestCollection:
+    type: entity
+    table: viettut_test_collection
+    repositoryClass: Viettut\Repository\Core\TestCollectionRepository
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    manyToOne:
+        test:
+            targetEntity: Viettut\Entity\Core\Test
+        challenge:
+            targetEntity: Viettut\Entity\Core\Challenge
+

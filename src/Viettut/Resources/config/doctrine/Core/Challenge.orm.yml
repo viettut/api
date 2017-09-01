@@ -1,24 +1,21 @@
-Viettut\Entity\Core\TestCollection:
+Viettut\Entity\Core\Challenge:
     type: entity
-    table: viettut_test_collection
-    repositoryClass: Viettut\Repository\Core\TestCollectionRepository
+    table: viettut_challenge
+    repositoryClass: Viettut\Repository\Core\ChallengeRepository
     id:
         id:
             type: integer
             generator:
                 strategy: AUTO
     fields:
-        position:
-            type: integer
-            nullable: false
         timeLimit:
             type: integer
             nullable: true
             options:
                 default: -1
-        earnedPoint:
+        total:
             type: integer
-            nullable: true
+            nullable: false
             options:
                 default: 0
         createdAt:
@@ -34,5 +31,4 @@ Viettut\Entity\Core\TestCollection:
     manyToOne:
         author:
             targetEntity: Viettut\Bundle\UserBundle\Entity\User
-        test:
-            targetEntity: Viettut\Entity\Core\Test
+

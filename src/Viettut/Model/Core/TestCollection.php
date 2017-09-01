@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: giang
- * Date: 8/31/17
- * Time: 10:27 PM
- */
+
 
 namespace Viettut\Model\Core;
 
-
-use Viettut\Model\User\UserEntityInterface;
 
 class TestCollection implements TestCollectionInterface
 {
@@ -24,37 +17,9 @@ class TestCollection implements TestCollectionInterface
     protected $test;
 
     /**
-     * @var UserEntityInterface
+     * @var ChallengeInterface
      */
-    protected $author;
-
-    /**
-     * @var int
-     */
-    protected $position;
-
-    /**
-     * time by seconds
-     * @var int
-     */
-    protected $timeLimit;
-
-    /**
-     * @var int
-     */
-    protected $earnedPoint;
-
-    /**
-     * @var int
-     */
-    protected $total;
-
-    /**
-     * TestCollection constructor.
-     */
-    public function __construct()
-    {
-    }
+    protected $challenge;
 
     /**
      * @return int
@@ -66,10 +31,12 @@ class TestCollection implements TestCollectionInterface
 
     /**
      * @param int $id
+     * @return self
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -82,89 +49,29 @@ class TestCollection implements TestCollectionInterface
 
     /**
      * @param TestInterface $test
+     * @return self
      */
     public function setTest($test)
     {
         $this->test = $test;
+        return $this;
     }
 
     /**
-     * @return int
+     * @return ChallengeInterface
      */
-    public function getPosition()
+    public function getChallenge()
     {
-        return $this->position;
+        return $this->challenge;
     }
 
     /**
-     * @param int $position
+     * @param ChallengeInterface $challenge
+     * @return self
      */
-    public function setPosition($position)
+    public function setChallenge($challenge)
     {
-        $this->position = $position;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTimeLimit()
-    {
-        return $this->timeLimit;
-    }
-
-    /**
-     * @param int $timeLimit
-     */
-    public function setTimeLimit($timeLimit)
-    {
-        $this->timeLimit = $timeLimit;
-    }
-
-    /**
-     * @return int
-     */
-    public function getEarnedPoint()
-    {
-        return $this->earnedPoint;
-    }
-
-    /**
-     * @param int $earnedPoint
-     */
-    public function setEarnedPoint($earnedPoint)
-    {
-        $this->earnedPoint = $earnedPoint;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTotal()
-    {
-        return $this->total;
-    }
-
-    /**
-     * @param int $total
-     */
-    public function setTotal($total)
-    {
-        $this->total = $total;
-    }
-
-    /**
-     * @return UserEntityInterface
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * @param UserEntityInterface $author
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
+        $this->challenge = $challenge;
+        return $this;
     }
 }
