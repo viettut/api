@@ -33,10 +33,10 @@ class TutorialHandler extends RoleHandlerAbstract
      */
     public function all($limit = null, $offset = null)
     {
-        /** @var LecturerInterface $lecturer */
+        /** @var UserEntityInterface $lecturer */
         $lecturer = $this->getUserRole();
 
-        return $this->getDomainManager()->getTutorialByLecturer($lecturer, $limit, $offset);
+        return $this->getDomainManager()->getTutorialByUser($lecturer, $limit, $offset);
     }
 
     protected function processForm(ModelInterface $entity, array $parameters, $method = 'PUT')

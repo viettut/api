@@ -91,4 +91,14 @@ interface TestInterface extends ModelInterface
      * @param UserEntityInterface $author
      */
     public function setAuthor($author);
+
+    /**
+     * @return TestCollectionInterface
+     */
+    public function getTestCollection();
+
+    /**
+     * @param TestCollectionInterface $testCollection
+     */
+    public function setTestCollection($testCollection);
 }

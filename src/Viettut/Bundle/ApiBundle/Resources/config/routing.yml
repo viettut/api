@@ -47,3 +47,13 @@ api_comment:
     type: rest
     resource: Viettut\Bundle\ApiBundle\Controller\CommentController
     name_prefix:  api_1_
+
+api_test:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\TestController
+    name_prefix:  api_1_
+
+api_challenge:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\ChallengeController
+    name_prefix:  api_1_

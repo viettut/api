@@ -35,4 +35,34 @@ interface TestCollectionInterface extends ModelInterface
      * @return self
      */
     public function setChallenge($challenge);
+
+    /**
+     * @return int
+     */
+    public function getEarnedPoint();
+
+    /**
+     * @param int $earnedPoint
+     */
+    public function setEarnedPoint($earnedPoint);
+
+    /**
+     * @return int
+     */
+    public function getTimeLimit();
+
+    /**
+     * @param int $timeLimit
+     */
+    public function setTimeLimit($timeLimit);
+
+    /**
+     * @return int
+     */
+    public function getPosition();
+
+    /**
+     * @param int $position
+     */
+    public function setPosition($position);
 }

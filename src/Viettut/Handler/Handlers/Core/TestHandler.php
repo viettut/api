@@ -9,14 +9,13 @@
 namespace Viettut\Handler\Handlers\Core;
 
 
-use Viettut\DomainManager\CourseManagerInterface;
+use Viettut\DomainManager\TestManagerInterface;
 use Viettut\Handler\RoleHandlerAbstract;
-use Viettut\Model\Core\CourseInterface;
+use Viettut\Model\Core\TestInterface;
 use Viettut\Model\ModelInterface;
-use Viettut\Model\User\Role\LecturerInterface;
 use Viettut\Model\User\UserEntityInterface;
 
-class CourseHandler extends RoleHandlerAbstract
+class TestHandler extends RoleHandlerAbstract
 {
 
     /**
@@ -33,19 +32,14 @@ class CourseHandler extends RoleHandlerAbstract
      */
     public function all($limit = null, $offset = null)
     {
-        /**
-         * @var UserEntityInterface $lecturer
-         */
+        /** @var UserEntityInterface $lecturer */
         $lecturer = $this->getUserRole();
-
-        return $this->getDomainManager()->getCourseByUser($lecturer, $limit, $offset);
+        return $this->getDomainManager()->getTestForUser($lecturer, $limit, $offset);
     }
 
     protected function processForm(ModelInterface $entity, array $parameters, $method = 'PUT')
     {
-        /**
-         * @var CourseInterface $entity
-         */
+        /** @var TestInterface $entity */
         if (null === $entity->getAuthor()) {
             $entity->setAuthor($this->getUserRole());
         }
@@ -58,7 +52,7 @@ class CourseHandler extends RoleHandlerAbstract
      *
      * Auto complete helper method
      *
-     * @return CourseManagerInterface
+     * @return TestManagerInterface
      */
     protected function getDomainManager()
     {

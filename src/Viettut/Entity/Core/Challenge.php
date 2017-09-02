@@ -14,6 +14,8 @@ class Challenge extends ChallengeModel
     protected $id;
     protected $timeLimit;
     protected $total;
+    protected $testCollection;
+    protected $author;
     protected $createdAt;
     protected $updatedAt;
 }

@@ -5,6 +5,8 @@ imports:
     - { resource: services/tutorial.services.yml }
     - { resource: services/tag.services.yml }
     - { resource: services/comment.services.yml }
+    - { resource: services/test.services.yml }
+    - { resource: services/challenge.services.yml }
     - { resource: services/subscriber.services.yml }
 
 parameters:

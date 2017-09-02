@@ -54,6 +54,11 @@ class Test implements TestInterface
     protected $expectedResult;
 
     /**
+     * @var TestCollectionInterface[]
+     */
+    protected $testCollection;
+
+    /**
      * Test constructor.
      */
     public function __construct()
@@ -186,5 +191,21 @@ class Test implements TestInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return TestCollectionInterface
+     */
+    public function getTestCollection()
+    {
+        return $this->testCollection;
+    }
+
+    /**
+     * @param TestCollectionInterface $testCollection
+     */
+    public function setTestCollection($testCollection)
+    {
+        $this->testCollection = $testCollection;
     }
 }

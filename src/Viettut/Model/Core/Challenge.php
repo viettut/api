@@ -35,6 +35,11 @@ class Challenge implements ChallengeInterface
     protected $total;
 
     /**
+     * @var TestCollectionInterface[]
+     */
+    protected $testCollection;
+
+    /**
      * TestCollection constructor.
      */
     public function __construct()
@@ -103,5 +108,21 @@ class Challenge implements ChallengeInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return TestCollectionInterface[]
+     */
+    public function getTestCollection()
+    {
+        return $this->testCollection;
+    }
+
+    /**
+     * @param TestCollectionInterface[] $testCollection
+     */
+    public function setTestCollection($testCollection)
+    {
+        $this->testCollection = $testCollection;
     }
 }

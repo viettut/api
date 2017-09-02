@@ -40,3 +40,5 @@ Viettut\Entity\Core\Test:
     manyToOne:
         author:
             targetEntity: Viettut\Bundle\UserBundle\Entity\User
+        testCollection:
+            targetEntity: Viettut\Entity\Core\TestCollection

@@ -10,4 +10,7 @@ class TestCollection extends TestCollectionModel
     protected $id;
     protected $test;
     protected $challenge;
+    protected $earnedPoint;
+    protected $position;
+    protected $timeLimit;
 }

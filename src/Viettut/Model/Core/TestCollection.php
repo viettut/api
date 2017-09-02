@@ -22,6 +22,21 @@ class TestCollection implements TestCollectionInterface
     protected $challenge;
 
     /**
+     * @var int
+     */
+    protected $earnedPoint;
+
+    /**
+     * @var int
+     */
+    protected $timeLimit;
+
+    /**
+     * @var int
+     */
+    protected $position;
+
+    /**
      * @return int
      */
     public function getId()
@@ -73,5 +88,53 @@ class TestCollection implements TestCollectionInterface
     {
         $this->challenge = $challenge;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getEarnedPoint()
+    {
+        return $this->earnedPoint;
+    }
+
+    /**
+     * @param int $earnedPoint
+     */
+    public function setEarnedPoint($earnedPoint)
+    {
+        $this->earnedPoint = $earnedPoint;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeLimit()
+    {
+        return $this->timeLimit;
+    }
+
+    /**
+     * @param int $timeLimit
+     */
+    public function setTimeLimit($timeLimit)
+    {
+        $this->timeLimit = $timeLimit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
     }
 }

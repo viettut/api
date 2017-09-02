@@ -1,0 +1,51 @@
+parameters:
+    viettut.entity.core.challenge.class: Viettut\Entity\Core\Challenge
+    viettut.form.type.challenge.class: Viettut\Form\Type\ChallengeFormType
+services:
+    # challenge ######################################################
+
+    viettut_api.handler.challenge:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.course
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for challenge handler #######
+
+    viettut.repository.challenge:
+        class: Viettut\Repository\Core\ChallengeRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.challenge.class%
+
+    viettut.domain_manager.challenge:
+        class: Viettut\DomainManager\ChallengeManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.challenge
+
+    viettut.form.type.challenge:
+        class: %viettut.form.type.challenge.class%
+        arguments:
+            - @viettut.repository.challenge
+        tags:
+            - { name: form.type, alias: tagcade_form_challenge }
+
+    viettut.handler.handlers.challenge:
+        class: Viettut\Handler\Handlers\Core\ChallengeHandler
+        parent: viettut.handler.role_handler_abstract
+        public: false
+        arguments:
+            - @viettut.form.type.challenge
+            - @viettut.domain_manager.challenge
+
+    viettut.handler.handler_manager.challenge:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.challenge.class%
+            -
+                - @viettut.handler.handlers.challenge
+
+    # end challenge #####################################################

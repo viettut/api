@@ -33,9 +33,9 @@ class ChapterHandler extends RoleHandlerAbstract
      */
     public function all($limit = null, $offset = null)
     {
-        /** @var LecturerInterface $lecturer */
+        /** @var UserEntityInterface $lecturer */
         $lecturer = $this->getUserRole();
-        return $this->getDomainManager()->getChapterByLecturer($lecturer, $limit, $offset);
+        return $this->getDomainManager()->getChapterByUser($lecturer, $limit, $offset);
     }
 
     protected function processForm(ModelInterface $entity, array $parameters, $method = 'PUT')

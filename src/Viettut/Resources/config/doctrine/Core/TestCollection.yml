@@ -7,6 +7,21 @@ Viettut\Entity\Core\TestCollection:
             type: integer
             generator:
                 strategy: AUTO
+    fields:
+        earnedPoint:
+            type: integer
+            nullable: false
+            options:
+                default: 0
+        timeLimit:
+            type: integer
+            nullable: false
+            options:
+                default: -1
+        position:
+            type: integer
+            nullable: false
+
     manyToOne:
         test:
             targetEntity: Viettut\Entity\Core\Test

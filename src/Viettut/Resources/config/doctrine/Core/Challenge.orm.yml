@@ -31,4 +31,5 @@ Viettut\Entity\Core\Challenge:
     manyToOne:
         author:
             targetEntity: Viettut\Bundle\UserBundle\Entity\User
-
+        testCollection:
+            targetEntity: Viettut\Entity\Core\TestCollection

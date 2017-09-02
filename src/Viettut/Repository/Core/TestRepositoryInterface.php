@@ -10,7 +10,7 @@ namespace Viettut\Repository\Core;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Viettut\Model\User\UserEntityInterface;
 
-interface ChallengeRepositoryInterface extends ObjectRepository
+interface TestRepositoryInterface extends ObjectRepository
 {
     /**
      * @param UserEntityInterface $user
@@ -18,5 +18,5 @@ interface ChallengeRepositoryInterface extends ObjectRepository
      * @param null $offset
      * @return mixed
      */
-    public function getChallengeByUser(UserEntityInterface $user, $limit = null, $offset = null);
+    public function getTestForUser(UserEntityInterface $user, $limit = null, $offset = null);
 }
