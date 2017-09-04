@@ -30,6 +30,7 @@ class ChallengeFormType extends AbstractRoleSpecificFormType
         $builder
             ->add('timeLimit')
             ->add('total')
+            ->add('name')
             ->add('testCollection', 'collection', array(
                     'mapped' => true,
                     'type' => new TestCollectionFormType(),
@@ -37,7 +38,6 @@ class ChallengeFormType extends AbstractRoleSpecificFormType
                     'allow_delete' => true,
                 )
             )
-            
         ;
 
         $builder->addEventListener(
@@ -65,6 +65,7 @@ class ChallengeFormType extends AbstractRoleSpecificFormType
 
                 $testCollection = array_unique($testCollection);
                 $challenge->setTestCollection($testCollection);
+                $challenge->setTotal(count($testCollection));
             }
         );
     }

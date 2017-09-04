@@ -12,6 +12,7 @@ use Viettut\Model\Core\Challenge as ChallengeModel;
 class Challenge extends ChallengeModel
 {
     protected $id;
+    protected $name;
     protected $timeLimit;
     protected $total;
     protected $testCollection;

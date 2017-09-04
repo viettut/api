@@ -7,6 +7,7 @@ imports:
     - { resource: services/comment.services.yml }
     - { resource: services/test.services.yml }
     - { resource: services/challenge.services.yml }
+    - { resource: services/test_collection.services.yml }
     - { resource: services/subscriber.services.yml }
 
 parameters:
@@ -25,15 +26,15 @@ services:
         public: false
         parent : viettut.handler.handler_abstract
         arguments:
-            - @form.factory
+            - '@form.factory'
 
     # authentication
     viettut_api.service.jwt_response_transformer:
-        class: %viettut_api.service.jwt_response_transformer.class%
+        class: '%viettut_api.service.jwt_response_transformer.class%'
 
     viettut.event.authentication_success_listener:
-        class: %viettut.event.authentication_success_listener.class%
-        arguments: [@viettut_api.service.jwt_response_transformer, @fos_user.user_manager]
+        class: '%viettut.event.authentication_success_listener.class%'
+        arguments: ['@viettut_api.service.jwt_response_transformer', '@fos_user.user_manager']
         tags:
             -
                name: kernel.event_listener
@@ -42,7 +43,7 @@ services:
                priority: 10
 
     viettut.event.jwt_created_listener:
-        class: %viettut.event.jwt_created_listener.class%
+        class: '%viettut.event.jwt_created_listener.class%'
         tags:
             -
                 name: kernel.event_listener

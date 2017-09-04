@@ -9,8 +9,8 @@
 namespace Viettut\Security\Authorization\Voter;
 
 
-use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Exception\InvalidArgumentException;
 use Viettut\Model\ModelInterface;
 use Viettut\Model\User\UserEntityInterface;

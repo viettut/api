@@ -9,11 +9,11 @@
 namespace Viettut\Security\Authorization\Voter;
 
 
-use Viettut\Model\Core\ChapterInterface;
+use Viettut\Model\Core\TestInterface;
 use Viettut\Model\Core\TutorialInterface;
 use Viettut\Model\User\UserEntityInterface;
 
-class ChapterVoter extends EntityVoterAbstract
+class TestVoter extends EntityVoterAbstract
 {
     /**
      * Checks to see if a publisher has permission to perform an action
@@ -31,7 +31,7 @@ class ChapterVoter extends EntityVoterAbstract
 
     public function supportsClass($class)
     {
-        $supportedClass = ChapterInterface::class;
+        $supportedClass = TestInterface::class;
         return $supportedClass === $class || is_subclass_of($class, $supportedClass);
     }
 }

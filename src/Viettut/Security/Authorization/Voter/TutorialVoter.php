@@ -9,7 +9,6 @@
 namespace Viettut\Security\Authorization\Voter;
 
 
-use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\Core\TutorialInterface;
 use Viettut\Model\User\UserEntityInterface;
 

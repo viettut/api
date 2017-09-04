@@ -58,4 +58,14 @@ interface ChallengeInterface extends ModelInterface
      * @param TestCollectionInterface[] $testCollection
      */
     public function setTestCollection($testCollection);
+
+    /**
+     * @return string
+     */
+    public function getName();
+
+    /**
+     * @param string $name
+     */
+    public function setName($name);
 }

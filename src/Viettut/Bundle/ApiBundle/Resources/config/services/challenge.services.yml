@@ -6,10 +6,10 @@ services:
 
     viettut_api.handler.challenge:
         class: Viettut\Handler\HandlerInterface
-        factory_service: viettut.handler.handler_manager.course
+        factory_service: viettut.handler.handler_manager.challenge
         factory_method: getHandler
         arguments:
-            - @viettut.user_role
+            - '@viettut.user_role'
 
     ###### dependencies and base classes for challenge handler #######
 
@@ -18,18 +18,18 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
         arguments:
-            - %viettut.entity.core.challenge.class%
+            - '%viettut.entity.core.challenge.class%'
 
     viettut.domain_manager.challenge:
         class: Viettut\DomainManager\ChallengeManager
         arguments:
-            - @doctrine.orm.entity_manager
-            - @viettut.repository.challenge
+            - '@doctrine.orm.entity_manager'
+            - '@viettut.repository.challenge'
 
     viettut.form.type.challenge:
-        class: %viettut.form.type.challenge.class%
+        class: '%viettut.form.type.challenge.class%'
         arguments:
-            - @viettut.repository.challenge
+            - '@viettut.repository.challenge'
         tags:
             - { name: form.type, alias: tagcade_form_challenge }
 
@@ -38,14 +38,14 @@ services:
         parent: viettut.handler.role_handler_abstract
         public: false
         arguments:
-            - @viettut.form.type.challenge
-            - @viettut.domain_manager.challenge
+            - '@viettut.form.type.challenge'
+            - '@viettut.domain_manager.challenge'
 
     viettut.handler.handler_manager.challenge:
         class: Viettut\Handler\HandlerManager
         arguments:
-            - %viettut.entity.core.challenge.class%
+            - '%viettut.entity.core.challenge.class%'
             -
-                - @viettut.handler.handlers.challenge
+                - '@viettut.handler.handlers.challenge'
 
     # end challenge #####################################################

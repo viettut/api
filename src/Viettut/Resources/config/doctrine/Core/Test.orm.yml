@@ -40,5 +40,8 @@ Viettut\Entity\Core\Test:
     manyToOne:
         author:
             targetEntity: Viettut\Bundle\UserBundle\Entity\User
+    oneToMany:
         testCollection:
             targetEntity: Viettut\Entity\Core\TestCollection
+            mappedBy: test
+            cascade: ['persist', 'remove', 'detach']

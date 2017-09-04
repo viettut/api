@@ -1,0 +1,51 @@
+parameters:
+    viettut.entity.core.test_collection.class: Viettut\Entity\Core\TestCollection
+    viettut.form.type.test_collection.class: Viettut\Form\Type\TestCollectionFormType
+services:
+    # test ######################################################
+
+    viettut_api.handler.test_collection:
+        class: Viettut\Handler\HandlerInterface
+        factory_service: viettut.handler.handler_manager.test_collection
+        factory_method: getHandler
+        arguments:
+            - @viettut.user_role
+
+    ###### dependencies and base classes for test collection handler #######
+
+    viettut.repository.test_collection:
+        class: Viettut\Repository\Core\TestCollectionRepositoryInterface
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - %viettut.entity.core.test_collection.class%
+
+    viettut.domain_manager.test_collection:
+        class: Viettut\DomainManager\TestCollectionManager
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @viettut.repository.test_collection
+
+    viettut.form.type.test_collection:
+        class: %viettut.form.type.test_collection.class%
+        arguments:
+            - @viettut.repository.test_collection
+        tags:
+            - { name: form.type, alias: tagcade_form_test_collection }
+
+    viettut.handler.handlers.test_collection:
+        class: Viettut\Handler\Handlers\Core\TestCollectionHandler
+        parent: viettut.handler.role_handler_abstract
+        public: false
+        arguments:
+            - @viettut.form.type.test_collection
+            - @viettut.domain_manager.test_collection
+
+    viettut.handler.handler_manager.test_collection:
+        class: Viettut\Handler\HandlerManager
+        arguments:
+            - %viettut.entity.core.test_collection.class%
+            -
+                - @viettut.handler.handlers.test_collection
+
+    # end test collection #####################################################

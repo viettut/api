@@ -19,6 +19,11 @@ class Challenge implements ChallengeInterface
     protected $id;
 
     /**
+     * @var string
+     */
+    protected $name;
+
+    /**
      * @var UserEntityInterface
      */
     protected $author;
@@ -44,6 +49,8 @@ class Challenge implements ChallengeInterface
      */
     public function __construct()
     {
+        $this->timeLimit = -1;
+        $this->total = 0;
     }
 
     /**
@@ -124,5 +131,21 @@ class Challenge implements ChallengeInterface
     public function setTestCollection($testCollection)
     {
         $this->testCollection = $testCollection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 }

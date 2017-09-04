@@ -37,6 +37,17 @@ class TestCollection implements TestCollectionInterface
     protected $position;
 
     /**
+     * TestCollection constructor.
+     */
+    public function __construct()
+    {
+        $this->earnedPoint = 0;
+        $this->timeLimit = -1;
+        $this->position = 1;
+    }
+
+
+    /**
      * @return int
      */
     public function getId()

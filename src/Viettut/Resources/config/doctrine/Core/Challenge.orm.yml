@@ -8,6 +8,9 @@ Viettut\Entity\Core\Challenge:
             generator:
                 strategy: AUTO
     fields:
+        name:
+            type: string
+
         timeLimit:
             type: integer
             nullable: true
@@ -31,5 +34,8 @@ Viettut\Entity\Core\Challenge:
     manyToOne:
         author:
             targetEntity: Viettut\Bundle\UserBundle\Entity\User
+    oneToMany:
         testCollection:
             targetEntity: Viettut\Entity\Core\TestCollection
+            mappedBy: challenge
+            cascade: ['persist', 'remove', 'detach']

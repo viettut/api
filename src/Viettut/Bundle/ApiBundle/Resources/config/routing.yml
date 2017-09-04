@@ -57,3 +57,8 @@ api_challenge:
     type: rest
     resource: Viettut\Bundle\ApiBundle\Controller\ChallengeController
     name_prefix:  api_1_
+
+api_test_collection:
+    type: rest
+    resource: Viettut\Bundle\ApiBundle\Controller\TestCollectionController
+    name_prefix:  api_1_

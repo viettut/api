@@ -10,6 +10,7 @@ namespace Viettut\Form\Type;
 
 
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -28,7 +29,12 @@ class TestFormType extends AbstractRoleSpecificFormType
     {
         $builder
             ->add('description')
-            ->add('type')
+            ->add('type', ChoiceType::class, array(
+                'choices'  => array(
+                    '1' => TestInterface::TEST_TYPE_CHOICE,
+                    '2' => TestInterface::TEST_TYPE_CODE,
+                ),
+            ))
             ->add('options')
             ->add('initialCode')
             ->add('expectedResult')

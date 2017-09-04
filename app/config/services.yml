@@ -10,6 +10,8 @@ parameters:
     viettut.security.auth.voter.course.class: Viettut\Security\Authorization\Voter\CourseVoter
     viettut.security.auth.voter.tutorial.class: Viettut\Security\Authorization\Voter\TutorialVoter
     viettut.security.auth.voter.chapter.class: Viettut\Security\Authorization\Voter\ChapterVoter
+    viettut.security.auth.voter.challenge.class: Viettut\Security\Authorization\Voter\ChallengeVoter
+    viettut.security.auth.voter.test.class: Viettut\Security\Authorization\Voter\TestVoter
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
@@ -20,7 +22,7 @@ services:
         public: false
         calls:
             - [setEventDispatcher, ["@event_dispatcher"]]
-            - [setEvent, [%viettut.events.handler_event%]]
+            - [setEvent, ['%viettut.events.handler_event%']]
 
     viettut.handler.authentication_success_handler:
         class: Viettut\Bundle\UserBundle\Handler\AuthenticationSuccessHandler
@@ -41,7 +43,7 @@ services:
         class: Metadata\Cache\DoctrineCacheAdapter
         arguments:
             - ""
-            - @cache.apc.jms_serializer
+            - '@cache.apc.jms_serializer'
 
     viettut.paragraph_extension:
         class: Viettut\Bundle\WebBundle\Twig\ParagraphExtension
@@ -51,19 +53,31 @@ services:
 
     # voter
     viettut.security.auth.voter.course:
-        class:  %viettut.security.auth.voter.course.class%
+        class:  '%viettut.security.auth.voter.course.class%'
         public: false
         tags:
             - { name: security.voter }
 
     viettut.security.auth.voter.tutorial:
-        class:  %viettut.security.auth.voter.tutorial.class%
+        class:  '%viettut.security.auth.voter.tutorial.class%'
         public: false
         tags:
             - { name: security.voter }
 
     viettut.security.auth.voter.chapter:
-        class:  %viettut.security.auth.voter.chapter.class%
+        class:  '%viettut.security.auth.voter.chapter.class%'
+        public: false
+        tags:
+            - { name: security.voter }
+
+    viettut.security.auth.voter.challenge:
+        class:  '%viettut.security.auth.voter.challenge.class%'
+        public: false
+        tags:
+            - { name: security.voter }
+
+    viettut.security.auth.voter.test:
+        class:  '%viettut.security.auth.voter.test.class%'
         public: false
         tags:
             - { name: security.voter }
