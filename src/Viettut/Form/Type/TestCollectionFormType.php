@@ -10,6 +10,8 @@ namespace Viettut\Form\Type;
 
 
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Viettut\Entity\Core\TestCollection;
 
@@ -30,6 +32,20 @@ class TestCollectionFormType extends AbstractRoleSpecificFormType
             ->add('test')
             ->add('challenge')
         ;
+
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+                $testCollection = $event->getData();
+
+                //create new Library
+                if (array_key_exists('test', $testCollection) && is_array($testCollection['test'])) {
+                    $form->remove('test');
+                    $form->add('test', new TestFormType());
+                }
+            }
+        );
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

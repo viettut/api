@@ -25,6 +25,7 @@ Viettut\Entity\Core\TestCollection:
     manyToOne:
         test:
             targetEntity: Viettut\Entity\Core\Test
+            cascade: ['persist']
         challenge:
             targetEntity: Viettut\Entity\Core\Challenge
 

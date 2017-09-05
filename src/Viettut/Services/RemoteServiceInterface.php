@@ -10,6 +10,7 @@ namespace Viettut\Services;
 
 
 use Viettut\Model\Core\TestInterface;
+use Viettut\Model\Core\TestResultInterface;
 
 interface RemoteServiceInterface
 {
@@ -23,7 +24,7 @@ interface RemoteServiceInterface
      * @param null $uniqueId
      * @return mixed
      */
-    public function putField($fileContent, $uniqueId = null);
+    public function putFile($fileContent, $uniqueId = null);
 
     /**
      * @param $sourceCode
@@ -31,4 +32,11 @@ interface RemoteServiceInterface
      * @return mixed
      */
     public function runJob($sourceCode, TestInterface $test);
+
+    /**
+     * @param TestInterface $test
+     * @param TestResultInterface $result
+     * @return mixed
+     */
+    public function validateResult(TestInterface $test, TestResultInterface $result);
 }

@@ -17,7 +17,6 @@ use Viettut\Entity\Core\UserChapter;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\Core\UserChapterInterface;
-use Viettut\Model\User\Role\LecturerInterface;
 use Viettut\Model\User\UserEntityInterface;
 
 class ChapterController extends FOSRestController

@@ -55,3 +55,11 @@ services:
         arguments:
             - '%video_width%'
             - '%video_height%'
+
+    viettut.services.remote_service:
+        class: Viettut\Services\RemoteService
+        arguments:
+            - '%jobe_domain%'
+            - '%jobe_language_end_point%'
+            - '%jobe_run_jobs_end_point%'
+            - '%jobe_put_files_end_point%'

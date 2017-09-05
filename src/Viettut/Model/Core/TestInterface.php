@@ -93,6 +93,61 @@ interface TestInterface extends ModelInterface
     public function setAuthor($author);
 
     /**
+     * @return string
+     */
+    public function getSourceFileName();
+
+    /**
+     * @param string $sourceFileName
+     * @return self
+     */
+    public function setSourceFileName($sourceFileName);
+
+    /**
+     * @return string
+     */
+    public function getLanguageId();
+
+    /**
+     * @param string $languageId
+     * @return self
+     */
+    public function setLanguageId($languageId);
+
+    /**
+     * @return array
+     */
+    public function getInputData();
+
+    /**
+     * @param array $inputData
+     * @return self
+     */
+    public function setInputData($inputData);
+
+    /**
+     * @return array
+     */
+    public function getServerParameters();
+
+    /**
+     * @param array $serverParameters
+     * @return self
+     */
+    public function setServerParameters($serverParameters);
+
+    /**
+     * @return string
+     */
+    public function getName();
+
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName($name);
+
+    /**
      * @return TestCollectionInterface
      */
     public function getTestCollection();

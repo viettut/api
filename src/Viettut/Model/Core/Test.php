@@ -49,6 +49,31 @@ class Test implements TestInterface
     protected $fileList;
 
     /**
+     * @var string
+     */
+    protected $sourceFileName;
+
+    /**
+     * @var string
+     */
+    protected $languageId;
+
+    /**
+     * @var array
+     */
+    protected $inputData;
+
+    /**
+     * @var array
+     */
+    protected $serverParameters;
+
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
      * @var  array
      */
     protected $expectedResult;
@@ -191,6 +216,96 @@ class Test implements TestInterface
     public function setAuthor($author)
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSourceFileName()
+    {
+        return $this->sourceFileName;
+    }
+
+    /**
+     * @param string $sourceFileName
+     * @return self
+     */
+    public function setSourceFileName($sourceFileName)
+    {
+        $this->sourceFileName = $sourceFileName;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLanguageId()
+    {
+        return $this->languageId;
+    }
+
+    /**
+     * @param string $languageId
+     * @return self
+     */
+    public function setLanguageId($languageId)
+    {
+        $this->languageId = $languageId;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInputData()
+    {
+        return $this->inputData;
+    }
+
+    /**
+     * @param array $inputData
+     * @return self
+     */
+    public function setInputData($inputData)
+    {
+        $this->inputData = $inputData;
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getServerParameters()
+    {
+        return $this->serverParameters;
+    }
+
+    /**
+     * @param array $serverParameters
+     * @return self
+     */
+    public function setServerParameters($serverParameters)
+    {
+        $this->serverParameters = $serverParameters;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return self
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
     /**

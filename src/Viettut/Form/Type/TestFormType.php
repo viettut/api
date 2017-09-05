@@ -39,6 +39,11 @@ class TestFormType extends AbstractRoleSpecificFormType
             ->add('initialCode')
             ->add('expectedResult')
             ->add('fileList')
+            ->add('sourceFileName')
+            ->add('languageId')
+            ->add('name')
+            ->add('inputData')
+            ->add('serverParameters')
             ->add('testCollection', 'collection', array(
                     'mapped' => true,
                     'type' => new TestCollectionFormType(),

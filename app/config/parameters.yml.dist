@@ -32,6 +32,7 @@ parameters:
     cookie_path: '/'
     cookie_lifetime: 3600
 
-    jobe_languages_end_point: http://192.168.33.1/jobe/index.php/restapi/languages
-    jobe_run_jobs_end_point: http://192.168.33.1/jobe/index.php/restapi/runs
-    jobe_put_files_end_point: http://192.168.33.1/jobe/index.php/restapi/fields
+    jobe_domain: http://192.168.33.1
+    jobe_languages_end_point: /jobe/index.php/restapi/languages
+    jobe_run_jobs_end_point: /jobe/index.php/restapi/runs
+    jobe_put_files_end_point: /jobe/index.php/restapi/fields

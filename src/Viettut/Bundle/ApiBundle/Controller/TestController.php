@@ -118,6 +118,21 @@ class TestController extends RestControllerAbstract implements ClassResourceInte
     }
 
     /**
+     * @param Request $request
+     * @param $id
+     * @return bool|mixed
+     */
+    public function putRunjobAction(Request $request, $id)
+    {
+        /** @var TestInterface $test */
+        $test = $this->getOr404($id);
+        $sourceCode = $request->request->get('sourcecode');
+        $remoteService = $this->get('viettut.services.remote_service');
+        $result = $remoteService->runJob($sourceCode, $test);
+        return $remoteService->validateResult($test, $result);
+    }
+
+    /**
      * @return string
      */
     protected function getResourceName()

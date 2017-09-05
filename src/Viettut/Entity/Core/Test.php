@@ -19,6 +19,11 @@ class Test extends TestModel
     protected $initialCode;
     protected $expectedResult;
     protected $fileList;
+    protected $name;
+    protected $author;
+    protected $sourceFileName;
+    protected $serverParameters;
+    protected $inputData;
     protected $createdAt;
     protected $updatedAt;
 }

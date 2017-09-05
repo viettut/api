@@ -8,6 +8,9 @@ Viettut\Entity\Core\Test:
             generator:
                 strategy: AUTO
     fields:
+        name:
+            type: string
+            nullable: false
         type:
             type: integer
             nullable: false
@@ -26,7 +29,18 @@ Viettut\Entity\Core\Test:
         fileList:
             type: json_array
             nullable: true
-
+        sourceFileName:
+            type: string
+            nullable: true
+        languageId:
+            type: string
+            nullable: true
+        inputData:
+            type: json_array
+            nullable: true
+        serverParameters:
+            type: json_array
+            nullable: true
         createdAt:
             type: datetime
             gedmo:
