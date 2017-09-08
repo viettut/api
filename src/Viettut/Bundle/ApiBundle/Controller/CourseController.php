@@ -122,6 +122,7 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
      */
     public function cgetChaptersAction($id)
     {
+        /** @var CourseInterface $course */
         $course = $this->one($id);
 
         $chapterManager = $this->get('viettut.domain_manager.chapter');
@@ -139,6 +140,7 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
      */
     public function cgetCommentsAction($id)
     {
+        /** @var CourseInterface $course */
         $course = $this->one($id);
 
         $commentManager = $this->get('viettut.domain_manager.comment');

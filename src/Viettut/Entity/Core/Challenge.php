@@ -17,6 +17,9 @@ class Challenge extends ChallengeModel
     protected $total;
     protected $testCollection;
     protected $author;
+    protected $published;
+    protected $token;
+    protected $hashTag;
     protected $createdAt;
     protected $updatedAt;
 }

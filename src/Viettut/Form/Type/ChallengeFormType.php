@@ -18,9 +18,11 @@ use Viettut\Entity\Core\Challenge;
 use Viettut\Model\Core\ChallengeInterface;
 use Viettut\Model\Core\TestCollectionInterface;
 use Viettut\Model\Core\TestInterface;
+use Viettut\Utilities\StringFactory;
 
 class ChallengeFormType extends AbstractRoleSpecificFormType
 {
+    use StringFactory;
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -31,6 +33,7 @@ class ChallengeFormType extends AbstractRoleSpecificFormType
             ->add('timeLimit')
             ->add('total')
             ->add('name')
+            ->add('published')
             ->add('testCollection', 'collection', array(
                     'mapped' => true,
                     'type' => new TestCollectionFormType(),
@@ -45,6 +48,15 @@ class ChallengeFormType extends AbstractRoleSpecificFormType
             function (FormEvent $event) {
                 /** @var ChallengeInterface $challenge */
                 $challenge = $event->getData();
+
+                if ($challenge->getId() === null) {
+                    $challenge->setToken(uniqid("", true));
+                    $challenge->setHashTag($this->getUrlFriendlyString($challenge->getName()));
+                }
+
+                if ($challenge->isPublished() === null) {
+                    $challenge->setPublished(false);
+                }
 
                 /** @var Collection|TestCollectionInterface[] $testCollection */
                 $testCollection = $event->getForm()->get('testCollection')->getData();

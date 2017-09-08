@@ -40,6 +40,21 @@ class Challenge implements ChallengeInterface
     protected $total;
 
     /**
+     * @var bool
+     */
+    protected $published;
+
+    /**
+     * @var string
+     */
+    protected $token;
+
+    /**
+     * @var string
+     */
+    protected $hashTag;
+
+    /**
      * @var TestCollectionInterface[]
      */
     protected $testCollection;
@@ -51,6 +66,7 @@ class Challenge implements ChallengeInterface
     {
         $this->timeLimit = -1;
         $this->total = 0;
+        $this->published = false;
     }
 
     /**
@@ -110,6 +126,24 @@ class Challenge implements ChallengeInterface
     }
 
     /**
+     * @return boolean
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+        return $this;
+    }
+
+    /**
      * @param UserEntityInterface $author
      */
     public function setAuthor($author)
@@ -147,5 +181,41 @@ class Challenge implements ChallengeInterface
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHashTag()
+    {
+        return $this->hashTag;
+    }
+
+    /**
+     * @param string $hashTag
+     * @return self
+     */
+    public function setHashTag($hashTag)
+    {
+        $this->hashTag = $hashTag;
+        return $this;
     }
 }

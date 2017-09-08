@@ -21,6 +21,19 @@ Viettut\Entity\Core\Challenge:
             nullable: false
             options:
                 default: 0
+        published:
+            type: boolean
+            nullable: false
+            options:
+                default: false
+        token:
+            type: string
+            nullable: false
+
+        hashTag:
+            type: string
+            nullable: false
+
         createdAt:
             type: datetime
             gedmo:

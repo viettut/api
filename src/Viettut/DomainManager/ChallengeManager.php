@@ -101,6 +101,6 @@ class ChallengeManager implements ChallengeManagerInterface
 
     public function getChallengeForUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
-        return $this->repository->getChallengeByUser($user, $limit, $offset);
+        return $this->repository->getChallengeByUser($user, $published = true, $limit, $offset);
     }
 }

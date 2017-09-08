@@ -68,4 +68,37 @@ interface ChallengeInterface extends ModelInterface
      * @param string $name
      */
     public function setName($name);
+
+    /**
+     * @return boolean
+     */
+    public function isPublished();
+
+    /**
+     * @param boolean $published
+     * @return self
+     */
+    public function setPublished($published);
+
+    /**
+     * @return string
+     */
+    public function getToken();
+
+    /**
+     * @param string $token
+     * @return self
+     */
+    public function setToken($token);
+
+    /**
+     * @return string
+     */
+    public function getHashTag();
+
+    /**
+     * @param string $hashTag
+     * @return self
+     */
+    public function setHashTag($hashTag);
 }

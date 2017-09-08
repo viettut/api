@@ -146,6 +146,7 @@ class CourseRepository extends EntityRepository implements CourseRepositoryInter
     }
 
     /**
+     * @param null $published
      * @return mixed
      */
     public function getAllCourseQuery($published = null)

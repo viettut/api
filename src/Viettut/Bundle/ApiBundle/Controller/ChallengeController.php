@@ -15,12 +15,19 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\Form\FormTypeInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Viettut\Exception\InvalidArgumentException;
 use Viettut\Handler\HandlerInterface;
 use Viettut\Model\Core\ChallengeInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Viettut\Model\Core\ChapterInterface;
 use Viettut\Model\Core\CourseInterface;
+use Viettut\Model\User\UserEntityInterface;
 
 /**
  * @RouteResource("Challenge")
@@ -92,6 +99,40 @@ class ChallengeController extends RestControllerAbstract implements ClassResourc
     public function postAction(Request $request)
     {
         return $this->post($request);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     * @throws InvalidArgumentException
+     */
+    public function postUploadAction(Request $request)
+    {
+        $user = $this->getUser();
+        if (!$user instanceof UserEntityInterface) {
+            throw new AccessDeniedException(
+                sprintf(
+                    'You do not have permission to view this %s or it does not exist',
+                    $this->getResourceName()
+                )
+            );
+        }
+
+        $remoteService = $this->get('viettut.services.remote_service');
+        foreach ($_FILES as $file) {
+            $uploadFile = new UploadedFile($file['tmp_name'], $file['name'], $file['type'], $file['size'], $file['error'], $test = false);
+            $fileContent = file_get_contents($uploadFile->getPath());
+            $uniqueId = md5(uniqid($user->getUsername(), true));
+            $data = $remoteService->putFile($fileContent, $uniqueId);
+            if ($data) {
+                return new JsonResponse($uniqueId);
+            }
+
+            throw new InvalidArgumentException('Invalid files');
+        }
+
+        throw new InvalidArgumentException('Invalid files');
     }
 
     /**

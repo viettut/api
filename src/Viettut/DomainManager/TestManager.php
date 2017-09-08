@@ -17,7 +17,7 @@ use Viettut\Model\ModelInterface;
 use Viettut\Model\User\UserEntityInterface;
 use Viettut\Repository\Core\TestRepositoryInterface;
 
-class TestManager implements ChallengeManagerInterface
+class TestManager implements TestManagerInterface
 {
     /**
      * @var EntityManagerInterface
@@ -99,7 +99,7 @@ class TestManager implements ChallengeManagerInterface
         return $this->repository->findBy($criteria = [], $orderBy = null, $limit, $offset);
     }
 
-    public function getChallengeForUser(UserEntityInterface $user, $limit = null, $offset = null)
+    public function getTestForUser(UserEntityInterface $user, $limit = null, $offset = null)
     {
         return $this->repository->getTestForUser($user, $limit, $offset);
     }
