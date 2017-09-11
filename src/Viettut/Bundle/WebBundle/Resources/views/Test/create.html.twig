@@ -49,13 +49,15 @@
 
                     <div class="form-group" ng-if="type == 1">
                         <label for="options">Phương án trả lời</label>
-                        <div class="col-md-12" ng-repeat="value in options">
-                            <div class="col-md-3"><span><{ $index }>. <{ value }></span></div>
-                        </div>
-                        <div class="col-md-12">
-                            <input id="option" class="col-md-8" ng-model="$parent.option" name="option" type="text"/>
-                            <button class="col-md-4" ng-click="addOption()">Add Option</button>
-                        </div>
+                        <fieldset  data-ng-repeat="choice in $parent.choices">
+                            <select>
+                                <option value="0" selected="selected">Incorrect Answer</option>
+                                <option value="1">correct Answer</option>
+                            </select>
+                            <input type="text" ng-model="choice.value" name="" placeholder="Enter mobile number">
+                            <button class="remove" ng-show="$last" ng-click="removeChoice()">-</button>
+                        </fieldset>
+                        <button class="addfields" ng-click="addNewChoice()">Add Option</button>
                     </div>
 
                     <div class="form-group" ng-if="type == 2">
