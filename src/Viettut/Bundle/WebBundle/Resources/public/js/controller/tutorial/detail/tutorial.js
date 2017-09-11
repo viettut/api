@@ -3,9 +3,8 @@
  */
 angular
     .module('viettut')
-    .controller('TutorialController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, CourseService, AuthenService,  config) {
+    .controller('TutorialController', function ($auth, $http, $scope) {
         $scope.content = $('textarea#content').val();
-        $scope.isAuthenticated = $auth.isAuthenticated();
     });
 
 

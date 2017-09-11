@@ -50,6 +50,11 @@ gulp.task('scripts', function(){
         'web/bundles/viettutweb/js/services/chapter.js',
         'web/bundles/viettutweb/js/services/course.js',
         'web/bundles/viettutweb/js/services/tag.js',
+        'web/bundles/viettutweb/js/services/tutorial.js',
+        'web/bundles/viettutweb/js/services/upload.js',
+        'web/bundles/viettutweb/js/services/comment.js',
+        'web/bundles/viettutweb/js/services/alert.js',
+        'web/bundles/viettutweb/js/services/route.js',
 
         'web/bundles/viettutweb/vendor/jquery.appear/jquery.appear.js',
         'web/bundles/viettutweb/vendor/jquery.easing/jquery.easing.js',
