@@ -14,6 +14,17 @@ angular
             });
         };
 
+        var getCommentForTutorial = function(id, successCallback, errorCallback) {
+            $http({
+                method: 'GET',
+                url: config.API_URL + 'tutorials/' + id + '/comments'
+            }).then(function (response) {
+                successCallback(response);
+            }, function (error) {
+                errorCallback(error);
+            });
+        };
+
         var createComment = function(data, successCallback, errorCallback) {
             $http.post(config.API_URL + 'comments', data).
             then(
@@ -28,6 +39,7 @@ angular
 
         return {
             getCommentForChapter: getCommentForChapter,
+            getCommentForTutorial: getCommentForTutorial,
             createComment: createComment
         };
     });
