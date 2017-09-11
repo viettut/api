@@ -1,37 +1,30 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($http, $scope, $window, Upload, $timeout, config) {
+    .controller('TestController', function ($http, $scope, $window, Upload, $timeout, config) {
         $scope.laddaLoading = false;
-        $scope.title = '';
-        $scope.courseTags = [];
-        $scope.selectedTags = [];
-        $scope.allTags = [];
-        $scope.image = '';
-        $scope.chapter = '';
-        $scope.content = '';
+        $scope.name = '';
+        $scope.type = null;
+        $scope.language = null;
+        $scope.description = '';
+        $scope.initialCode = '';
+        $scope.expectedResult = {};
+        $scope.options = [];
+        $scope.option = '';
+        $scope.optionError = false;
+        $scope.files = [];
+        $scope.inputData = {};
+        $scope.serverParameters = {};
         $scope.uploaded = false;
         $scope.uploadError = false;
-        $scope.published = false;
 
-        $scope.course = {};
-
-        $scope.initTag = function() {
-            $http.get(config.API_URL + 'tags')
-            .then(function(response) {
-                $scope.allTags = response.data;
-            });
-        };
-
-        //initialize
-        $scope.initTag();
-
-        $scope.addTag = function(tag) {
-            if (typeof tag.id == 'undefined') {
-                $scope.courseTags.push({'tag': tag})
+        $scope.addOption = function() {
+            if (!$scope.option) {
+                $scope.addError('An option can not be empty');
+                return;
             }
-            else {
-                $scope.courseTags.push({'tag': tag.id})
-            }
+
+            $scope.options.push($scope.option)
+            $scope.option = '';
         };
 
         $scope.removeTag = function(tag) {
@@ -52,7 +45,7 @@ angular
             $scope.laddaLoading = true;
 
             $http.post(config.API_URL + 'courses', data).
-                then(
+            then(
                 function(response){
                     $scope.laddaLoading = false;
                     if(response.status == 201) {
@@ -94,17 +87,7 @@ angular
                 $scope.uploadErrorMsg = 'Image\'s max height is 1000px and max size is 1MB';
             }
         };
-
-        $scope.filterTags = function($query) {
-            var matches = [];
-            for (var i = 0; i < $scope.allTags.length ; i++) {
-                if ($scope.allTags[i].text.indexOf($query.toLowerCase()) >= 0 && $query.toLowerCase().length >= 3) {
-                    matches.push($scope.allTags[i]);
-                }
-            }
-
-            return matches;
-        };
+        
 
         $scope.addError = function(message) {
             var html = '<div class="alert alert-danger alert-dismissable">' +

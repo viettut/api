@@ -60,6 +60,6 @@ services:
         class: Viettut\Services\RemoteService
         arguments:
             - '%jobe_domain%'
-            - '%jobe_language_end_point%'
+            - '%jobe_languages_end_point%'
             - '%jobe_run_jobs_end_point%'
             - '%jobe_put_files_end_point%'

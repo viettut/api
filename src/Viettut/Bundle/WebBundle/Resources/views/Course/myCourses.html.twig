@@ -23,7 +23,9 @@
                     </div>
                 </div>
                 <div class="blog-posts" ng-show="!loading">
-                    <article class="post post-medium" ng-repeat="course in myCourses">
+
+                    <h2 ng-if="myCourses.length <= 0">You don't have any course yet. <a href="{{ path('create_course') }}">Create one ?</a></h2>
+                    <article ng-if="myCourses.length > 0" class="post post-medium" ng-repeat="course in myCourses">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="post-image">

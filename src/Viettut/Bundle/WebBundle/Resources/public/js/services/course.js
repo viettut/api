@@ -2,7 +2,7 @@
 
 angular
     .module('viettut')
-    .factory('CourseService', function($auth, $http, $q) {
+    .factory('CourseService', function($auth, $http, $q, config) {
         return {
             getCourse: function(cid) {
                 var deferred = $q.defer();

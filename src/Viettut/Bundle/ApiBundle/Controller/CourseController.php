@@ -25,8 +25,6 @@ use Viettut\Exception\InvalidArgumentException;
 use Viettut\Handler\HandlerInterface;
 use Viettut\Model\Core\CourseInterface;
 use Viettut\Model\User\UserEntityInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
@@ -238,13 +236,10 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
 
 
     /**
-     * @Route("/courses/upload")
-     * @Method({"POST"})
-     *
      * @param Request $request
      * @return string
      */
-    public function uploadImage(Request $request)
+    public function postUploadAction(Request $request)
     {
         $user = $this->getUser();
         if (!$user instanceof UserEntityInterface) {
@@ -262,7 +257,7 @@ class CourseController extends RestControllerAbstract implements ClassResourceIn
 
             $uploadFile = new UploadedFile($file['tmp_name'], $file['name'], $file['type'], $file['size'], $file['error'], $test = false);
             $baseName = uniqid('', true);
-            $uploadFile->move($uploadRootDir,
+            $uploadFile->move(join('/', [$uploadRootDir, $user->getUsername(), $today]) ,
                 $baseName.substr($uploadFile->getClientOriginalName(), -4)
             );
 
