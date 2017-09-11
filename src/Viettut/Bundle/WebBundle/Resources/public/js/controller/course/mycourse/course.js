@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($http, $scope, $window, config) {
+    .controller('CourseController', function ($scope, $window, config, CourseService, AlertService) {
         $scope.myCourses = [];
         $scope.loading = true;
         $scope.deletingCourse = null;
@@ -24,19 +24,16 @@ angular
                 return;
             }
 
-            $http.delete(config.API_URL + 'courses/' + $scope.myCourses[$scope.deletingCourse].id).
-            then(
-                function(response){
-                    $scope.loading = false;
-                    if(response.status == 204) {
-                        $scope.addInfo('The course has been deleted successfully!');
-                        $scope.myCourses.splice($scope.deletingCourse, 1);
-                    }
-                },
-                function(response){
-                    $scope.loading = false;
-                    $scope.addError(response.message);
-                });
+            CourseService.deleteCourse($scope.myCourses[$scope.deletingCourse].id, function(response) {
+                $scope.loading = false;
+                if(response.status == 204) {
+                    AlertService.info('div.blog-posts', 'The course has been deleted successfully!');
+                    $scope.myCourses.splice($scope.deletingCourse, 1);
+                }
+            }, function(response){
+                $scope.loading = false;
+                AlertService.error('div.blog-posts', response.message);
+            });
         };
 
         $scope.showConfirm = function(courseIndex) {
@@ -48,38 +45,16 @@ angular
             $('#deleteConfirm').modal('hide');
         };
 
-        $scope.loadCourses = function() {
-            $http.get(config.API_URL + 'mycourses').
-            then(
-                function(response){
-                    $scope.loading = false;
-                    if (response.status == 200) {
-                        $scope.myCourses = response.data;
-                    }
-                },
-                function(response){
-                    $scope.loading = false;
-                    $scope.addError(response.message);
-                });
-        };
-
-        $scope.loadCourses();
-
-        $scope.addError = function(message) {
-            var html = '<div class="alert alert-danger alert-dismissable">' +
-                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                message +
-                '</div>';
-            angular.element($('div.blog-posts')).before(html);
-        };
-
-        $scope.addInfo = function(message) {
-            var html = '<div class="alert alert-success alert-dismissable">' +
-                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                message +
-                '</div>';
-            angular.element($('div.blog-posts')).before(html);
-        };
+        CourseService.getMyCourses(function(response){
+                $scope.loading = false;
+                if (response.status == 200) {
+                    $scope.myCourses = response.data;
+                }
+            },
+            function(response){
+                $scope.loading = false;
+                AlertService.error('div.blog-posts', response.message);
+            })
     });
 
 

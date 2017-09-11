@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($auth, $http, $scope, $window, Upload, $timeout, $state, CourseService, AuthenService,  config) {
+    .controller('CourseController', function ($auth, $scope) {
         $scope.introduce = $('textarea#introduce').val();
         $scope.isAuthenticated = $auth.isAuthenticated();
     });

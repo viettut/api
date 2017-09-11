@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('CourseController', function ($http, $scope, $window, Upload, $timeout, config) {
+    .controller('CourseController', function ($scope, $window, TagService, AlertService, UploadService, CourseService) {
         $scope.laddaLoading = false;
         $scope.title = '';
         $scope.courseTags = [];
@@ -12,32 +12,12 @@ angular
         $scope.uploaded = false;
         $scope.uploadError = false;
         $scope.published = false;
-
         $scope.course = {};
 
-        $scope.initTag = function() {
-            $http.get(config.API_URL + 'tags')
-            .then(function(response) {
-                $scope.allTags = response.data;
-            });
-        };
-
         //initialize
-        $scope.initTag();
-
-        $scope.addTag = function(tag) {
-            if (typeof tag.id == 'undefined') {
-                $scope.courseTags.push({'tag': tag})
-            }
-            else {
-                $scope.courseTags.push({'tag': tag.id})
-            }
-        };
-
-        $scope.removeTag = function(tag) {
-            var index = $scope.courseTags.indexOf(tag);
-            $scope.courseTags.splice(index, 1);
-        };
+        TagService.getAllTags(function(response) {
+            $scope.allTags = response.data;
+        }, function(error){});
 
         $scope.create = function () {
             var data = {
@@ -50,10 +30,7 @@ angular
 
             // start progress
             $scope.laddaLoading = true;
-
-            $http.post(config.API_URL + 'courses', data).
-                then(
-                function(response){
+            CourseService.createCourse(data, function(response){
                     $scope.laddaLoading = false;
                     if(response.status == 201) {
                         $scope.course = response.data;
@@ -62,26 +39,17 @@ angular
                 },
                 function(response) {
                     $scope.laddaLoading = false;
-                    $scope.addError(response.data.message);
+                    AlertService.error('form.form-horizontal', response.data.message);
                 });
         };
-
 
         $scope.uploadFiles = function (file) {
             $scope.f = file;
             if (file && !file.$error) {
-                file.upload = Upload.upload({
-                    url: config.BASE_URL + 'courses/upload',
-                    file: file
-                });
-
-                file.upload.then(function (response) {
-                    $timeout(function () {
-                        file.result = response.data;
-                        $scope.image = response.data;
-                        $scope.uploaded = true;
-                        $scope.uploadError = false;
-                    });
+                UploadService.uploadImageForCourse(file, function(response) {
+                    $scope.image = response.data;
+                    $scope.uploaded = true;
+                    $scope.uploadError = false;
                 }, function (response) {
                     if (response.status > 0) {
                         $scope.uploadError = true;
@@ -95,31 +63,16 @@ angular
             }
         };
 
+        $scope.addTag = function(tag) {
+            $scope.courseTags = CourseService.addTag(tag, $scope.courseTags);
+        };
+
+        $scope.removeTag = function(tag) {
+            $scope.courseTags = CourseService.removeTag(tag, $scope.courseTags);
+        };
+
         $scope.filterTags = function($query) {
-            var matches = [];
-            for (var i = 0; i < $scope.allTags.length ; i++) {
-                if ($scope.allTags[i].text.indexOf($query.toLowerCase()) >= 0 && $query.toLowerCase().length >= 3) {
-                    matches.push($scope.allTags[i]);
-                }
-            }
-
-            return matches;
-        };
-
-        $scope.addError = function(message) {
-            var html = '<div class="alert alert-danger alert-dismissable">' +
-                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                message +
-                '</div>';
-            angular.element($('form.form-horizontal')).before(html);
-        };
-
-        $scope.addInfo = function(message) {
-            var html = '<div class="alert alert-success alert-dismissable">' +
-                '    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>' +
-                message +
-                '</div>';
-            angular.element($('form.form-horizontal')).before(html);
+            return CourseService.filterTags($query, $scope.allTags);
         };
     });
 

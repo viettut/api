@@ -3,21 +3,16 @@
 angular
     .module('viettut')
     .factory('TagService', function($auth, $http, $q, config) {
-        return {
-            getAllTags: function() {
-                var deferred = $q.defer();
-
-                $http.defaults.headers.common.Authorization = "Bearer " + $auth.getToken();
-                $http({
-                    method: 'GET',
-                    url: config.API_URL + 'tags'
-                }).success(function (response) {
-                    deferred.resolve(response.data);
-                }).error(function (msg) {
-                    deferred.reject(msg);
+        var getAllTags = function(successCallback, errorCallback) {
+            $http.get(config.API_URL + 'tags')
+                .then(function(response) {
+                    successCallback(response);
+                }, function(error) {
+                    errorCallback(error);
                 });
+        };
 
-                return deferred.promise;
-            }
+        return {
+            getAllTags: getAllTags
         };
     });
