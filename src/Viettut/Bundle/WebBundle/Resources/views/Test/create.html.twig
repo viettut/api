@@ -28,7 +28,7 @@
                         <div class="col-md-6">
                             <select id="type" name="type" ng-model="type" class="form-control mb-md">
                                 <option value="1" selected="selected">Single Choice Test</option>
-                                <option value="2" selected="selected">Multi Choice Test</option>
+                                <option value="2" >Multi Choice Test</option>
                                 <option value="3">Coding Test</option>
                             </select>
                         </div>
@@ -83,14 +83,17 @@
                             <div class="input-group">
                                 <label for="code" class="control-label">Code</label>
                                 <input id="code" name="code" ng-model="$parent.code" type="text" class="form-control input-rounded"/>
+                                <span class="help-block">Click <a data-toggle="modal" data-target="#listCode" href="#">here</a> for a list of available code</span>
                             </div>
                             <div class="input-group">
                                 <label for="stdErr" class="control-label">Code</label>
                                 <input id="stdErr" name="stdErr" ng-model="$parent.stdErr" type="text" class="form-control input-rounded"/>
+                                <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
                             </div>
                             <div class="input-group">
                                 <label for="stdOut" class="control-label">Code</label>
                                 <input id="stdOut" name="stdOut" ng-model="$parent.stdOut" type="text" class="form-control input-rounded"/>
+                                <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
                             </div>
                         </div>
                     </div>
@@ -146,6 +149,59 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div id="listCode" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">{{ 'course.delete.confirm' | trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-condensed mb-none">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Code</th>
+                                    <th class="text-right">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td class="text-right">$1.38</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>2</td>
+                                    <td class="text-right">$1.38</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>3</td>
+                                    <td class="text-right">$1.38</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>4</td>
+                                    <td class="text-right">$1.38</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>5</td>
+                                    <td class="text-right">$1.91</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>

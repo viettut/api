@@ -24,7 +24,30 @@ angular
             }
         };
 
+        var uploadFileForChallenge = function(file, successCallback, errorCallback) {
+            if (file && !file.$error) {
+                file.upload = Upload.upload({
+                    url: config.API_URL + 'challenges/uploads',
+                    file: file
+                });
+
+                file.upload.then(function (response) {
+                    $timeout(function () {
+                        successCallback(response);
+                    });
+                }, function (error) {
+                    errorCallback(error);
+                });
+            }
+            else {
+                $scope.uploadError = true;
+                $scope.uploadErrorMsg = 'Image\'s max height is 1000px and max size is 1MB';
+            }
+        };
+
+
         return {
-            uploadImageForCourse: uploadImageForCourse
+            uploadImageForCourse: uploadImageForCourse,
+            uploadFileForChallenge: uploadFileForChallenge
         };
     });

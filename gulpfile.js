@@ -39,6 +39,9 @@ gulp.task('scripts', function(){
         'web/bundles/viettutweb/bower_components/ladda/dist/spin.min.js',
         'web/bundles/viettutweb/bower_components/ladda/dist/ladda.min.js',
         'web/bundles/viettutweb/bower_components/ladda-angular/dist/ladda-angular.min.js',
+        'web/bundles/viettutweb/bower_components/codemirror/lib/codemirror.js',
+        'web/bundles/viettutweb/bower_components/isteven-angular-multiselect/isteven-multi-select.js',
+        'web/bundles/viettutweb/bower_components/angular-ui-codemirror/ui-codemirror.js',
 
         'web/bundles/viettutweb/js/app.js',
         'web/bundles/viettutweb/js/sticky_sidebar.js',
@@ -55,6 +58,8 @@ gulp.task('scripts', function(){
         'web/bundles/viettutweb/js/services/comment.js',
         'web/bundles/viettutweb/js/services/alert.js',
         'web/bundles/viettutweb/js/services/route.js',
+        'web/bundles/viettutweb/js/services/challenge.js',
+        'web/bundles/viettutweb/js/services/test.js',
 
         'web/bundles/viettutweb/vendor/jquery.appear/jquery.appear.js',
         'web/bundles/viettutweb/vendor/jquery.easing/jquery.easing.js',
@@ -87,7 +92,9 @@ gulp.task('styles', function(){
        'web/bundles/viettutweb/vendor/rs-plugin/css/settings.css',
        'web/bundles/viettutweb/css/skins/default.css',
        'web/bundles/viettutweb/css/custom.css',
-       'web/bundles/viettutweb/css/sidebar.css'
+       'web/bundles/viettutweb/css/sidebar.css',
+       'web/bundles/viettutweb/bower_components/codemirror/lib/codemirror.css'
+       'web/bundles/viettutweb/bower_components/isteven-angular-multiselect/isteven-multi-select.css'
    ]).pipe(concat('main.css')).pipe(minifyCss()).pipe(gulp.dest('web/css/'))
 });
 
