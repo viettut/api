@@ -31,27 +31,34 @@
                 </div>
                 <form class="form-horizontal" role="form"  ng-hide="loading" id="editCourse">
                     <div class="form-group">
-                        <label for="title">{{ 'course.edit_form.title' | trans }}</label>
-                        <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
-                    </div>
-                    <div class="form-group">
-                        <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
-                            <auto-complete
-                                    source="filterTags($query)"
-                                    min-length="2"
-                                    select-first-match="false">
-                            </auto-complete>
-                        </tags-input>
-                    </div>
-                    <div class="form-group">
-                        <label for="image">{{ 'course.edit_form.image' | trans }}</label><br>
-                        <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">{{ 'course.edit_form.file' | trans }}</button>
-                        <div class="alert alert-danger" ng-if="uploadError">
-                            <strong>Error !</strong> <{ uploadErrorMsg }>
+                        <label for="title" class="col-md-3 control-label">{{ 'course.edit_form.title' | trans }}</label>
+                        <div class="col-md-6">
+                            <input type="text" value="" class="form-control input-rounded" name="title" id="title" ng-model="title" required />
                         </div>
-                        <input type="hidden" name="image" id="image" ng-model="image">
-                        <div>
-                            <img class="img-thumbnail" src="{{ course.imagePath }}" width="304" alt="preview">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Add tags</label>
+                        <div class="col-md-6">
+                            <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)" on-tag-removed="removeTag($tag)">
+                                <auto-complete
+                                        source="filterTags($query)"
+                                        min-length="2"
+                                        select-first-match="false">
+                                </auto-complete>
+                            </tags-input>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="image" class="col-md-3 control-label">{{ 'course.edit_form.image' | trans }}</label>
+                        <div class="col-md-6">
+                            <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">{{ 'course.edit_form.file' | trans }}</button>
+                            <div class="alert alert-danger" ng-if="uploadError">
+                                <strong>Error !</strong> <{ uploadErrorMsg }>
+                            </div>
+                            <input type="hidden" name="image" id="image" ng-model="image">
+                            <div>
+                                <img class="img-thumbnail" src="{{ course.imagePath }}" width="304" alt="preview">
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -66,12 +73,12 @@
                             </ul>
                             <div class="tab-content">
                                 <div id="edit" class="tab-pane active">
-                                    <label for="introduce">{{ 'course.edit_form.introduce' | trans }}</label>
+                                    <label for="introduce" class="control-label">{{ 'course.edit_form.introduce' | trans }}</label>
                                 <textarea
                                         ng-model="introduce"
                                         name="introduce"
                                         markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical', hiddenButtons : ['cmdPreview']}"
-                                        rows="15">
+                                        rows="15" class="form-control">
                                 </textarea>
                                 </div>
                                 <div id="preview" class="tab-pane">
@@ -81,8 +88,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" ng-model="published" required name="published" ng-checked="published" />
-                        <label for="published">{{ 'course.create_form.publish' | trans }}</label>
+                        <label for="published" class="control-label col-md-3">{{ 'course.create_form.publish' | trans }}</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" ng-model="published" required name="published" ng-checked="published" class="form-control" />
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">

@@ -29,8 +29,10 @@
                 </div>
                 <form class="form-horizontal" role="form" name="createGuide" ng-hide="loading">
                     <div class="form-group">
-                        <label for="header">Tên chương</label>
-                        <input type="text" value="" class="form-control" name="header" ng-model="header" required>
+                        <label for="header" class="col-md-3 control-label">Tên chương</label>
+                        <div class="col-md-6">
+                            <input type="text" value="" class="form-control input-rounded" name="header" ng-model="header" required />
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="tabs">

@@ -46,8 +46,10 @@
                             {{ 'chapter.add.error' | trans }}
                         </div>
                         <div class="form-group">
-                            <label for="chapter">{{ 'chapter.add.title' | trans }}</label>
-                            <input type="text" value="" class="form-control" id="chapter" ng-model="header" required>
+                            <label for="chapter" class="control-label col-md-3">{{ 'chapter.add.title' | trans }}</label>
+                            <div class="col-md-6">
+                                <input type="text" value="" class="form-control input-rounded" id="chapter" ng-model="header" required />
+                            </div>
                         </div>
                         <div class="form-group">
                             <div class="tabs">
@@ -63,8 +65,8 @@
                             </div>
                             <div class="tab-content">
                                 <div id="edit" class="tab-pane active">
-                                    <label for="content">{{ 'chapter.add.content' | trans }}</label>
-                                    <textarea
+                                    <label for="content" class="control-label">{{ 'chapter.add.content' | trans }}</label>
+                                    <textarea class="form-control"
                                             ng-model="content"
                                             name="content"
                                             markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical', hiddenButtons : ['cmdPreview']}"

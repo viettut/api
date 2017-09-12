@@ -28,21 +28,28 @@
                         {{ 'tutorial.create_form.error' | trans }}
                     </div>
                     <div class="form-group">
-                        <label for="title">{{ 'tutorial.create_form.title' | trans }}</label>
-                        <input type="text" value="" class="form-control" name="title" id="title" ng-model="title" required>
+                        <label for="title" class="col-md-3 control-label">{{ 'tutorial.create_form.title' | trans }}</label>
+                        <div class="col-md-6">
+                            <input type="text" value="" class="form-control input-rounded" name="title" id="title" ng-model="title" required />
+                        </div>
                     </div>
                     <div class="form-group">
-                        <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)">
-                            <auto-complete
-                                    source="filterTags($query)"
-                                    min-length="1"
-                                    select-first-match="false">
-                            </auto-complete>
-                        </tags-input>
+                        <label class="control-label col-md-3">Add tags</label>
+                        <div class="col-md-6">
+                            <tags-input ng-model="selectedTags" on-tag-added="addTag($tag)">
+                                <auto-complete
+                                        source="filterTags($query)"
+                                        min-length="1"
+                                        select-first-match="false">
+                                </auto-complete>
+                            </tags-input>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="video">Link video</label>
-                        <input type="url" value="" class="form-control" name="video" id="title" ng-model="video" required>
+                        <label for="video" class="control-label col-md-3">Link video</label>
+                        <div class="col-md-6">
+                            <input type="url" value="" class="form-control input-rounded" name="video" id="title" ng-model="video" required />
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="tabs">
@@ -57,8 +64,8 @@
                         </div>
                         <div class="tab-content">
                             <div id="edit" class="tab-pane active">
-                                <label for="content">{{ 'tutorial.create_form.content' | trans }}</label>
-                                <textarea
+                                <label for="content" class="control-label">{{ 'tutorial.create_form.content' | trans }}</label>
+                                <textarea class="form-control"
                                         ng-model="content"
                                         name="content"
                                         markdown-editor="{'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical', hiddenButtons : ['cmdPreview']}"
