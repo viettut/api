@@ -27,6 +27,10 @@ angular
         var reload = function() {
             $window.location.reload();
         };
+
+        var myChallenge = function() {
+            $window.location.href = config.BASE_URL + 'mychallenges';
+        };
         
         return {
             home: home,
@@ -34,6 +38,7 @@ angular
             reload: reload,
             addChapter: addChapter,
             editCourse: editCourse,
-            tutorialIndex: tutorialIndex
+            tutorialIndex: tutorialIndex,
+            myChallenge: myChallenge
         };
     });

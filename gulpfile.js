@@ -93,7 +93,7 @@ gulp.task('styles', function(){
        'web/bundles/viettutweb/css/skins/default.css',
        'web/bundles/viettutweb/css/custom.css',
        'web/bundles/viettutweb/css/sidebar.css',
-       'web/bundles/viettutweb/bower_components/codemirror/lib/codemirror.css'
+       'web/bundles/viettutweb/bower_components/codemirror/lib/codemirror.css',
        'web/bundles/viettutweb/bower_components/isteven-angular-multiselect/isteven-multi-select.css'
    ]).pipe(concat('main.css')).pipe(minifyCss()).pipe(gulp.dest('web/css/'))
 });

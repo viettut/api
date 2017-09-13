@@ -3,6 +3,19 @@
 angular
     .module('viettut')
     .factory('TestService', function($auth, $http, $q, config) {
+
+        var getAllTests = function(successCallback, errorCallback) {
+            $http.get(config.API_URL + 'tests').
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(error){
+                    errorCallback(error);
+                }
+            );
+        };
+
         var getTest = function(id, successCallback, errorCallback) {
             $http.get(config.API_URL + 'tests/' + id).
             then(
@@ -42,6 +55,7 @@ angular
         return {
             createTest: createTest,
             getTest: getTest,
+            getAllTests: getAllTests,
             updateTest: updateTest
         };
     });
