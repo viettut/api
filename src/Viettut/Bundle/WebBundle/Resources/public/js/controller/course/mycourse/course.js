@@ -3,7 +3,7 @@ angular
     .controller('CourseController', function ($scope, config, CourseService, AlertService, RouteService) {
         $scope.myCourses = [];
         $scope.loading = true;
-        $scope.deletingCourse = null;
+        $scope.deletingChallenge = null;
 
         $scope.getFirstParagraph = function(str) {
             return str.substring(0, str.indexOf("\n"));
@@ -20,15 +20,15 @@ angular
         $scope.delete = function() {
             $scope.hideConfirm();
             
-            if ($scope.deletingCourse == null) {
+            if ($scope.deletingChallenge == null) {
                 return;
             }
 
-            CourseService.deleteCourse($scope.myCourses[$scope.deletingCourse].id, function(response) {
+            CourseService.deleteCourse($scope.myCourses[$scope.deletingChallenge].id, function(response) {
                 $scope.loading = false;
                 if(response.status == 204) {
                     AlertService.info('div.blog-posts', 'The course has been deleted successfully!');
-                    $scope.myCourses.splice($scope.deletingCourse, 1);
+                    $scope.myCourses.splice($scope.deletingChallenge, 1);
                 }
             }, function(response){
                 $scope.loading = false;
@@ -37,7 +37,7 @@ angular
         };
 
         $scope.showConfirm = function(courseIndex) {
-            $scope.deletingCourse = courseIndex;
+            $scope.deletingChallenge = courseIndex;
             $('#deleteConfirm').modal('show');
         };
 

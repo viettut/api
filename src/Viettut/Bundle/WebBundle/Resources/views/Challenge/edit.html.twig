@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
+{% block controller %}ng-controller="CourseController"{% endblock %}
+{% block main %}
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active"><a href="{{ path('course_index') }}">{{ 'header.course' | trans }}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>{{ 'course.create' | trans }}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="progress" ng-show="loading">
+                    <div class="progress-bar progress-bar-striped active width90pc" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">45% Complete</span>
+                    </div>
+                </div>
+                <form class="form-horizontal" role="form" id="editChallenge" ng-hide="loading">
+                    <div class="form-group">
+                        <label for="name" class="col-md-3 control-label">{{ 'course.create_form.title' | trans }}</label>
+                        <div class="col-md-6">
+                            <input type="text" value="" class="form-control input-rounded" name="name" id="name" ng-model="name" required />
+                        </div>
+                    </div>
 
-</body>
-</html>
+                    <div class="form-group">
+                        <label for="timeLimit" class="col-md-3 control-label">Time Limit</label>
+                        <div class="col-md-6">
+                            <input type="number" class="form-control input-rounded" name="timeLimit" id="timeLimit" ng-model="timeLimit" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="published" class="control-label col-md-3">{{ 'course.create_form.publish' | trans }}</label>
+                        <div class="col-md-6">
+                            <input type="checkbox" ng-model="published" name="published" class="form-control" id="published" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button ladda-button="laddaLoading" data-style="slide-right" ng-click="create()" class="btn btn-primary border-radius5 ladda-button">{{ 'course.create_form.submit' | trans }}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/controller/challenge/edit/challenge.js') }}"></script>
+{% endblock %}

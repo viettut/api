@@ -10,7 +10,10 @@ angular
         var editCourse = function (token) {
             $window.location.href = config.BASE_URL + 'courses/' + token + '/edit';
         };
-        
+
+        var editChallenge = function (token) {
+            $window.location.href = config.BASE_URL + 'challenges/' + token + '/edit';
+        };
         
         var tutorialIndex = function () {
             $window.location.href = config.BASE_URL + 'tutorials/all';
@@ -39,6 +42,7 @@ angular
             addChapter: addChapter,
             editCourse: editCourse,
             tutorialIndex: tutorialIndex,
-            myChallenge: myChallenge
+            myChallenge: myChallenge,
+            editChallenge: editChallenge
         };
     });

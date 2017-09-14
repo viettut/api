@@ -1,6 +1,6 @@
 angular
     .module('viettut')
-    .controller('TestController', function ($http, $scope, TestService, AlertService, UploadService) {
+    .controller('ChallengeController', function ($http, $scope, TestService, AlertService, UploadService) {
         $scope.laddaLoading = false;
         $scope.name = '';
         $scope.type = null;
@@ -17,10 +17,25 @@ angular
         $scope.uploadError = false;
         $scope.test = {};
         $scope.choices = [{'value': '', 'correct': '0'}];
+        $scope.challengeId = -1;
+        $scope.allTests = [];
+        $scope.tests = [];
+        $scope.selectTest = false;
+
+
+        TestService.getAllTests(
+            function(response) {
+                $scope.allTests = response.data;
+            },
+            function(response){}
+        );
+
+        $scope.$watch('challengeId', function(newVal, oldVal){
+            $scope.challengeId = newVal;
+        });
 
         $scope.addNewChoice = function() {
             $scope.choices.push({'value': ''});
-            console.log($scope.choices);
         };
 
         $scope.removeChoice = function() {
@@ -41,7 +56,7 @@ angular
         };
 
         $scope.create = function() {
-            var data = {
+            var test = {
                 name: $scope.name,
                 type: $scope.type,
                 language: $scope.language,
@@ -49,11 +64,16 @@ angular
                 initialCode: $scope.initialCode,
                 inputData: $scope.inputData,
                 serverParameters: $scope.serverParameters,
-                testCollection: []
+                files: $scope.files
+            };
+
+            var $tesCollection = {
+                test: test,
+                challenge: $scope.challengeId
             };
 
             $scope.laddaLoading = true;
-            TestService.createTest(data,
+            TestService.createTestCollection($tesCollection,
                 function(response) {
                     $scope.laddaLoading = false;
                     if(response.status == 201) {

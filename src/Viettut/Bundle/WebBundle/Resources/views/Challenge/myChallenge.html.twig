@@ -1,10 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'global' %}
+{% block controller %}ng-controller="CourseController"{% endblock %}
+{% block main %}
+    <section class="page-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                        <li><a href="{{ path('home_page') }}">Home</a></li>
+                        <li class="active">{{ 'header.course' | trans }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="progress" ng-show="loading">
+                    <div class="progress-bar progress-bar-striped active width90pc" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">45% Complete</span>
+                    </div>
+                </div>
+                <div class="blog-posts" ng-hide="loading">
 
-</body>
-</html>
+                    <h2 ng-if="myCourses.length <= 0">You don't have any challenge yet. <a href="{{ path('create_challenge') }}">Create one ?</a></h2>
+                    <article ng-if="myChallenges.length > 0" class="post post-medium" ng-repeat="challenge in myChallenges">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="post-image">
+                                    <div class="img-thumbnail">
+                                        <img class="img-responsive" ng-src="<{ course.imagePath }>" alt="post image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="post-content">
+                                    <h2><a href="#"><{ challenge.name }></a></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="post-meta">
+                                    <span><i class="fa fa-calendar"></i><{ challenge.createdAt | date : "d/M/y" }></span>
+                                    <span><i class="fa fa-book"></i> <a href="#"><{ challenge.testCollection.length }> {{ 'header.chapter' | trans }}</a></span>
+                                    <div class="btn-group pull-right" role="group" aria-label="Basic example">
+                                        <a ng-click="edit($index)" class="btn btn-primary padding-left-5 padding-right-5" title="edit this challenge">{{ 'course.my_course.update' | trans }}</a>
+                                        <a ng-click="showConfirm($index)" class="btn btn-primary padding-left-5 padding-right-5" title="delete this challenge">{{ 'course.my_course.delete' | trans }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <aside class="sidebar">
+                    <h4>{{ 'header.reference' | trans }}</h4>
+                    <ul class="nav nav-list primary push-bottom">
+                        <li><a href="http://knpuniversity.com" target="_blank">Knp University</a></li>
+                        <li><a href="http://scotch.io" target="_blank">Scotch.io</a></li>
+                        <li><a href="http://codeschool.com" target="_blank">Code School</a></li>
+                    </ul>
+                </aside>
+            </div>
+        </div>
+        <div id="deleteConfirm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'course.delete.confirm' | trans }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        {{ 'course.delete.message' | trans }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="delete()">{{ 'course.delete.delete' | trans }}</button>
+                        <button type="button" class="btn btn-primary" ng-click="hideConfirm()">{{ 'course.delete.cancel' | trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block custom %}
+    <script src="{{ asset('bundles/viettutweb/js/controller/course/mycourse/course.js') }}"></script>
+{% endblock %}
+
+

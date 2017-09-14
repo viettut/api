@@ -41,7 +41,19 @@ angular
         };
 
         var createTest = function(data, successCallback, errorCallback) {
-            $http.post(config.API_URL + 'chapters', data).
+            $http.post(config.API_URL + 'tests', data).
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(error){
+                    errorCallback(error);
+                }
+            );
+        };
+
+        var createTestCollection = function(data, successCallback, errorCallback) {
+            $http.post(config.API_URL + 'testcollections', data).
             then(
                 function(response){
                     successCallback(response);
@@ -54,6 +66,7 @@ angular
 
         return {
             createTest: createTest,
+            createTestCollection: createTestCollection,
             getTest: getTest,
             getAllTests: getAllTests,
             updateTest: updateTest

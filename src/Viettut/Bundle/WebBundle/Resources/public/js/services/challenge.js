@@ -39,9 +39,21 @@ angular
             );
         };
 
+        var deleteChallenge = function(id, successCallback, errorCallback) {
+            $http.delete(config.API_URL + 'challenges/' + id).
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(response){
+                    errorCallback(response);
+                });
+        };
+
         return {
             createChallenge: createChallenge,
             getChallenge: getChallenge,
-            updateChallenge: updateChallenge
+            updateChallenge: updateChallenge,
+            deleteChallenge: deleteChallenge
         };
     });
