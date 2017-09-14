@@ -69,7 +69,13 @@ class ChallengeController extends RestControllerAbstract implements ClassResourc
      *      404 = "Returned when the resource is not found"
      *  }
      * )
-     *
+     * @ApiDoc(
+     *  resource = true,
+     *  statusCodes = {
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the resource is not found"
+     *  }
+     * )
      * @param int $id the resource id
      *
      * @return ChallengeInterface
@@ -80,6 +86,36 @@ class ChallengeController extends RestControllerAbstract implements ClassResourc
         return $this->one($id);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getTestsAction($id)
+    {
+        /**@var ChallengeInterface $challenge */
+        $challenge = $this->one($id);
+
+        return $this->get('viettut.repository.test')->getTestForChallenge($challenge);
+    }
+
+    /**
+     * @ApiDoc(
+     *  resource = true,
+     *  statusCodes = {
+     *      200 = "Returned when successful",
+     *      404 = "Returned when the resource is not found"
+     *  }
+     * )
+     * @param $id
+     * @return mixed
+     */
+    public function getUnusedtestsAction($id)
+    {
+        /**@var ChallengeInterface $challenge */
+        $challenge = $this->one($id);
+
+        return $this->get('viettut.repository.test')->getUnusedTestForChallenge($challenge);
+    }
 
     /**
      * Create a challenge from the submitted data

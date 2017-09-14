@@ -64,6 +64,9 @@ angular
             );
         };
 
+        var getTestForChallenge = function(challengeId, successCallback, errorCallback) {
+
+        };
         return {
             createTest: createTest,
             createTestCollection: createTestCollection,
