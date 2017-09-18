@@ -24,6 +24,7 @@ class Test extends TestModel
     protected $sourceFileName;
     protected $serverParameters;
     protected $inputData;
+    protected $hashTag;
     protected $createdAt;
     protected $updatedAt;
 }

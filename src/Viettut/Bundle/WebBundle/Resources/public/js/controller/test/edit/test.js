@@ -14,7 +14,6 @@ angular
         $scope.inputData = {};
         $scope.serverParameters = {};
         $scope.uploaded = false;
-        $scope.uploadError = false;
         $scope.test = {};
         $scope.choices = [{'value': '', 'correct': '0'}];
         $scope.testId = -1;
@@ -22,7 +21,6 @@ angular
 
         $scope.addNewChoice = function() {
             $scope.choices.push({'value': ''});
-            console.log($scope.choices);
         };
 
         $scope.removeChoice = function() {
@@ -77,17 +75,14 @@ angular
                 UploadService.uploadFileForChallenge(file, function(response) {
                     $scope.image = response.data;
                     $scope.uploaded = true;
-                    $scope.uploadError = false;
                 }, function (response) {
                     if (response.status > 0) {
-                        $scope.uploadError = true;
-                        $scope.uploadErrorMsg = response.status + ': ' + response.data;
+                        AlertService.error('form.form-horizontal', response.status + ': ' + response.data);
                     }
                 });
             }
             else {
-                $scope.uploadError = true;
-                $scope.uploadErrorMsg = 'Image\'s max height is 1000px and max size is 1MB';
+                AlertService.error('form.form-horizontal', 'File  max size is 1MB');
             }
         };
 
@@ -104,7 +99,9 @@ angular
                     $scope.inputData = response.data.inputData;
                     $scope.serverParameters = response.data.serverParameters;
                 },
-                function(response) {}
+                function(response) {
+                    AlertService.error('form.form-horizontal', response.status + ': ' + response.data);
+                }
             )
         });
     });

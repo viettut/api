@@ -10,8 +10,8 @@
      * Main module of the application.
      */
     angular
-        .module('viettut', ['hc.marked', 'hljs', 'angular-markdown-editor', 'ui.router', 'ngTagsInput', 'ngSanitize', 'ngFileUpload',
-            'ladda', 'ngStorage', 'satellizer', 'ngAnimate', 'ui.bootstrap', 'ui.codemirror', 'isteven-multi-select'])
+        .module('viettut', ['hc.marked', 'hljs', 'angular-markdown-editor', 'ngTagsInput', 'ngSanitize', 'ngFileUpload',
+            'ladda', 'ngAnimate', 'ui.bootstrap', 'ui.codemirror', 'isteven-multi-select'])
         // .constant('config', {
         //     'API_URL' : '/api/v1/',
         //     'PUBLIC_API_URL' : '/public/api/',

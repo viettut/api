@@ -52,9 +52,6 @@
                         <label for="image" class="col-md-3 control-label">{{ 'course.edit_form.image' | trans }}</label>
                         <div class="col-md-6">
                             <button type="file" ngf-select="uploadFiles($file)" accept="image/*" ngf-max-height="1000" ngf-max-size="1MB" class="btn btn-primary">{{ 'course.edit_form.file' | trans }}</button>
-                            <div class="alert alert-danger" ng-if="uploadError">
-                                <strong>Error !</strong> <{ uploadErrorMsg }>
-                            </div>
                             <input type="hidden" name="image" id="image" ng-model="image">
                             <div>
                                 <img class="img-thumbnail" src="{{ course.imagePath }}" width="304" alt="preview">

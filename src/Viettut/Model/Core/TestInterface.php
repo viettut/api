@@ -156,4 +156,15 @@ interface TestInterface extends ModelInterface
      * @param TestCollectionInterface $testCollection
      */
     public function setTestCollection($testCollection);
+
+    /**
+     * @return string
+     */
+    public function getHashTag();
+
+    /**
+     * @param string $hashTag
+     * @return self
+     */
+    public function setHashTag($hashTag);
 }

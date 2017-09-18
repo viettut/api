@@ -11,6 +11,10 @@ angular
             $window.location.href = config.BASE_URL + 'courses/' + token + '/edit';
         };
 
+        var editTest = function (token) {
+            $window.location.href = config.BASE_URL + 'tests/' + token + '/edit';
+        };
+
         var editChallenge = function (token) {
             $window.location.href = config.BASE_URL + 'challenges/' + token + '/edit';
         };
@@ -37,6 +41,7 @@ angular
         
         return {
             home: home,
+            editTest: editTest,
             login: login,
             reload: reload,
             addChapter: addChapter,

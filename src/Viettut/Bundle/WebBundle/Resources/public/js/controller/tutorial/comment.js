@@ -1,12 +1,10 @@
 angular
     .module('viettut')
-    .controller('CommentController', function ($scope, RouteService, CommentService) {
+    .controller('CommentController', function ($scope, RouteService, CommentService, AlertService) {
         $scope.comments = [];
         $scope.numberComments = 0;
         $scope.content = '';
         $scope.laddaLoading = false;
-        $scope.error = '';
-        $scope.showError = false;
         $scope.commentContent = '';
         $scope.currentTutorial = false;
         $scope.commentToggle = false;
@@ -16,11 +14,13 @@ angular
         });
 
         $scope.reloadComment = function() {
-            CommentService.getCommentForTutorial($scope.currentTutorial,
+            CommentService.getCommentForTutorial(
+                $scope.currentTutorial,
                 function (response) {
                     $scope.comments = response.data;
                 },
                 function (response) {
+                    AlertService.error('div.post-block', response.data.message);
                 }
             );
         };
@@ -48,14 +48,14 @@ angular
                         $scope.commentToggle = true;
                         $scope.commentContent = '';
                     }
-                }, function(response) {
+                },
+                function(response) {
                     if(response.status == 401) {
                         RouteService.login();
                     }
 
                     $scope.laddaLoading = false;
-                    $scope.error = response.data;
-                    $scope.showError = true;
+                    AlertService.error('div.post-block', response.data);
                 }
             );
         };

@@ -64,6 +64,11 @@ class Test implements TestInterface
     protected $inputData;
 
     /**
+     * @var string
+     */
+    protected $hashTag;
+
+    /**
      * @var array
      */
     protected $serverParameters;
@@ -322,5 +327,23 @@ class Test implements TestInterface
     public function setTestCollection($testCollection)
     {
         $this->testCollection = $testCollection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHashTag()
+    {
+        return $this->hashTag;
+    }
+
+    /**
+     * @param string $hashTag
+     * @return self
+     */
+    public function setHashTag($hashTag)
+    {
+        $this->hashTag = $hashTag;
+        return $this;
     }
 }

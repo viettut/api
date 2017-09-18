@@ -3,7 +3,7 @@ angular
     .controller('ChallengeController', function ($scope, config, ChallengeService, AlertService, RouteService) {
         $scope.myChallenges = [];
         $scope.loading = true;
-        $scope.deletingChallenge = null;
+        $scope.deletingTest = null;
 
         $scope.buildViewLink = function(challenge) {
             return config.BASE_URL + challenge.author.username + '/challenges/' + challenge.hashTag;
@@ -16,15 +16,15 @@ angular
         $scope.delete = function() {
             $scope.hideConfirm();
 
-            if ($scope.deletingChallenge == null) {
+            if ($scope.deletingTest == null) {
                 return;
             }
 
-            ChallengeService.deleteChallenge($scope.myChallenges[$scope.deletingChallenge].id, function(response) {
+            ChallengeService.deleteChallenge($scope.myChallenges[$scope.deletingTest].id, function(response) {
                 $scope.loading = false;
                 if(response.status == 204) {
                     AlertService.info('div.blog-posts', 'The challenge has been deleted successfully!');
-                    $scope.myChallenges.splice($scope.deletingChallenge, 1);
+                    $scope.myChallenges.splice($scope.deletingTest, 1);
                 }
             }, function(response){
                 $scope.loading = false;
@@ -33,7 +33,7 @@ angular
         };
 
         $scope.showConfirm = function(challengeIndex) {
-            $scope.deletingChallenge = challengeIndex;
+            $scope.deletingTest = challengeIndex;
             $('#deleteConfirm').modal('show');
         };
 

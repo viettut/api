@@ -11,7 +11,6 @@ angular
         $scope.content = '';
         $scope.published = false;
         $scope.uploaded = false;
-        $scope.uploadError = false;
         $scope.loading = true;
 
         $scope.course = {};
@@ -85,17 +84,15 @@ angular
                 UploadService.uploadImageForCourse(file, function(response) {
                     $scope.image = response.data;
                     $scope.uploaded = true;
-                    $scope.uploadError = false;
                 }, function (response) {
                     if (response.status > 0) {
                         $scope.uploadError = true;
-                        $scope.uploadErrorMsg = response.status + ': ' + response.data;
+                        AlertService.error('form.form-horizontal', response.status + ': ' + response.data);
                     }
                 });
             }
             else {
-                $scope.uploadError = true;
-                $scope.uploadErrorMsg = 'Image\'s max height is 1000px and max size is 1MB';
+                AlertService.error('form.form-horizontal', 'Image\'s max height is 1000px and max size is 1MB');
             }
         };
 

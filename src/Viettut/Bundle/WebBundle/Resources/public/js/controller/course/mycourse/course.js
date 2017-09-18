@@ -1,9 +1,9 @@
 angular
     .module('viettut')
     .controller('CourseController', function ($scope, config, CourseService, AlertService, RouteService) {
-        $scope.myCourses = [];
+        $scope.myTests = [];
         $scope.loading = true;
-        $scope.deletingChallenge = null;
+        $scope.deletingTest = null;
 
         $scope.getFirstParagraph = function(str) {
             return str.substring(0, str.indexOf("\n"));
@@ -14,21 +14,21 @@ angular
         };
 
         $scope.edit = function(courseIndex) {
-            RouteService.editCourse($scope.myCourses[courseIndex].token);
+            RouteService.editCourse($scope.myTests[courseIndex].token);
         };
 
         $scope.delete = function() {
             $scope.hideConfirm();
             
-            if ($scope.deletingChallenge == null) {
+            if ($scope.deletingTest == null) {
                 return;
             }
 
-            CourseService.deleteCourse($scope.myCourses[$scope.deletingChallenge].id, function(response) {
+            CourseService.deleteCourse($scope.myTests[$scope.deletingTest].id, function(response) {
                 $scope.loading = false;
                 if(response.status == 204) {
                     AlertService.info('div.blog-posts', 'The course has been deleted successfully!');
-                    $scope.myCourses.splice($scope.deletingChallenge, 1);
+                    $scope.myTests.splice($scope.deletingTest, 1);
                 }
             }, function(response){
                 $scope.loading = false;
@@ -37,7 +37,7 @@ angular
         };
 
         $scope.showConfirm = function(courseIndex) {
-            $scope.deletingChallenge = courseIndex;
+            $scope.deletingTest = courseIndex;
             $('#deleteConfirm').modal('show');
         };
 
@@ -48,7 +48,7 @@ angular
         CourseService.getMyCourses(function(response){
                 $scope.loading = false;
                 if (response.status == 200) {
-                    $scope.myCourses = response.data;
+                    $scope.myTests = response.data;
                 }
             },
             function(response){

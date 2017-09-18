@@ -1,12 +1,7 @@
-/**
- * Created by giang on 22/05/2016.
- */
 angular
     .module('viettut')
     .controller('ChapterController', function ($scope, RouteService, ChapterService, AlertService) {
         $scope.laddaLoading = false;
-        $scope.error = '';
-        $scope.showError = false;
         $scope.header = '';
         $scope.chapter = {};
         $scope.content = '';
@@ -32,8 +27,7 @@ angular
                 }
 
                 $scope.laddaLoading = false;
-                $scope.error = response.data;
-                $scope.showError = true;
+                AlertService.error('form.form-horizontal', response.data);
             });
         };
 

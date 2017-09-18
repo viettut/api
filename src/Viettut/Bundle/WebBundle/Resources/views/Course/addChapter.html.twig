@@ -41,10 +41,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal" role="form" name="addChapter">
-                        <div class="alert alert-danger alert-dismissable" ng-if="showError">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            {{ 'chapter.add.error' | trans }}
-                        </div>
                         <div class="form-group">
                             <label for="chapter" class="control-label col-md-3">{{ 'chapter.add.title' | trans }}</label>
                             <div class="col-md-6">
@@ -120,6 +116,5 @@
 {% endblock %}
 {% block custom %}
     <script src="{{ asset('bundles/viettutweb/js/prism.js') }}"></script>
-    <script src="{{ asset('bundles/viettutweb/js/controller/course/comment.js') }}"></script>
     <script src="{{ asset('bundles/viettutweb/js/controller/course/chapter.js') }}"></script>
 {% endblock %}

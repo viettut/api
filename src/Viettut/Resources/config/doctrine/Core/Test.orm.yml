@@ -41,6 +41,9 @@ Viettut\Entity\Core\Test:
         serverParameters:
             type: json_array
             nullable: true
+        hashTag:
+            type: string
+            nullable: true
         createdAt:
             type: datetime
             gedmo:

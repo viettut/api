@@ -1,12 +1,10 @@
 angular
     .module('viettut')
-    .controller('CommentController', function CommentController($scope, RouteService, CommentService) {
+    .controller('CommentController', function CommentController($scope, RouteService, CommentService, AlertService) {
         $scope.comments = [];
         $scope.numberComments = 0;
         $scope.content = '';
         $scope.laddaLoading = false;
-        $scope.error = '';
-        $scope.showError = false;
         $scope.commentToggle = false;
         $scope.currentChapter = -1;
 
@@ -53,8 +51,7 @@ angular
                 }
 
                 $scope.laddaLoading = false;
-                $scope.error = response.data;
-                $scope.showError = true;
+                AlertService.error('div.post-block', response.data);
             });
         };
     });

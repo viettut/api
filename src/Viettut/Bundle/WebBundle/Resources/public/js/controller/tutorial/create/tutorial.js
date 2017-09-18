@@ -2,7 +2,6 @@ angular
     .module('viettut')
     .controller('TutorialController', function ($scope, TagService, TutorialService, AlertService, RouteService) {
         $scope.laddaLoading = false;
-        $scope.error = '';
         $scope.tutorialTags = [];
         $scope.selectedTags = [];
         $scope.allTags = [];
@@ -12,9 +11,14 @@ angular
         $scope.tutorial = {};
 
         //initialize
-        TagService.getAllTags(function(response) {
-            $scope.allTags = response.data;
-        }, function(error){});
+        TagService.getAllTags(
+            function(response) {
+                $scope.allTags = response.data;
+            },
+            function(error){
+                AlertService.error('form.form-horizontal', error.data.message);
+            }
+        );
 
         $scope.addTag = function(tag) {
             $scope.tutorialTags = TutorialService.addTag(tag, $scope.tutorialTags);

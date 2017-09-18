@@ -22,16 +22,15 @@ angular
         $scope.tests = [];
         $scope.selectTest = false;
 
-
-        TestService.getAllTests(
-            function(response) {
-                $scope.allTests = response.data;
-            },
-            function(response){}
-        );
-
         $scope.$watch('challengeId', function(newVal, oldVal){
             $scope.challengeId = newVal;
+            TestService.getUnusedTestsForChallenge(
+                $scope.challengeId,
+                function(response) {
+                    $scope.allTests = response.data;
+                },
+                function(response){}
+            );
         });
 
         $scope.addNewChoice = function() {
@@ -66,6 +65,10 @@ angular
                 serverParameters: $scope.serverParameters,
                 files: $scope.files
             };
+
+            if (selectTest) {
+                test = $scope.tests[0];
+            }
 
             var $tesCollection = {
                 test: test,

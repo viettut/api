@@ -65,13 +65,49 @@ angular
         };
 
         var getTestForChallenge = function(challengeId, successCallback, errorCallback) {
-
+            $http.get(config.API_URL + 'challenges/' + challengeId  + '/tests').
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(error){
+                    errorCallback(error);
+                }
+            );
         };
+
+        var getUnusedTestsForChallenge  = function(challengeId, successCallback, errorCallback) {
+            $http.get(config.API_URL + 'challenges/' + challengeId  + '/unusedtests').
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(error){
+                    errorCallback(error);
+                }
+            );
+        };
+
+        var deleteTest = function(testId, successCallback, errorCallback) {
+            $http.delete(config.API_URL + 'tests/' + challengeId).
+            then(
+                function(response){
+                    successCallback(response);
+                },
+                function(error){
+                    errorCallback(error);
+                }
+            );
+        };
+
         return {
             createTest: createTest,
             createTestCollection: createTestCollection,
             getTest: getTest,
             getAllTests: getAllTests,
-            updateTest: updateTest
+            updateTest: updateTest,
+            getTestForChallenge: getTestForChallenge,
+            getUnusedTestsForChallenge: getUnusedTestsForChallenge,
+            deleteTest: deleteTest
         };
     });
