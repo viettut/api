@@ -19,7 +19,6 @@ gulp.task('scripts', function(){
     return gulp.src([
         'web/bundles/viettutweb/bower_components/jquery/dist/jquery.min.js',
         'web/bundles/viettutweb/bower_components/angular/angular.min.js',
-        'web/bundles/viettutweb/bower_components/angular-ui-router/release/angular-ui-router.min.js',
         'web/bundles/viettutweb/bower_components/ng-tags-input/ng-tags-input.min.js',
         'web/bundles/viettutweb/bower_components/angular-bootstrap/ui-bootstrap.min.js',
         'web/bundles/viettutweb/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
@@ -33,9 +32,7 @@ gulp.task('scripts', function(){
         'web/bundles/viettutweb/bower_components/ng-file-upload/ng-file-upload.min.js',
         'web/bundles/viettutweb/bower_components/ng-file-upload-shim/ng-file-upload-shim.min.js',
         'web/bundles/viettutweb/bower_components/bootstrap/dist/js/bootstrap.min.js',
-        'web/bundles/viettutweb/bower_components/satellizer/satellizer.min.js',
         'web/bundles/viettutweb/bower_components/highlightjs/highlight.pack.min.js',
-        'web/bundles/viettutweb/bower_components/ngstorage/ngStorage.min.js',
         'web/bundles/viettutweb/bower_components/ladda/dist/spin.min.js',
         'web/bundles/viettutweb/bower_components/ladda/dist/ladda.min.js',
         'web/bundles/viettutweb/bower_components/ladda-angular/dist/ladda-angular.min.js',
